@@ -1,0 +1,22 @@
+//
+//  Runner-Prefix.pch
+//  Runner
+//
+//  Created by bangdong.chen on 2020/08/27.
+//  Copyright © 2020 Alibaba. All rights reserved.
+//
+
+#ifndef Mpaas_Prefix_Header_pch
+#define Mpaas_Prefix_Header_pch
+
+// This part is maintained by MPaaS plugin automatically.
+#ifdef __OBJC__
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "Runner-mPaaS-Headers.h"
+
+
+#endif
+
+#endif /* Mpaas_Prefix_Header_pch */
