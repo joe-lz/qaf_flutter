@@ -27,21 +27,47 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         //导航栏
         title: Text("App Name"),
       ),
       body: pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-          BottomNavigationBarItem(icon: Icon(Icons.message), title: Text('信息')),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('我')),
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.deepPurple,
-        onTap: _onItemTapped,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(40),
+          topLeft: Radius.circular(40),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+              // borderRadius: BorderRadius.only(
+              //   topRight: Radius.circular(40),
+              //   topLeft: Radius.circular(40),
+              // ),
+              // color: Colors.red,
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Colors.grey,
+              //   ),
+              // ],
+              ),
+          child: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
+              BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('信息')),
+              BottomNavigationBarItem(icon: Icon(Icons.school), title: Text('我')),
+            ],
+            currentIndex: _selectedIndex,
+            fixedColor: Colors.deepPurple,
+            onTap: _onItemTapped,
+            iconSize: 24,
+            selectedFontSize: 12,
+            unselectedFontSize: 12,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
+            elevation: 0,
+            backgroundColor: Color.fromRGBO(0, 0, 0, 0.05),
+          ),
+        ),
       ),
     );
   }
