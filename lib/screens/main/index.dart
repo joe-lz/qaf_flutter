@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qaf_flutter/constants.dart';
+
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/me/index.dart';
@@ -19,24 +21,30 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pages = new List();
   @override
   void initState() {
-    pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
+    // pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
+    pages..add(HomeScreen())..add(MeScreen());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        //导航栏
-        title: Text("App Name"),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   //导航栏
+      //   title: Text("App Name"),
+      // ),
+      body: Container(
+        color: kBackgroundColor,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height + 100,
+        child: pages[_selectedIndex],
       ),
-      body: pages[_selectedIndex],
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(40),
-          topLeft: Radius.circular(40),
-        ),
+        // borderRadius: BorderRadius.only(
+        //   topRight: Radius.circular(40),
+        //   topLeft: Radius.circular(40),
+        // ),
         child: Container(
           decoration: BoxDecoration(
               // borderRadius: BorderRadius.only(
@@ -52,12 +60,14 @@ class _MainScreenState extends State<MainScreen> {
               ),
           child: BottomNavigationBar(
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-              BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('信息')),
-              BottomNavigationBarItem(icon: Icon(Icons.school), title: Text('我')),
+              BottomNavigationBarItem(icon: Icon(Icons.speaker_group), title: Text('首页')),
+              // BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('信息')),
+              BottomNavigationBarItem(icon: Icon(Icons.recent_actors), title: Text('我')),
             ],
             currentIndex: _selectedIndex,
-            fixedColor: Colors.deepPurple,
+            // fixedColor: Colors.deepPurple,
+            selectedItemColor: kPrimaryColor,
+            unselectedItemColor: kDisabledColor,
             onTap: _onItemTapped,
             iconSize: 24,
             selectedFontSize: 12,
@@ -65,7 +75,6 @@ class _MainScreenState extends State<MainScreen> {
             showUnselectedLabels: false,
             showSelectedLabels: false,
             elevation: 0,
-            backgroundColor: Color.fromRGBO(0, 0, 0, 0.05),
           ),
         ),
       ),
