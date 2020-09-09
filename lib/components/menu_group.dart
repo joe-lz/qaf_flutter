@@ -15,7 +15,7 @@ class _MenuGroupState extends State<MenuGroup> {
     return Padding(
       padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, DefaultPadding / 2),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
         child: Container(
           color: Colors.white,
           child: Column(

@@ -23,9 +23,19 @@ class _InputItemState extends State<InputItem> {
             labelText: widget.labelText,
             hintText: widget.hintText,
             // prefixIcon: widget.prefixIcon
+            // 未获得焦点下划线设为灰色
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: kBorderColor),
+            ),
+            //获得焦点下划线设为蓝色
+            // focusedBorder: UnderlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.blue),
+            // ),
           ),
+          autocorrect: false,
           autofocus: false,
           obscureText: widget.obscureText,
+          keyboardType: TextInputType.emailAddress,
         ),
       ),
     );
