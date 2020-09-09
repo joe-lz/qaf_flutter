@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/components/menu_item.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class MenuGroup extends StatefulWidget {
-  MenuGroup({Key key, this.menulist}) : super(key: key);
-  final List<int> menulist;
+  MenuGroup({Key key, this.children}) : super(key: key);
+  final List<Widget> children;
 
   @override
   _MenuGroupState createState() => _MenuGroupState();
@@ -20,7 +19,7 @@ class _MenuGroupState extends State<MenuGroup> {
         child: Container(
           color: Colors.white,
           child: Column(
-            children: widget.menulist.map((e) => MenuItem(title: '设置', showBorderBottom: true)).toList(),
+            children: widget.children,
           ),
         ),
       ),

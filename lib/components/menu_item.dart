@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class MenuItem extends StatefulWidget {
-  MenuItem({Key key, this.title = 'title', this.action, this.showIconRight = true, this.showBorderBottom = false}) : super(key: key);
+  MenuItem({Key key, this.title = 'title', this.action, this.showIconRight = true, this.showBorderBottom = false, this.active = false}) : super(key: key);
   final String title;
   final Function action;
   final bool showIconRight;
   final bool showBorderBottom;
+  final bool active;
 
   @override
   _MenuItemState createState() => _MenuItemState();
@@ -27,7 +28,7 @@ class _MenuItemState extends State<MenuItem> {
       //   borderRadius: BorderRadius.all(Radius.circular(10)),
       //   color: Colors.white,
       // ),
-      height: 44,
+      height: MenuHeight,
       width: MediaQuery.of(context).size.width - DefaultPadding * 2,
       child: Material(
         child: InkWell(
@@ -36,31 +37,45 @@ class _MenuItemState extends State<MenuItem> {
               widget.action();
             }
           },
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(DefaultPadding, 0, DefaultPadding / 2, 0),
-            child: Row(
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(color: kPrimaryColor, fontSize: 16),
+          child: Stack(
+            children: [
+              Positioned(
+                left: DefaultPadding,
+                top: MenuHeight - 1,
+                child: Container(
+                  width: MediaQuery.of(context).size.width - DefaultPadding * 2,
+                  height: widget.showBorderBottom ? 0.5 : 0,
+                  color: kBorderColor,
+                  child: null,
                 ),
-                Expanded(
-                  child: Container(
-                    child: null,
-                  ),
-                ),
-                widget.showIconRight
-                    ? Container(
-                        child: Icon(
-                          Icons.chevron_right,
-                          color: kDisabledColor,
-                        ),
-                      )
-                    : Container(
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(DefaultPadding, 0, DefaultPadding / 2, 0),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.title,
+                      style: TextStyle(color: widget.active ? kPrimaryColor : null, fontSize: 16),
+                    ),
+                    Expanded(
+                      child: Container(
                         child: null,
-                      )
-              ],
-            ),
+                      ),
+                    ),
+                    widget.showIconRight
+                        ? Container(
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: kDisabledColor,
+                            ),
+                          )
+                        : Container(
+                            child: null,
+                          )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
