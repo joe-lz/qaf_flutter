@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class InputItem extends StatefulWidget {
-  InputItem({Key key, this.labelText = 'labelText', this.hintText = 'hintText', this.prefixIcon, this.obscureText = false}) : super(key: key);
+  InputItem({
+    Key key,
+    this.labelText = 'labelText',
+    this.hintText = 'hintText',
+    this.prefixIcon,
+    this.obscureText = false,
+    this.onChanged,
+  }) : super(key: key);
   final String labelText;
   final String hintText;
   final Widget prefixIcon;
   final bool obscureText;
+  final Function onChanged;
 
   @override
   _InputItemState createState() => _InputItemState();
@@ -36,6 +44,7 @@ class _InputItemState extends State<InputItem> {
           autofocus: false,
           obscureText: widget.obscureText,
           keyboardType: TextInputType.emailAddress,
+          onChanged: widget.onChanged,
         ),
       ),
     );

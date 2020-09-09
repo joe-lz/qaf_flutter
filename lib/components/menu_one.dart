@@ -3,7 +3,14 @@ import 'package:qaf_flutter/components/menu_item.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class MenuOne extends StatefulWidget {
-  MenuOne({Key key, this.title = 'title', this.action, this.showIconRight = true, this.showBorderBottom = false, this.active = false}) : super(key: key);
+  MenuOne({
+    Key key,
+    this.title = 'title',
+    this.action,
+    this.showIconRight = true,
+    this.showBorderBottom = false,
+    this.active = false,
+  }) : super(key: key);
   final String title;
   final Function action;
   final bool showIconRight;

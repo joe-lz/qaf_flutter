@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class MenuItem extends StatefulWidget {
-  MenuItem({Key key, this.title = 'title', this.action, this.showIconRight = true, this.showBorderBottom = false, this.active = false}) : super(key: key);
+  MenuItem({
+    Key key,
+    this.title = 'title',
+    this.action,
+    this.showIconRight = true,
+    this.showBorderBottom = false,
+    this.active = false,
+  }) : super(key: key);
   final String title;
   final Function action;
   final bool showIconRight;

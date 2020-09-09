@@ -11,6 +11,9 @@ class ModalLogin extends StatefulWidget {
 }
 
 class _ModalLoginState extends State<ModalLogin> {
+  String username;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -47,8 +50,27 @@ class _ModalLoginState extends State<ModalLogin> {
                         //     ),
                         //   ),
                         // ),
-                        InputItem(labelText: "用户名", hintText: "用户名", prefixIcon: Icon(Icons.person)),
-                        InputItem(labelText: "密码", hintText: "您的登录密码", prefixIcon: Icon(Icons.lock), obscureText: true),
+                        InputItem(
+                          labelText: "用户名",
+                          hintText: "用户名",
+                          prefixIcon: Icon(Icons.person),
+                          onChanged: (text) {
+                            setState(() {
+                              username = text;
+                            });
+                          },
+                        ),
+                        InputItem(
+                          labelText: "密码",
+                          hintText: "您的登录密码",
+                          prefixIcon: Icon(Icons.lock),
+                          obscureText: true,
+                          onChanged: (text) {
+                            setState(() {
+                              password = text;
+                            });
+                          },
+                        ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, DefaultPadding, 0, DefaultPadding),
                           child: ClipRRect(
@@ -60,7 +82,9 @@ class _ModalLoginState extends State<ModalLogin> {
                               child: Material(
                                 color: kPrimaryColor,
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    print('$username, $password');
+                                  },
                                   child: Row(
                                     children: [
                                       Expanded(child: Container(child: null)),
@@ -87,7 +111,10 @@ class _ModalLoginState extends State<ModalLogin> {
                               Expanded(child: Container(child: null)),
                               Text('还没有帐户？'),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  // print('$username, $password');
+                                  print('object');
+                                },
                                 child: Text(
                                   '立即注册',
                                   style: TextStyle(
