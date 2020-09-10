@@ -5,6 +5,7 @@ import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/me/index.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -22,9 +23,9 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pages = new List();
   @override
   void initState() {
+    super.initState();
     // pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
     pages..add(HomeScreen())..add(MeScreen());
-    super.initState();
   }
 
   @override
@@ -38,8 +39,8 @@ class _MainScreenState extends State<MainScreen> {
       // ),
       body: Container(
         color: kBackgroundColor,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height + 100,
+        width: ScreenUtils.screenW(context),
+        height: ScreenUtils.screenH(context) + 100,
         child: pages[_selectedIndex],
       ),
       bottomNavigationBar: ClipRRect(

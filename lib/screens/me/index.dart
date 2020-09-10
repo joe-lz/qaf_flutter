@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:qaf_flutter/components/modal_login.dart';
 
@@ -18,9 +19,26 @@ class MeScreen extends StatefulWidget {
 }
 
 class _MeScreenState extends State<MeScreen> {
+  LCUser _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrent();
+  }
+
+  void getCurrent() async {
+    LCUser currentUser = await LCUser.getCurrent();
+    print(currentUser);
+    setState(() {
+      _currentUser = currentUser;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+
     return Container(
       child: SafeArea(
         top: true,
@@ -35,13 +53,6 @@ class _MeScreenState extends State<MeScreen> {
                   active: true,
                   title: '登录/注册',
                   action: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
-                    // showCupertinoModalBottomSheet(
-                    //   expand: true,
-                    //   backgroundColor: Colors.transparent,
-                    //   context: context,
-                    //   builder: (context, scrollController) => ModalLogin(),
-                    // );
                     showMaterialModalBottomSheet(
                       expand: true,
                       duration: Duration(milliseconds: 300),
@@ -51,13 +62,39 @@ class _MeScreenState extends State<MeScreen> {
                     );
                   },
                 ),
-                MenuOne(
-                  showIconRight: true,
-                  title: '通知',
-                  action: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
-                  },
-                ),
+                _currentUser != null
+                    ? MenuGroup(children: [
+                        MenuItem(
+                          showBorderBottom: true,
+                          title: '账户设置',
+                          action: () {
+                            print('我是action');
+                          },
+                        ),
+                        MenuItem(
+                          showBorderBottom: true,
+                          title: '权限管理',
+                          action: () {
+                            print('我是action');
+                          },
+                        ),
+                        MenuItem(
+                          title: '通知',
+                          action: () {
+                            print('我是action');
+                          },
+                        )
+                      ])
+                    : Container(
+                        child: null,
+                      ),
+                // MenuOne(
+                //   showIconRight: true,
+                //   title: '通知',
+                //   action: () {
+                //     Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
+                //   },
+                // ),
                 MenuGroup(children: [
                   MenuItem(
                     showBorderBottom: true,
@@ -81,28 +118,6 @@ class _MeScreenState extends State<MeScreen> {
                     },
                   ),
                 ])
-                // MenuGroup(children: [
-                //   MenuItem(
-                //     showBorderBottom: true,
-                //     title: '账户设置',
-                //     action: () {
-                //       print('我是action');
-                //     },
-                //   ),
-                //   MenuItem(
-                //     showBorderBottom: true,
-                //     title: '权限管理',
-                //     action: () {
-                //       print('我是action');
-                //     },
-                //   ),
-                //   MenuItem(
-                //     title: '通知',
-                //     action: () {
-                //       print('我是action');
-                //     },
-                //   )
-                // ])
               ],
             ),
           ),

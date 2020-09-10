@@ -21,3 +21,6 @@ const double MenuHeight = 44.0;
 // radius
 const double RadiusLarge = 40.0;
 const double RadiusNormal = 10.0;
+
+// font
+const double kFontSizeNormal = 16.0;

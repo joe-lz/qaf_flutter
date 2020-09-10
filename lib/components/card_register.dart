@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/input_item.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class CardRegister extends StatefulWidget {
   CardRegister({
@@ -23,7 +24,7 @@ class _CardRegisterState extends State<CardRegister> {
       borderRadius: BorderRadius.all(Radius.circular(RadiusLarge)),
       child: Container(
         color: Colors.white,
-        width: MediaQuery.of(context).size.width - DefaultPadding * 2,
+        width: ScreenUtils.screenW(context) - DefaultPadding * 2,
         // height: 400,
         child: Padding(
           padding: EdgeInsets.fromLTRB(DefaultPadding * 2, DefaultPadding, DefaultPadding * 2, DefaultPadding),

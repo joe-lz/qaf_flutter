@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:qaf_flutter/components/input_item.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CardLogin extends StatefulWidget {
   CardLogin({
@@ -17,29 +20,59 @@ class CardLogin extends StatefulWidget {
 class _CardLoginState extends State<CardLogin> {
   String username;
   String password;
+
+  void handleLogin() async {
+    try {
+      if (username != null && password != null) {
+        // 登录成功
+        LCUser user = await LCUser.login(username, password);
+        Fluttertoast.showToast(
+          msg: "登录成功",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } else {
+        Fluttertoast.showToast(
+          msg: '请输入用户名和密码',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
+    } on LCException catch (e) {
+      // 登录失败（可能是密码错误）
+      print('${e.code} : ${e.message}');
+      Fluttertoast.showToast(
+        msg: '${e.code} : ${e.message}',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(RadiusLarge)),
       child: Container(
         color: Colors.white,
-        width: MediaQuery.of(context).size.width - DefaultPadding * 2,
+        width: ScreenUtils.screenW(context) - DefaultPadding * 2,
         // height: 400,
         child: Padding(
           padding: EdgeInsets.fromLTRB(DefaultPadding * 2, DefaultPadding, DefaultPadding * 2, DefaultPadding),
           child: Column(
             children: [
-              // Padding(
-              //   padding: EdgeInsets.fromLTRB(0, 0, 0, DefaultPadding),
-              //   child: Text(
-              //     '登录账户',
-              //     style: TextStyle(
-              //       color: kPrimaryColor,
-              //       fontSize: Theme.of(context).textTheme.headline5.fontSize,
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ),
-              // ),
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
@@ -95,7 +128,7 @@ class _CardLoginState extends State<CardLogin> {
                       color: kPrimaryColor,
                       child: InkWell(
                         onTap: () {
-                          print('$username, $password');
+                          handleLogin();
                         },
                         child: Row(
                           children: [

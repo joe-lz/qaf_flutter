@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MenuItem extends StatefulWidget {
   MenuItem({
@@ -36,7 +37,7 @@ class _MenuItemState extends State<MenuItem> {
       //   color: Colors.white,
       // ),
       height: MenuHeight,
-      width: MediaQuery.of(context).size.width - DefaultPadding * 2,
+      width: ScreenUtils.screenW(context) - DefaultPadding * 2,
       child: Material(
         child: InkWell(
           onTap: () {
@@ -50,7 +51,7 @@ class _MenuItemState extends State<MenuItem> {
                 left: DefaultPadding,
                 top: MenuHeight - 1,
                 child: Container(
-                  width: MediaQuery.of(context).size.width - DefaultPadding * 2,
+                  width: ScreenUtils.screenW(context) - DefaultPadding * 2,
                   height: widget.showBorderBottom ? 0.5 : 0,
                   color: kBorderColor,
                   child: null,
@@ -62,7 +63,7 @@ class _MenuItemState extends State<MenuItem> {
                   children: [
                     Text(
                       widget.title,
-                      style: TextStyle(color: widget.active ? kPrimaryColor : null, fontSize: 16),
+                      style: TextStyle(color: widget.active ? kPrimaryColor : null, fontSize: kFontSizeNormal),
                     ),
                     Expanded(
                       child: Container(

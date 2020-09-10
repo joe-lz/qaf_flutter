@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class NavigatorItem extends StatefulWidget {
   NavigatorItem({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class _NavigatorItemState extends State<NavigatorItem> {
         top: true,
         bottom: false,
         child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: ScreenUtils.screenW(context),
           height: 44,
           child: Row(
             children: [
