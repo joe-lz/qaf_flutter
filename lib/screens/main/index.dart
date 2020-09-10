@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qaf_flutter/constants.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';
@@ -28,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       // appBar: AppBar(
       //   elevation: 0,
