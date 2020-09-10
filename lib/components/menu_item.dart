@@ -74,6 +74,7 @@ class _MenuItemState extends State<MenuItem> {
                             child: Icon(
                               Icons.chevron_right,
                               color: kDisabledColor,
+                              size: 20,
                             ),
                           )
                         : Container(

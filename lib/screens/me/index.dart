@@ -57,25 +57,48 @@ class _MeScreenState extends State<MeScreen> {
                 MenuGroup(children: [
                   MenuItem(
                     showBorderBottom: true,
-                    title: '账户设置',
+                    title: '和朋友分享',
                     action: () {
                       print('我是action');
                     },
                   ),
                   MenuItem(
                     showBorderBottom: true,
-                    title: '权限管理',
+                    title: '意见反馈',
                     action: () {
                       print('我是action');
                     },
                   ),
                   MenuItem(
-                    title: '通知',
+                    showBorderBottom: false,
+                    title: '关于我们',
                     action: () {
                       print('我是action');
                     },
-                  )
+                  ),
                 ])
+                // MenuGroup(children: [
+                //   MenuItem(
+                //     showBorderBottom: true,
+                //     title: '账户设置',
+                //     action: () {
+                //       print('我是action');
+                //     },
+                //   ),
+                //   MenuItem(
+                //     showBorderBottom: true,
+                //     title: '权限管理',
+                //     action: () {
+                //       print('我是action');
+                //     },
+                //   ),
+                //   MenuItem(
+                //     title: '通知',
+                //     action: () {
+                //       print('我是action');
+                //     },
+                //   )
+                // ])
               ],
             ),
           ),
