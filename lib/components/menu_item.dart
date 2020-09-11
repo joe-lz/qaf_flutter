@@ -10,12 +10,14 @@ class MenuItem extends StatefulWidget {
     this.showIconRight = true,
     this.showBorderBottom = false,
     this.active = false,
+    this.activeColor = kPrimaryColor,
   }) : super(key: key);
   final String title;
   final Function action;
   final bool showIconRight;
   final bool showBorderBottom;
   final bool active;
+  final Color activeColor;
 
   @override
   _MenuItemState createState() => _MenuItemState();
@@ -31,20 +33,17 @@ class _MenuItemState extends State<MenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.all(Radius.circular(10)),
-      //   color: Colors.white,
-      // ),
-      height: MenuHeight,
-      width: ScreenUtils.screenW(context) - DefaultPadding * 2,
-      child: Material(
-        child: InkWell(
-          onTap: () {
-            if (widget.action != null) {
-              widget.action();
-            }
-          },
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          if (widget.action != null) {
+            widget.action();
+          }
+        },
+        child: Container(
+          height: MenuHeight,
+          width: ScreenUtils.screenW(context) - DefaultPadding * 2,
           child: Stack(
             children: [
               Positioned(
@@ -63,7 +62,7 @@ class _MenuItemState extends State<MenuItem> {
                   children: [
                     Text(
                       widget.title,
-                      style: TextStyle(color: widget.active ? kPrimaryColor : null, fontSize: kFontSizeNormal),
+                      style: TextStyle(color: widget.active ? widget.activeColor : null, fontSize: kFontSizeNormal),
                     ),
                     Expanded(
                       child: Container(

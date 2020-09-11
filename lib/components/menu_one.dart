@@ -10,12 +10,14 @@ class MenuOne extends StatefulWidget {
     this.showIconRight = true,
     this.showBorderBottom = false,
     this.active = false,
+    this.activeColor = kPrimaryColor,
   }) : super(key: key);
   final String title;
   final Function action;
   final bool showIconRight;
   final bool showBorderBottom;
   final bool active;
+  final Color activeColor;
 
   @override
   _MenuOneState createState() => _MenuOneState();
@@ -28,7 +30,13 @@ class _MenuOneState extends State<MenuOne> {
       padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, DefaultPadding / 2),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
-        child: MenuItem(title: widget.title, action: widget.action, showIconRight: widget.showIconRight, active: widget.active),
+        child: MenuItem(
+          title: widget.title,
+          action: widget.action,
+          showIconRight: widget.showIconRight,
+          active: widget.active,
+          activeColor: widget.activeColor,
+        ),
       ),
     );
   }

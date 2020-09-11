@@ -162,6 +162,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.4"
+  flushbar:
+    dependency: "direct main"
+    description:
+      name: flushbar
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.10.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -184,13 +191,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.11"
-  fluttertoast:
-    dependency: "direct main"
-    description:
-      name: fluttertoast
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "7.0.4"
   glob:
     dependency: transitive
     description:
@@ -539,13 +539,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.9.7+15"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.22+1"
   xdg_directories:
     dependency: transitive
     description:
