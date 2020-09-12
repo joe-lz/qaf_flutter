@@ -15,6 +15,7 @@ class MenuItem extends StatefulWidget {
     this.colorTitle = kTextColor,
     this.colorDesc = kTextColor,
     this.colorDescHint = kDisabledColor,
+    this.editMode = false,
   }) : super(key: key);
   final String title;
   final String desc;
@@ -26,6 +27,7 @@ class MenuItem extends StatefulWidget {
   final Color colorTitle;
   final Color colorDesc;
   final Color colorDescHint;
+  final bool editMode;
 
   @override
   _MenuItemState createState() => _MenuItemState();

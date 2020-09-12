@@ -5,9 +5,9 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:qaf_flutter/components/modal_login.dart';
 
-import 'package:qaf_flutter/components/title_page.dart';
+import 'package:qaf_flutter/components/page_title.dart';
 import 'package:qaf_flutter/components/menu_group.dart';
-import 'package:qaf_flutter/components/menu_item.dart';
+import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/screens/me-about/index.dart';
@@ -61,7 +61,7 @@ class _MeScreenState extends State<MeScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                TitlePage(
+                PageTitle(
                   title: '帐户',
                   right: GestureDetector(
                     onTap: () {
@@ -141,7 +141,7 @@ class _MeScreenState extends State<MeScreen> {
                     showIconRight: true,
                     title: '意见反馈',
                     action: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://baidu.com')));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://support.qq.com/products/105926')));
                     },
                   ),
                   MenuItem(

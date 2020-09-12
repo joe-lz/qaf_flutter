@@ -42,7 +42,6 @@ class _ModalLoginState extends State<ModalLogin> {
         body: Container(
           child: Column(
             children: [
-              // TitlePage(title: '登录'),
               Expanded(
                 child: Container(
                   child: null,

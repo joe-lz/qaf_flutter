@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/components/menu_item.dart';
+import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/constants.dart';
 
 class MenuOne extends StatefulWidget {
@@ -15,6 +15,7 @@ class MenuOne extends StatefulWidget {
     this.colorTitle = kTextColor,
     this.colorDesc = kTextColor,
     this.colorDescHint = kDisabledColor,
+    this.editMode = false,
   }) : super(key: key);
   final String title;
   final String desc;
@@ -26,6 +27,7 @@ class MenuOne extends StatefulWidget {
   final Color colorTitle;
   final Color colorDesc;
   final Color colorDescHint;
+  final bool editMode;
 
   @override
   _MenuOneState createState() => _MenuOneState();
@@ -48,6 +50,7 @@ class _MenuOneState extends State<MenuOne> {
           type: widget.type,
           colorTitle: widget.colorTitle,
           colorDescHint: widget.colorDescHint,
+          editMode: widget.editMode,
         ),
       ),
     );

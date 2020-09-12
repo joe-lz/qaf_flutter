@@ -6,9 +6,11 @@ class MenuGroup extends StatefulWidget {
     Key key,
     this.children,
     this.title,
+    this.desc,
   }) : super(key: key);
   final List<Widget> children;
   final String title;
+  final String desc;
 
   @override
   _MenuGroupState createState() => _MenuGroupState();
@@ -51,7 +53,28 @@ class _MenuGroupState extends State<MenuGroup> {
                 children: widget.children,
               ),
             ),
-          )
+          ),
+          widget.desc != null
+              ? Padding(
+                  padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, 0),
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.desc,
+                        style: TextStyle(
+                          color: kTextColorGray,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          child: null,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : Container(child: null),
         ],
       ),
     );

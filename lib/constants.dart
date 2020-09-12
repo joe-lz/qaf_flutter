@@ -16,6 +16,7 @@ const kBorderColor = Color.fromRGBO(220, 220, 220, 1.00);
 const kBackgroundColor = Color.fromRGBO(242, 242, 246, 1.00);
 
 const kTextColor = Colors.black;
+const kTextColorGray = Color.fromRGBO(0, 0, 0, .6);
 
 // padding
 const double DefaultPadding = 20.0;

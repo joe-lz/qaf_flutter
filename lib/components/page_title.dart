@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:qaf_flutter/constants.dart';
 
-class TitlePage extends StatefulWidget {
-  TitlePage({
+class PageTitle extends StatefulWidget {
+  PageTitle({
     Key key,
-    this.title = 'TitlePage',
+    this.title = 'PageTitle',
     this.right,
   }) : super(key: key);
   final String title;
   final Widget right;
 
   @override
-  _TitlePageState createState() => _TitlePageState();
+  _PageTitleState createState() => _PageTitleState();
 }
 
-class _TitlePageState extends State<TitlePage> {
+class _PageTitleState extends State<PageTitle> {
   @override
   Widget build(BuildContext context) {
     return Padding(
