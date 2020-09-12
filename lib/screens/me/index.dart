@@ -63,16 +63,18 @@ class _MeScreenState extends State<MeScreen> {
               children: [
                 PageTitle(
                   title: '帐户',
-                  right: GestureDetector(
-                    onTap: () {
-                      navigateToUserInfo();
-                    },
-                    child: Icon(
-                      Icons.account_circle,
-                      size: 35,
-                      color: kPrimaryColor,
-                    ),
-                  ),
+                  right: _currentUser != null
+                      ? GestureDetector(
+                          onTap: () {
+                            navigateToUserInfo();
+                          },
+                          child: Icon(
+                            Icons.account_circle,
+                            size: 35,
+                            color: kPrimaryColor,
+                          ),
+                        )
+                      : null,
                 ),
                 _currentUser != null
                     ? Container(
