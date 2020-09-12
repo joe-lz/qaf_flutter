@@ -15,7 +15,7 @@ const kDisabledColor = Color.fromRGBO(206, 196, 222, 1.00);
 const kBorderColor = Color.fromRGBO(220, 220, 220, 1.00);
 const kBackgroundColor = Color.fromRGBO(242, 242, 246, 1.00);
 
-const kTextColor = Color(0xFF3C4046);
+const kTextColor = Colors.black;
 
 // padding
 const double DefaultPadding = 20.0;

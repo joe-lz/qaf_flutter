@@ -6,18 +6,26 @@ class MenuItem extends StatefulWidget {
   MenuItem({
     Key key,
     this.title = 'title',
+    this.desc,
+    this.descHint,
     this.action,
-    this.showIconRight = true,
+    this.showIconRight = false,
     this.showBorderBottom = false,
-    this.active = false,
-    this.activeColor = kPrimaryColor,
+    this.type = 'normal', // normal, active, disabled
+    this.colorTitle = kTextColor,
+    this.colorDesc = kTextColor,
+    this.colorDescHint = kDisabledColor,
   }) : super(key: key);
   final String title;
+  final String desc;
+  final String descHint;
   final Function action;
   final bool showIconRight;
   final bool showBorderBottom;
-  final bool active;
-  final Color activeColor;
+  final String type;
+  final Color colorTitle;
+  final Color colorDesc;
+  final Color colorDescHint;
 
   @override
   _MenuItemState createState() => _MenuItemState();
@@ -34,13 +42,10 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      // color: widget.type == 'disabled' ? kBorderColor : Colors.white,
       color: Colors.white,
       child: InkWell(
-        onTap: () {
-          if (widget.action != null) {
-            widget.action();
-          }
-        },
+        onTap: widget.action,
         child: Container(
           height: MenuHeight,
           width: ScreenUtils.screenW(context) - DefaultPadding * 2,
@@ -62,13 +67,44 @@ class _MenuItemState extends State<MenuItem> {
                   children: [
                     Text(
                       widget.title,
-                      style: TextStyle(color: widget.active ? widget.activeColor : null, fontSize: kFontSizeNormal),
+                      style: TextStyle(
+                        color: widget.colorTitle,
+                        fontSize: kFontSizeNormal,
+                        // fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Expanded(
                       child: Container(
                         child: null,
                       ),
                     ),
+                    widget.desc != null
+                        ? Padding(
+                            padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
+                            child: Container(
+                              child: Text(
+                                widget.desc,
+                                style: TextStyle(
+                                  color: widget.colorDesc,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            child: widget.descHint != null
+                                ? Padding(
+                                    padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
+                                    child: Container(
+                                      child: Text(
+                                        widget.descHint,
+                                        style: TextStyle(
+                                          color: widget.colorDescHint,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Text(''),
+                          ),
                     widget.showIconRight
                         ? Container(
                             child: Icon(

@@ -6,10 +6,10 @@ class TitlePage extends StatefulWidget {
   TitlePage({
     Key key,
     this.title = 'TitlePage',
-    this.userinfo,
+    this.right,
   }) : super(key: key);
   final String title;
-  final LCUser userinfo;
+  final Widget right;
 
   @override
   _TitlePageState createState() => _TitlePageState();
@@ -31,12 +31,8 @@ class _TitlePageState extends State<TitlePage> {
               child: null,
             ),
           ),
-          widget.userinfo != null
-              ? Icon(
-                  Icons.account_circle,
-                  size: 35,
-                  color: kPrimaryColor,
-                )
+          widget.right != null
+              ? widget.right
               : Container(
                   child: null,
                 )

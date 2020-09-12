@@ -11,7 +11,6 @@ import 'package:qaf_flutter/components/menu_item.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/screens/me-about/index.dart';
-import 'package:qaf_flutter/screens/me-login/index.dart';
 import 'package:qaf_flutter/screens/me/userinfo.dart';
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
@@ -38,6 +37,18 @@ class _MeScreenState extends State<MeScreen> {
     });
   }
 
+  void navigateToUserInfo() {
+    showCupertinoModalBottomSheet(
+      expand: true,
+      duration: Duration(milliseconds: 300),
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context, scrollController) => UserInfo(
+        userinfo: _currentUser,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -50,14 +61,26 @@ class _MeScreenState extends State<MeScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                TitlePage(title: '帐户', userinfo: _currentUser),
+                TitlePage(
+                  title: '帐户',
+                  right: GestureDetector(
+                    onTap: () {
+                      navigateToUserInfo();
+                    },
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 35,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
                 _currentUser != null
                     ? Container(
                         child: null,
                       )
                     : MenuOne(
                         showIconRight: false,
-                        active: true,
+                        type: 'active',
                         title: '登录/注册',
                         action: () {
                           showMaterialModalBottomSheet(
@@ -69,26 +92,19 @@ class _MeScreenState extends State<MeScreen> {
                           );
                         },
                       ),
-                // _currentUser != null
-                //     ? MenuOne(
-                //         showIconRight: false,
-                //         active: true,
-                //         title: '我的资料',
-                //         action: () {
-                //           showCupertinoModalBottomSheet(
-                //             expand: true,
-                //             duration: Duration(milliseconds: 300),
-                //             backgroundColor: Colors.white,
-                //             context: context,
-                //             builder: (context, scrollController) => Container(
-                //               child: Text('data'),
-                //             ),
-                //           );
-                //         },
-                //       )
-                //     : Container(
-                //         child: null,
-                //       ),
+                _currentUser != null
+                    ? MenuOne(
+                        title: '我的资料',
+                        colorTitle: kPrimaryColor,
+                        showIconRight: false,
+                        type: 'active',
+                        action: () {
+                          navigateToUserInfo();
+                        },
+                      )
+                    : Container(
+                        child: null,
+                      ),
                 _currentUser != null
                     ? MenuGroup(
                         children: [
@@ -115,7 +131,6 @@ class _MeScreenState extends State<MeScreen> {
                   MenuItem(
                     showBorderBottom: true,
                     showIconRight: true,
-                    active: false,
                     title: '和朋友分享',
                     action: () {
                       print('我是action');
@@ -124,7 +139,6 @@ class _MeScreenState extends State<MeScreen> {
                   MenuItem(
                     showBorderBottom: true,
                     showIconRight: true,
-                    active: false,
                     title: '意见反馈',
                     action: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://baidu.com')));
@@ -133,7 +147,6 @@ class _MeScreenState extends State<MeScreen> {
                   MenuItem(
                     showBorderBottom: false,
                     showIconRight: true,
-                    active: false,
                     title: '关于我们',
                     action: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => MeAboutScreen()));
@@ -143,8 +156,8 @@ class _MeScreenState extends State<MeScreen> {
                 _currentUser != null
                     ? MenuOne(
                         showIconRight: false,
-                        active: true,
-                        activeColor: kColorError,
+                        type: 'active',
+                        colorTitle: kColorError,
                         title: '退出登录',
                         action: () {
                           showCupertinoModalPopup(
@@ -161,14 +174,17 @@ class _MeScreenState extends State<MeScreen> {
                                   // ),
                                   CupertinoActionSheetAction(
                                     child: Text('退出登录'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      await LCUser.logout();
+                                      Navigator.pop(context, 'Cancel');
+                                    },
                                     // isDestructiveAction: true,
                                   ),
                                 ],
                                 cancelButton: CupertinoActionSheetAction(
                                   child: Text('取消'),
                                   isDestructiveAction: true,
-                                  isDefaultAction: true,
+                                  // isDefaultAction: true,
                                   onPressed: () {
                                     Navigator.pop(context, 'Cancel');
                                   },
