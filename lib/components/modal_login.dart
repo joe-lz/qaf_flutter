@@ -39,37 +39,42 @@ class _ModalLoginState extends State<ModalLogin> {
       color: Colors.transparent,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  child: null,
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Container(
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    child: null,
+                  ),
                 ),
-              ),
-              FlipCard(
-                key: cardKey,
-                flipOnTouch: false,
-                direction: FlipDirection.HORIZONTAL, // default
-                front: CardLogin(
-                  cardKey: cardKey,
-                  leanerr: leanerr,
+                FlipCard(
+                  key: cardKey,
+                  flipOnTouch: false,
+                  direction: FlipDirection.HORIZONTAL, // default
+                  front: CardLogin(
+                    cardKey: cardKey,
+                    leanerr: leanerr,
+                  ),
+                  back: CardRegister(
+                    cardKey: cardKey,
+                    leanerr: leanerr,
+                  ),
                 ),
-                back: CardRegister(
-                  cardKey: cardKey,
-                  leanerr: leanerr,
+                // Container(
+                //   height: DefaultPadding,
+                //   child: null,
+                // ),
+                Expanded(
+                  child: Container(
+                    child: null,
+                  ),
                 ),
-              ),
-              // Container(
-              //   height: DefaultPadding,
-              //   child: null,
-              // ),
-              Expanded(
-                child: Container(
-                  child: null,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

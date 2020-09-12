@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
+import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
 import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
@@ -44,7 +46,6 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // color: widget.type == 'disabled' ? kBorderColor : Colors.white,
       color: Colors.white,
       child: InkWell(
         onTap: widget.action,
@@ -65,61 +66,32 @@ class _MenuItemState extends State<MenuItem> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(DefaultPadding, 0, DefaultPadding / 2, 0),
-                child: Row(
-                  children: [
-                    Text(
-                      widget.title,
-                      style: TextStyle(
-                        color: widget.colorTitle,
-                        fontSize: kFontSizeNormal,
-                        // fontWeight: FontWeight.w500,
-                      ),
+                child: Row(children: [
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      color: widget.colorTitle,
+                      fontSize: kFontSizeNormal,
+                      // fontWeight: FontWeight.w500,
                     ),
-                    Expanded(
-                      child: Container(
-                        child: null,
-                      ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: null,
                     ),
-                    widget.desc != null
-                        ? Padding(
-                            padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
-                            child: Container(
-                              child: Text(
-                                widget.desc,
-                                style: TextStyle(
-                                  color: widget.colorDesc,
-                                ),
-                              ),
-                            ),
-                          )
-                        : Container(
-                            child: widget.descHint != null
-                                ? Padding(
-                                    padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
-                                    child: Container(
-                                      child: Text(
-                                        widget.descHint,
-                                        style: TextStyle(
-                                          color: widget.colorDescHint,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : Text(''),
-                          ),
-                    widget.showIconRight
-                        ? Container(
-                            child: Icon(
-                              Icons.chevron_right,
-                              color: kDisabledColor,
-                              size: 20,
-                            ),
-                          )
-                        : Container(
-                            child: null,
-                          )
-                  ],
-                ),
+                  ),
+                  widget.editMode
+                      ? MenuItemInput(
+                          desc: widget.desc,
+                        )
+                      : MenuItemDisplay(
+                          desc: widget.desc,
+                          descHint: widget.descHint,
+                          showIconRight: widget.showIconRight,
+                          colorDesc: widget.colorDesc,
+                          colorDescHint: widget.colorDescHint,
+                        ),
+                ]),
               )
             ],
           ),
