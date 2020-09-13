@@ -23,11 +23,17 @@ class MeScreen extends StatefulWidget {
 class _MeScreenState extends State<MeScreen> {
   LCUser _currentUser;
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrent();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCurrent();
+  // }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   print('didChangeDependencies');
+  //   getCurrent();
+  // }
 
   void getCurrent() async {
     LCUser currentUser = await LCUser.getCurrent();
@@ -80,8 +86,9 @@ class _MeScreenState extends State<MeScreen> {
                     )
                   : MenuOne(
                       showIconRight: false,
-                      type: 'active',
+                      // type: 'active',
                       title: '登录/注册',
+                      colorTitle: kPrimaryColor,
                       action: () {
                         showMaterialModalBottomSheet(
                           expand: true,
@@ -97,7 +104,7 @@ class _MeScreenState extends State<MeScreen> {
                       title: '我的资料',
                       colorTitle: kPrimaryColor,
                       showIconRight: false,
-                      type: 'active',
+                      // type: 'active',
                       action: () {
                         navigateToUserInfo();
                       },
@@ -156,7 +163,7 @@ class _MeScreenState extends State<MeScreen> {
               _currentUser != null
                   ? MenuOne(
                       showIconRight: false,
-                      type: 'active',
+                      // type: 'active',
                       colorTitle: kColorError,
                       title: '退出登录',
                       action: () {
