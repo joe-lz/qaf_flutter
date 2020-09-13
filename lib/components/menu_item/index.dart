@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
 import 'package:qaf_flutter/constants.dart';
@@ -17,10 +18,16 @@ class MenuItem extends StatefulWidget {
     this.colorTitle = kTextColor,
     this.colorDesc = kTextColor,
     this.colorDescHint = kDisabledColor,
+    // input
     this.editMode = false,
+    this.inputType = 'input', // input, picker, actionsheet
+    this.onChanged,
+    this.dataActionSheet,
+    this.dataPicker,
+    this.unit,
   }) : super(key: key);
   final String title;
-  final String desc;
+  final desc;
   final String descHint;
   final Function action;
   final bool showIconRight;
@@ -29,7 +36,13 @@ class MenuItem extends StatefulWidget {
   final Color colorTitle;
   final Color colorDesc;
   final Color colorDescHint;
+  // input
   final bool editMode;
+  final String inputType;
+  final Function onChanged;
+  final List dataActionSheet;
+  final List<NumberPickerColumn> dataPicker;
+  final String unit;
 
   @override
   _MenuItemState createState() => _MenuItemState();
@@ -66,32 +79,49 @@ class _MenuItemState extends State<MenuItem> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(DefaultPadding, 0, DefaultPadding / 2, 0),
-                child: Row(children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      color: widget.colorTitle,
-                      fontSize: kFontSizeNormal,
-                      // fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: null,
-                    ),
-                  ),
-                  widget.editMode
-                      ? MenuItemInput(
-                          desc: widget.desc,
-                        )
-                      : MenuItemDisplay(
-                          desc: widget.desc,
-                          descHint: widget.descHint,
-                          showIconRight: widget.showIconRight,
-                          colorDesc: widget.colorDesc,
-                          colorDescHint: widget.colorDescHint,
+                child: FractionallySizedBox(
+                  heightFactor: 1,
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.title,
+                        style: TextStyle(
+                          color: widget.colorTitle,
+                          fontSize: kFontSizeNormal,
+                          // fontWeight: FontWeight.w500,
                         ),
-                ]),
+                      ),
+                      // Expanded(
+                      //   child: Container(
+                      //     child: null,
+                      //   ),
+                      // ),
+                      Expanded(
+                        child: Container(
+                          // color: Colors.red,
+                          child: widget.editMode
+                              ? MenuItemInput(
+                                  title: widget.title,
+                                  desc: widget.desc,
+                                  inputType: widget.inputType,
+                                  onChanged: widget.onChanged,
+                                  dataActionSheet: widget.dataActionSheet,
+                                  dataPicker: widget.dataPicker,
+                                  unit: widget.unit,
+                                )
+                              : MenuItemDisplay(
+                                  desc: widget.desc,
+                                  descHint: widget.descHint,
+                                  showIconRight: widget.showIconRight,
+                                  colorDesc: widget.colorDesc,
+                                  colorDescHint: widget.colorDescHint,
+                                  unit: widget.unit,
+                                ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           ),

@@ -31,7 +31,6 @@ class _MeScreenState extends State<MeScreen> {
 
   void getCurrent() async {
     LCUser currentUser = await LCUser.getCurrent();
-    print(currentUser);
     setState(() {
       _currentUser = currentUser;
     });
@@ -57,150 +56,148 @@ class _MeScreenState extends State<MeScreen> {
       child: SafeArea(
         top: true,
         bottom: false,
-        child: SizedBox(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                PageTitle(
-                  title: '帐户',
-                  right: _currentUser != null
-                      ? GestureDetector(
-                          onTap: () {
-                            navigateToUserInfo();
-                          },
-                          child: Icon(
-                            Icons.account_circle,
-                            size: 35,
-                            color: kPrimaryColor,
-                          ),
-                        )
-                      : null,
-                ),
-                _currentUser != null
-                    ? Container(
-                        child: null,
-                      )
-                    : MenuOne(
-                        showIconRight: false,
-                        type: 'active',
-                        title: '登录/注册',
-                        action: () {
-                          showMaterialModalBottomSheet(
-                            expand: true,
-                            duration: Duration(milliseconds: 300),
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context, scrollController) => ModalLogin(),
-                          );
-                        },
-                      ),
-                _currentUser != null
-                    ? MenuOne(
-                        title: '我的资料',
-                        colorTitle: kPrimaryColor,
-                        showIconRight: false,
-                        type: 'active',
-                        action: () {
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              PageTitle(
+                title: '帐户',
+                right: _currentUser != null
+                    ? GestureDetector(
+                        onTap: () {
                           navigateToUserInfo();
                         },
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 35,
+                          color: kPrimaryColor,
+                        ),
                       )
-                    : Container(
-                        child: null,
-                      ),
-                _currentUser != null
-                    ? MenuGroup(
-                        children: [
-                          MenuItem(
-                            // showBorderBottom: true,
-                            title: '权限管理',
-                            action: () {
-                              print('我是action');
-                            },
-                          ),
-                        ],
-                      )
-                    : Container(
-                        child: null,
-                      ),
-                // MenuOne(
-                //   showIconRight: true,
-                //   title: '通知',
-                //   action: () {
-                //     Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
-                //   },
-                // ),
-                MenuGroup(children: [
-                  MenuItem(
-                    showBorderBottom: true,
-                    showIconRight: true,
-                    title: '和朋友分享',
-                    action: () {
-                      print('我是action');
-                    },
-                  ),
-                  MenuItem(
-                    showBorderBottom: true,
-                    showIconRight: true,
-                    title: '意见反馈',
-                    action: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://support.qq.com/products/105926')));
-                    },
-                  ),
-                  MenuItem(
-                    showBorderBottom: false,
-                    showIconRight: true,
-                    title: '关于我们',
-                    action: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MeAboutScreen()));
-                    },
-                  ),
-                ]),
-                _currentUser != null
-                    ? MenuOne(
-                        showIconRight: false,
-                        type: 'active',
-                        colorTitle: kColorError,
-                        title: '退出登录',
-                        action: () {
-                          showCupertinoModalPopup(
-                            context: context,
-                            builder: (context) {
-                              return CupertinoActionSheet(
-                                // title: Text('提示'),
-                                message: Text('确认退出登录状态吗？'),
-                                actions: <Widget>[
-                                  // CupertinoActionSheetAction(
-                                  //   child: Text('删除'),
-                                  //   onPressed: () {},
-                                  //   isDefaultAction: true,
-                                  // ),
-                                  CupertinoActionSheetAction(
-                                    child: Text('退出登录'),
-                                    onPressed: () async {
-                                      await LCUser.logout();
-                                      Navigator.pop(context, 'Cancel');
-                                    },
-                                    // isDestructiveAction: true,
-                                  ),
-                                ],
-                                cancelButton: CupertinoActionSheetAction(
-                                  child: Text('取消'),
-                                  isDestructiveAction: true,
-                                  // isDefaultAction: true,
-                                  onPressed: () {
+                    : null,
+              ),
+              _currentUser != null
+                  ? Container(
+                      child: null,
+                    )
+                  : MenuOne(
+                      showIconRight: false,
+                      type: 'active',
+                      title: '登录/注册',
+                      action: () {
+                        showMaterialModalBottomSheet(
+                          expand: true,
+                          duration: Duration(milliseconds: 300),
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context, scrollController) => ModalLogin(),
+                        );
+                      },
+                    ),
+              _currentUser != null
+                  ? MenuOne(
+                      title: '我的资料',
+                      colorTitle: kPrimaryColor,
+                      showIconRight: false,
+                      type: 'active',
+                      action: () {
+                        navigateToUserInfo();
+                      },
+                    )
+                  : Container(
+                      child: null,
+                    ),
+              _currentUser != null
+                  ? MenuGroup(
+                      children: [
+                        MenuItem(
+                          // showBorderBottom: true,
+                          title: '权限管理',
+                          action: () {
+                            print('我是action');
+                          },
+                        ),
+                      ],
+                    )
+                  : Container(
+                      child: null,
+                    ),
+              // MenuOne(
+              //   showIconRight: true,
+              //   title: '通知',
+              //   action: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
+              //   },
+              // ),
+              MenuGroup(children: [
+                MenuItem(
+                  showBorderBottom: true,
+                  showIconRight: true,
+                  title: '和朋友分享',
+                  action: () {
+                    print('我是action');
+                  },
+                ),
+                MenuItem(
+                  showBorderBottom: true,
+                  showIconRight: true,
+                  title: '意见反馈',
+                  action: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://support.qq.com/products/105926')));
+                  },
+                ),
+                MenuItem(
+                  showBorderBottom: false,
+                  showIconRight: true,
+                  title: '关于我们',
+                  action: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MeAboutScreen()));
+                  },
+                ),
+              ]),
+              _currentUser != null
+                  ? MenuOne(
+                      showIconRight: false,
+                      type: 'active',
+                      colorTitle: kColorError,
+                      title: '退出登录',
+                      action: () {
+                        showCupertinoModalPopup(
+                          context: context,
+                          builder: (context) {
+                            return CupertinoActionSheet(
+                              // title: Text('提示'),
+                              message: Text('确认退出登录状态吗？'),
+                              actions: <Widget>[
+                                // CupertinoActionSheetAction(
+                                //   child: Text('删除'),
+                                //   onPressed: () {},
+                                //   isDefaultAction: true,
+                                // ),
+                                CupertinoActionSheetAction(
+                                  child: Text('退出登录'),
+                                  onPressed: () async {
+                                    await LCUser.logout();
                                     Navigator.pop(context, 'Cancel');
                                   },
+                                  // isDestructiveAction: true,
                                 ),
-                              );
-                            },
-                          );
-                        },
-                      )
-                    : Container(
-                        child: null,
-                      ),
-              ],
-            ),
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                child: Text('取消'),
+                                isDestructiveAction: true,
+                                // isDefaultAction: true,
+                                onPressed: () {
+                                  Navigator.pop(context, 'Cancel');
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    )
+                  : Container(
+                      child: null,
+                    ),
+            ],
           ),
         ),
       ),

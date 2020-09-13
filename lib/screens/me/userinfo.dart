@@ -7,6 +7,7 @@ import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/components/page_desc.dart';
 import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 
 class UserInfo extends StatefulWidget {
   UserInfo({
@@ -22,10 +23,21 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   bool editMode = false;
 
-  void handleSubmit() {}
+  String gender;
+  int age;
+  int weight;
+  int height;
+
+  void handleSubmit() {
+    setState(() {
+      editMode = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var date = new DateTime.now().toString();
+    var dateParse = DateTime.parse(date);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -108,35 +120,65 @@ class _UserInfoState extends State<UserInfo> {
                             showBorderBottom: true,
                             title: '用户名',
                             desc: widget.userinfo.username,
-                            // descHint: '-',
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '性别',
-                            desc: null,
+                            desc: gender,
                             descHint: '-',
+                            inputType: 'actionsheet',
+                            dataActionSheet: ['男', '女'],
+                            onChanged: (value) {
+                              setState(() {
+                                gender = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '年龄',
-                            desc: null,
+                            unit: '年',
+                            desc: age,
                             descHint: '-',
+                            inputType: 'picker',
+                            dataPicker: [NumberPickerColumn(begin: dateParse.year - 80, end: dateParse.year)],
+                            onChanged: (value) {
+                              setState(() {
+                                age = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '身高',
-                            desc: null,
+                            unit: 'cm',
+                            desc: height,
                             descHint: '-',
+                            inputType: 'picker',
+                            dataPicker: [NumberPickerColumn(begin: 120, end: 220)],
+                            onChanged: (value) {
+                              setState(() {
+                                height = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: false,
                             title: '体重',
-                            desc: null,
+                            unit: 'kg',
+                            desc: weight,
                             descHint: '-',
+                            inputType: 'picker',
+                            dataPicker: [NumberPickerColumn(begin: 40, end: 220)],
+                            onChanged: (value) {
+                              setState(() {
+                                weight = value;
+                              });
+                            },
                           ),
                         ],
                       ),

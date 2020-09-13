@@ -32,7 +32,8 @@ dependencies:
   cupertino_icons: ^0.1.3
   # fluttertoast: ^7.0.4
   flushbar: ^1.10.4
-
+  flutter_picker:
+    git: git://github.com/yangyxd/flutter_picker.git
 
 dev_dependencies:
   flutter_test:

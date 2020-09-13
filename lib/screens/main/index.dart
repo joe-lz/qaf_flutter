@@ -24,8 +24,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    // pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
-    pages..add(HomeScreen())..add(MeScreen());
+    pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
+    // pages..add(HomeScreen())..add(MeScreen());
   }
 
   @override
@@ -63,8 +63,8 @@ class _MainScreenState extends State<MainScreen> {
               ),
           child: BottomNavigationBar(
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.speaker_group), title: Text('首页')),
-              // BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('信息')),
+              BottomNavigationBarItem(icon: Icon(Icons.perm_media), title: Text('动态')),
+              BottomNavigationBarItem(icon: Icon(Icons.category), title: Text('发现')),
               BottomNavigationBarItem(icon: Icon(Icons.recent_actors), title: Text('账户')),
             ],
             currentIndex: _selectedIndex,
@@ -75,8 +75,8 @@ class _MainScreenState extends State<MainScreen> {
             iconSize: 24,
             selectedFontSize: 10,
             unselectedFontSize: 10,
-            // showUnselectedLabels: false,
-            // showSelectedLabels: false,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
             elevation: 0,
           ),
         ),
