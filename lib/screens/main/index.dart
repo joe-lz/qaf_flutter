@@ -38,12 +38,14 @@ class _MainScreenState extends State<MainScreen> {
       //   //导航栏
       //   title: Text("App Name"),
       // ),
-      body: Container(
-        color: GlobalModel().getTheme().kBackgroundColor,
-        width: ScreenUtils.screenW(context),
-        height: ScreenUtils.screenH(context) + 100,
-        child: pages[_selectedIndex],
-      ),
+      // body: Container(
+      //   // color: GlobalModel().getTheme().kBackgroundColor,
+      //   width: ScreenUtils.screenW(context),
+      //   height: ScreenUtils.screenH(context) + 100,
+      //   child: pages[_selectedIndex],
+      // ),
+      backgroundColor: Colors.transparent,
+      body: pages[_selectedIndex],
       bottomNavigationBar: ClipRRect(
         // borderRadius: BorderRadius.only(
         //   topRight: Radius.circular(40),
@@ -63,7 +65,8 @@ class _MainScreenState extends State<MainScreen> {
               // ],
               ),
           child: BottomNavigationBar(
-            backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
+            // backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
+            backgroundColor: Theme.of(context).primaryColor,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.perm_media), title: Text('动态')),
               BottomNavigationBarItem(icon: Icon(Icons.category), title: Text('发现')),
@@ -71,8 +74,8 @@ class _MainScreenState extends State<MainScreen> {
             ],
             currentIndex: _selectedIndex,
             // fixedColor: Colors.deepPurple,
-            selectedItemColor: kPrimaryColor,
-            unselectedItemColor: kDisabledColor,
+            // selectedItemColor: kPrimaryColor,
+            // unselectedItemColor: kDisabledColor,
             onTap: _onItemTapped,
             iconSize: 24,
             selectedFontSize: 10,

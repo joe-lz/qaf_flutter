@@ -16,9 +16,9 @@ class GlobalModel extends ChangeNotifier {
     return darkModeOn ? ThemeDark() : ThemeLight();
   }
 
-  setStatusBar() {
-    var brightness = SchedulerBinding.instance.window.platformBrightness;
-    bool darkModeOn = brightness == Brightness.dark;
-    SystemChrome.setSystemUIOverlayStyle(darkModeOn ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark);
-  }
+  // setStatusBar() {
+  //   var brightness = SchedulerBinding.instance.window.platformBrightness;
+  //   bool darkModeOn = brightness == Brightness.dark;
+  //   SystemChrome.setSystemUIOverlayStyle(darkModeOn ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark);
+  // }
 }

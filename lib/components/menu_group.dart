@@ -47,11 +47,8 @@ class _MenuGroupState extends State<MenuGroup> {
               : Container(child: null),
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                children: widget.children,
-              ),
+            child: Column(
+              children: widget.children,
             ),
           ),
           widget.desc != null

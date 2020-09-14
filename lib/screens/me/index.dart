@@ -58,7 +58,7 @@ class _MeScreenState extends State<MeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalModel().setStatusBar();
+    // GlobalModel().setStatusBar();
 
     return Container(
       child: SafeArea(
