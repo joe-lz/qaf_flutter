@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/global.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
@@ -38,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
       //   title: Text("App Name"),
       // ),
       body: Container(
-        color: kBackgroundColor,
+        color: GlobalModel().getTheme().kBackgroundColor,
         width: ScreenUtils.screenW(context),
         height: ScreenUtils.screenH(context) + 100,
         child: pages[_selectedIndex],
@@ -62,6 +63,7 @@ class _MainScreenState extends State<MainScreen> {
               // ],
               ),
           child: BottomNavigationBar(
+            backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.perm_media), title: Text('动态')),
               BottomNavigationBarItem(icon: Icon(Icons.category), title: Text('发现')),

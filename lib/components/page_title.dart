@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/global.dart';
 
 class PageTitle extends StatefulWidget {
   PageTitle({
@@ -24,7 +25,11 @@ class _PageTitleState extends State<PageTitle> {
         children: [
           Text(
             widget.title,
-            style: TextStyle(fontSize: Theme.of(context).textTheme.headline4.fontSize, fontWeight: FontWeight.w500),
+            style: TextStyle(
+              fontSize: Theme.of(context).textTheme.headline4.fontSize,
+              fontWeight: FontWeight.w500,
+              color: GlobalModel().getTheme().kTextColor,
+            ),
           ),
           Expanded(
             child: Container(

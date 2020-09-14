@@ -3,6 +3,7 @@ import 'package:flutter_picker/flutter_picker.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MenuItem extends StatefulWidget {
@@ -15,8 +16,8 @@ class MenuItem extends StatefulWidget {
     this.showIconRight = false,
     this.showBorderBottom = false,
     this.type = 'normal', // normal, active, disabled
-    this.colorTitle = kTextColor,
-    this.colorDesc = kTextColor,
+    this.colorTitle,
+    this.colorDesc,
     this.colorDescHint = kDisabledColor,
     // input
     this.editMode = false,
@@ -59,7 +60,7 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: GlobalModel().getTheme().kBlockColor,
       child: InkWell(
         onTap: widget.action,
         child: Container(
@@ -73,7 +74,7 @@ class _MenuItemState extends State<MenuItem> {
                 child: Container(
                   width: ScreenUtils.screenW(context) - DefaultPadding * 2,
                   height: widget.showBorderBottom ? 0.5 : 0,
-                  color: kBorderColor,
+                  color: GlobalModel().getTheme().kBorderColor,
                   child: null,
                 ),
               ),
@@ -86,7 +87,7 @@ class _MenuItemState extends State<MenuItem> {
                       Text(
                         widget.title,
                         style: TextStyle(
-                          color: widget.colorTitle,
+                          color: widget.colorTitle != null ? widget.colorTitle : GlobalModel().getTheme().kTextColor,
                           fontSize: kFontSizeNormal,
                           // fontWeight: FontWeight.w500,
                         ),
@@ -113,7 +114,7 @@ class _MenuItemState extends State<MenuItem> {
                                   desc: widget.desc,
                                   descHint: widget.descHint,
                                   showIconRight: widget.showIconRight,
-                                  colorDesc: widget.colorDesc,
+                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : GlobalModel().getTheme().kTextColor,
                                   colorDescHint: widget.colorDescHint,
                                   unit: widget.unit,
                                 ),

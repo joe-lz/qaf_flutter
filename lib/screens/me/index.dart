@@ -10,6 +10,7 @@ import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/me/userinfo.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
@@ -57,7 +58,7 @@ class _MeScreenState extends State<MeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    GlobalModel().setStatusBar();
 
     return Container(
       child: SafeArea(

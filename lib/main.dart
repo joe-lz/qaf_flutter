@@ -2,10 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:qaf_flutter/screens/home/index.dart';
-import 'package:qaf_flutter/screens/home_detail/index.dart';
+
+import 'package:qaf_flutter/provider/global.dart';
 
 import 'package:qaf_flutter/screens/main/index.dart';
+import 'package:qaf_flutter/screens/home/index.dart';
+import 'package:qaf_flutter/screens/home_detail/index.dart';
 import 'package:qaf_flutter/screens/me/index.dart';
 import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // brightness: Brightness.dark,
         primarySwatch: Colors.deepPurple,
-        backgroundColor: kBackgroundColor,
+        // backgroundColor: kBackgroundColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MainScreen(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:qaf_flutter/components/input_item.dart';
 import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flushbar/flushbar.dart';
 
@@ -76,7 +77,7 @@ class _CardRegisterState extends State<CardRegister> {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(RadiusLarge)),
       child: Container(
-        color: Colors.white,
+        color: GlobalModel().getTheme().kBlockColor,
         width: ScreenUtils.screenW(context) - DefaultPadding * 2,
         child: Padding(
           padding: EdgeInsets.fromLTRB(DefaultPadding * 2, DefaultPadding, DefaultPadding * 2, DefaultPadding),
