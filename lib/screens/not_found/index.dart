@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/constants.dart';
 
-class MeLoginScreen extends StatefulWidget {
+class NotFoundScreen extends StatefulWidget {
   @override
-  _MeLoginScreenState createState() => _MeLoginScreenState();
+  _NotFoundScreenState createState() => _NotFoundScreenState();
 }
 
-class _MeLoginScreenState extends State<MeLoginScreen> {
+class _NotFoundScreenState extends State<NotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class _MeLoginScreenState extends State<MeLoginScreen> {
         bottom: false,
         child: SingleChildScrollView(
           child: Column(
-            children: [],
+            children: [Text('404')],
           ),
         ),
       ),

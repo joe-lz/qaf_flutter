@@ -10,8 +10,9 @@ import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/constants.dart';
-import 'package:qaf_flutter/screens/me-about/index.dart';
+import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/me/userinfo.dart';
+import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
@@ -23,11 +24,11 @@ class MeScreen extends StatefulWidget {
 class _MeScreenState extends State<MeScreen> {
   LCUser _currentUser;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getCurrent();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getCurrent();
+  }
   // @override
   // void didChangeDependencies() {
   //   super.didChangeDependencies();
@@ -127,13 +128,6 @@ class _MeScreenState extends State<MeScreen> {
                   : Container(
                       child: null,
                     ),
-              // MenuOne(
-              //   showIconRight: true,
-              //   title: '通知',
-              //   action: () {
-              //     Navigator.push(context, MaterialPageRoute(builder: (context) => MeLoginScreen()));
-              //   },
-              // ),
               MenuGroup(children: [
                 MenuItem(
                   showBorderBottom: true,
@@ -148,7 +142,7 @@ class _MeScreenState extends State<MeScreen> {
                   showIconRight: true,
                   title: '意见反馈',
                   action: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WebviewScreen(url: 'https://support.qq.com/products/105926')));
+                    Navigator.pushNamed(context, "/webview", arguments: WebviewScreenArguments('https://support.qq.com/products/105926'));
                   },
                 ),
                 MenuItem(
@@ -156,7 +150,7 @@ class _MeScreenState extends State<MeScreen> {
                   showIconRight: true,
                   title: '关于我们',
                   action: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MeAboutScreen()));
+                    Navigator.pushNamed(context, "/me_about");
                   },
                 ),
               ]),
