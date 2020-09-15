@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       // appBar: AppBar(
       //   elevation: 0,
@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
       //   height: ScreenUtils.screenH(context) + 100,
       //   child: pages[_selectedIndex],
       // ),
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       body: pages[_selectedIndex],
       bottomNavigationBar: ClipRRect(
         // borderRadius: BorderRadius.only(
@@ -52,21 +52,20 @@ class _MainScreenState extends State<MainScreen> {
         //   topLeft: Radius.circular(40),
         // ),
         child: Container(
-          decoration: BoxDecoration(
-              // borderRadius: BorderRadius.only(
-              //   topRight: Radius.circular(40),
-              //   topLeft: Radius.circular(40),
-              // ),
-              // color: Colors.red,
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: Colors.grey,
-              //   ),
-              // ],
-              ),
+          // decoration: BoxDecoration(
+          //     // borderRadius: BorderRadius.only(
+          //     //   topRight: Radius.circular(40),
+          //     //   topLeft: Radius.circular(40),
+          //     // ),
+          //     // color: Colors.red,
+          //     // boxShadow: [
+          //     //   BoxShadow(
+          //     //     color: Colors.grey,
+          //     //   ),
+          //     // ],
+          //     ),
           child: BottomNavigationBar(
             // backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
-            backgroundColor: Theme.of(context).primaryColor,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.perm_media), title: Text('动态')),
               BottomNavigationBarItem(icon: Icon(Icons.category), title: Text('发现')),
@@ -77,11 +76,11 @@ class _MainScreenState extends State<MainScreen> {
             // selectedItemColor: kPrimaryColor,
             // unselectedItemColor: kDisabledColor,
             onTap: _onItemTapped,
-            iconSize: 24,
+            iconSize: 22,
             selectedFontSize: 10,
             unselectedFontSize: 10,
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
+            // showUnselectedLabels: false,
+            // showSelectedLabels: false,
             elevation: 0,
           ),
         ),

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:qaf_flutter/components/input_item.dart';
-import 'package:qaf_flutter/constants.dart';
-import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme_provider/colors.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+
 import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flushbar/flushbar.dart';
 
@@ -44,9 +45,9 @@ class _CardLoginState extends State<CardLogin> {
           message: "更多功能等待您探索哦～",
           duration: Duration(seconds: 3),
           flushbarPosition: FlushbarPosition.TOP,
-          margin: EdgeInsets.all(DefaultPadding),
-          borderRadius: RadiusNormal,
-          backgroundColor: kColorSuccess,
+          margin: EdgeInsets.all(Dimens.gap_dp16),
+          borderRadius: Dimens.radius_10,
+          backgroundColor: Colours().getColor().success_color,
         )..show(context);
       } on LCException catch (e) {
         print('${e.code} : ${e.message}');
@@ -60,9 +61,9 @@ class _CardLoginState extends State<CardLogin> {
           message: widget.leanerr['${e.code}'] != null ? widget.leanerr['${e.code}']['msg'] : '未知错误',
           duration: Duration(seconds: 3),
           flushbarPosition: FlushbarPosition.TOP,
-          margin: EdgeInsets.all(DefaultPadding),
-          borderRadius: RadiusNormal,
-          backgroundColor: kColorError,
+          margin: EdgeInsets.all(Dimens.gap_dp16),
+          borderRadius: Dimens.radius_10,
+          backgroundColor: Colours().getColor().error_color,
         )..show(context);
       }
     }
@@ -71,13 +72,12 @@ class _CardLoginState extends State<CardLogin> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(RadiusLarge)),
+      borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_40)),
       child: Container(
-        color: GlobalModel().getTheme().kBlockColor,
-        width: ScreenUtils.screenW(context) - DefaultPadding * 2,
-        // height: 400,
+        color: Theme.of(context).canvasColor,
+        width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(DefaultPadding * 2, DefaultPadding, DefaultPadding * 2, DefaultPadding),
+          padding: EdgeInsets.fromLTRB(Dimens.gap_dp16 * 2, Dimens.gap_dp16, Dimens.gap_dp16 * 2, Dimens.gap_dp16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -90,14 +90,14 @@ class _CardLoginState extends State<CardLogin> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: kBackgroundColor,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(5),
                         child: Icon(
                           Icons.close,
-                          color: kPrimaryColor,
+                          color: Theme.of(context).accentColor,
                           size: 20,
                         ),
                       ),
@@ -138,15 +138,14 @@ class _CardLoginState extends State<CardLogin> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, DefaultPadding / 2, 0, DefaultPadding),
+                  padding: EdgeInsets.fromLTRB(0, Dimens.gap_dp16 / 2, 0, Dimens.gap_dp16),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
+                    borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
                     child: Container(
                       width: 300,
                       height: 50,
-                      color: kPrimaryColor,
                       child: Material(
-                        color: kPrimaryColor,
+                        color: Theme.of(context).primaryColor,
                         child: InkWell(
                           onTap: () {
                             handleSubmit();
@@ -171,7 +170,7 @@ class _CardLoginState extends State<CardLogin> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, DefaultPadding),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, Dimens.gap_dp16),
                   child: Row(
                     children: [
                       Expanded(child: Container(child: null)),
@@ -183,7 +182,7 @@ class _CardLoginState extends State<CardLogin> {
                         child: Text(
                           '立即注册',
                           style: TextStyle(
-                            color: kPrimaryColor,
+                            color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

@@ -14,7 +14,6 @@ class MenuOne extends StatefulWidget {
     this.type = 'normal', // normal, active, disabled
     this.colorTitle = kTextColor,
     this.colorDesc = kTextColor,
-    this.colorDescHint = kDisabledColor,
     this.editMode = false,
   }) : super(key: key);
   final String title;
@@ -26,7 +25,6 @@ class MenuOne extends StatefulWidget {
   final String type;
   final Color colorTitle;
   final Color colorDesc;
-  final Color colorDescHint;
   final bool editMode;
 
   @override
@@ -49,7 +47,6 @@ class _MenuOneState extends State<MenuOne> {
           showBorderBottom: widget.showBorderBottom,
           type: widget.type,
           colorTitle: widget.colorTitle,
-          colorDescHint: widget.colorDescHint,
           editMode: widget.editMode,
         ),
       ),

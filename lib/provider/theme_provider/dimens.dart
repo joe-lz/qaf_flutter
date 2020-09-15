@@ -16,4 +16,9 @@ class Dimens {
   static const double gap_dp24 = 24;
   static const double gap_dp32 = 32;
   static const double gap_dp50 = 50;
+
+  static const double radius_40 = 40;
+  static const double radius_10 = 10;
+
+  static const double menu_height = 44;
 }

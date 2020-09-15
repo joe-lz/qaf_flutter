@@ -2,12 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
-import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
-import 'package:qaf_flutter/components/menu_one.dart';
-import 'package:qaf_flutter/components/page_desc.dart';
-import 'package:qaf_flutter/constants.dart';
-import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import 'package:qaf_flutter/provider/theme_provider/colors.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class UserInfo extends StatefulWidget {
   UserInfo({
@@ -44,14 +41,13 @@ class _UserInfoState extends State<UserInfo> {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
         child: Container(
-          color: kBackgroundColor,
           child: Column(
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).canvasColor,
                   border: Border(
-                    bottom: BorderSide(width: 0.5, color: kBorderColor),
+                    bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color),
                   ),
                 ),
                 child: Padding(
@@ -62,8 +58,8 @@ class _UserInfoState extends State<UserInfo> {
                         child: Text(
                           "取消",
                           style: TextStyle(
-                            fontSize: kFontSizeNormal,
-                            color: editMode ? kDisabledColor : kPrimaryColor,
+                            fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                            color: editMode ? Theme.of(context).textTheme.caption.color : Theme.of(context).primaryColor,
                           ),
                         ),
                         onPressed: editMode
@@ -81,8 +77,7 @@ class _UserInfoState extends State<UserInfo> {
                         child: Text(
                           editMode ? "保存" : '编辑',
                           style: TextStyle(
-                            fontSize: kFontSizeNormal,
-                            // color: kDisabledColor,
+                            fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                             fontWeight: editMode ? FontWeight.w500 : FontWeight.w400,
                           ),
                         ),
@@ -105,11 +100,11 @@ class _UserInfoState extends State<UserInfo> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, DefaultPadding, 0, 0),
+                        padding: EdgeInsets.fromLTRB(0, Dimens.gap_dp16, 0, 0),
                         child: Icon(
                           Icons.account_circle,
                           size: 80,
-                          color: kDisabledColor,
+                          color: Theme.of(context).textTheme.caption.color,
                         ),
                       ),
                       MenuGroup(

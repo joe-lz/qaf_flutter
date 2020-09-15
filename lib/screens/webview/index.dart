@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import 'package:qaf_flutter/components/navigator.dart';
-import 'package:qaf_flutter/constants.dart';
 
 class WebviewScreen extends StatefulWidget {
   WebviewScreen({Key key, this.url = 'https://www.baidu.com'}) : super(key: key);

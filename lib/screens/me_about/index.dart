@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qaf_flutter/components/navigator.dart';
-import 'package:qaf_flutter/constants.dart';
 
 class MeAboutScreen extends StatefulWidget {
   @override
@@ -11,9 +10,8 @@ class MeAboutScreen extends StatefulWidget {
 class _MeAboutScreenState extends State<MeAboutScreen> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Container(
-      color: kBackgroundColor,
       child: Column(
         children: [
           NavigatorItem(),

@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 
-import 'package:qaf_flutter/provider/global.dart';
-import 'package:qaf_flutter/provider/theme_provider.dart';
+// import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme_provider/index.dart';
 
 import 'package:qaf_flutter/screens/main/index.dart';
 import 'package:qaf_flutter/screens/home/index.dart';
@@ -17,8 +17,6 @@ import 'package:qaf_flutter/screens/not_found/index.dart';
 
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
-
-import 'package:qaf_flutter/constants.dart';
 
 void main() async {
   const bool inProduction = const bool.fromEnvironment("dart.vm.product");
@@ -74,7 +72,8 @@ class MyApp extends StatelessWidget {
             // ),
             theme: provider.getTheme(),
             darkTheme: provider.getTheme(isDarkMode: true),
-            themeMode: provider.getThemeMode(),
+            // themeMode: provider.getThemeMode(),
+            // themeMode: darkModeOn ? ThemeMode.dark : ThemeMode.light,
             builder: (context, child) {
               /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
               return MediaQuery(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
-import 'package:qaf_flutter/constants.dart';
-import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MenuItem extends StatefulWidget {
@@ -18,7 +18,6 @@ class MenuItem extends StatefulWidget {
     this.type = 'normal', // normal, active, disabled
     this.colorTitle,
     this.colorDesc,
-    this.colorDescHint = kDisabledColor,
     // input
     this.editMode = false,
     this.inputType = 'input', // input, picker, actionsheet
@@ -36,7 +35,6 @@ class MenuItem extends StatefulWidget {
   final String type;
   final Color colorTitle;
   final Color colorDesc;
-  final Color colorDescHint;
   // input
   final bool editMode;
   final String inputType;
@@ -60,26 +58,25 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: GlobalModel().getTheme().kBlockColor,
       child: InkWell(
         onTap: widget.action,
         child: Container(
-          height: MenuHeight,
-          width: ScreenUtils.screenW(context) - DefaultPadding * 2,
+          height: Dimens.menu_height,
+          width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2,
           child: Stack(
             children: [
               Positioned(
-                left: DefaultPadding,
-                top: MenuHeight - 1,
+                left: Dimens.gap_dp16,
+                top: Dimens.menu_height - 1,
                 child: Container(
-                  width: ScreenUtils.screenW(context) - DefaultPadding * 2,
+                  width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2,
                   height: widget.showBorderBottom ? 0.5 : 0,
-                  color: GlobalModel().getTheme().kBorderColor,
                   child: null,
+                  color: Theme.of(context).dividerTheme.color,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(DefaultPadding, 0, DefaultPadding / 2, 0),
+                padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, 0, Dimens.gap_dp16 / 2, 0),
                 child: FractionallySizedBox(
                   heightFactor: 1,
                   child: Row(
@@ -87,19 +84,12 @@ class _MenuItemState extends State<MenuItem> {
                       Text(
                         widget.title,
                         style: TextStyle(
-                          color: widget.colorTitle != null ? widget.colorTitle : GlobalModel().getTheme().kTextColor,
-                          fontSize: kFontSizeNormal,
-                          // fontWeight: FontWeight.w500,
+                          color: widget.colorTitle != null ? widget.colorTitle : Theme.of(context).textTheme.bodyText1.color,
+                          fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                         ),
                       ),
-                      // Expanded(
-                      //   child: Container(
-                      //     child: null,
-                      //   ),
-                      // ),
                       Expanded(
                         child: Container(
-                          // color: Colors.red,
                           child: widget.editMode
                               ? MenuItemInput(
                                   title: widget.title,
@@ -114,8 +104,7 @@ class _MenuItemState extends State<MenuItem> {
                                   desc: widget.desc,
                                   descHint: widget.descHint,
                                   showIconRight: widget.showIconRight,
-                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : GlobalModel().getTheme().kTextColor,
-                                  colorDescHint: widget.colorDescHint,
+                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : Theme.of(context).textTheme.bodyText1.color,
                                   unit: widget.unit,
                                 ),
                         ),

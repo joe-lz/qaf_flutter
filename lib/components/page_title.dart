@@ -28,7 +28,6 @@ class _PageTitleState extends State<PageTitle> {
             style: TextStyle(
               fontSize: Theme.of(context).textTheme.headline4.fontSize,
               fontWeight: FontWeight.w500,
-              color: GlobalModel().getTheme().kTextColor,
             ),
           ),
           Expanded(

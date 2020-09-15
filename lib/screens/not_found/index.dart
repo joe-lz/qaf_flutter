@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/constants.dart';
 
 class NotFoundScreen extends StatefulWidget {
   @override
@@ -10,7 +9,6 @@ class _NotFoundScreenState extends State<NotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kBackgroundColor,
       child: SafeArea(
         top: true,
         bottom: false,

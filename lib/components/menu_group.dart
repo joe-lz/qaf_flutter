@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class MenuGroup extends StatefulWidget {
   MenuGroup({
@@ -20,18 +20,17 @@ class _MenuGroupState extends State<MenuGroup> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, DefaultPadding / 2),
+      padding: EdgeInsets.fromLTRB(Dimens.font_sp16, Dimens.font_sp16 / 2, Dimens.font_sp16, Dimens.font_sp16 / 2),
       child: Column(
         children: [
           widget.title != null
               ? Padding(
-                  padding: EdgeInsets.only(bottom: DefaultPadding / 2),
+                  padding: EdgeInsets.only(bottom: Dimens.font_sp16 / 2),
                   child: Row(
                     children: [
                       Text(
                         widget.title,
                         style: TextStyle(
-                          color: kTextColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
@@ -46,20 +45,20 @@ class _MenuGroupState extends State<MenuGroup> {
                 )
               : Container(child: null),
           ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
+            borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
             child: Column(
               children: widget.children,
             ),
           ),
           widget.desc != null
               ? Padding(
-                  padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, 0),
+                  padding: EdgeInsets.fromLTRB(Dimens.font_sp16, Dimens.font_sp16 / 2, Dimens.font_sp16, 0),
                   child: Row(
                     children: [
                       Text(
                         widget.desc,
                         style: TextStyle(
-                          color: kTextColorGray,
+                          color: Theme.of(context).textTheme.caption.color,
                           fontSize: 12,
                         ),
                       ),

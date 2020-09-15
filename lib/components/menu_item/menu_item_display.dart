@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/constants.dart';
-import 'package:qaf_flutter/utils/screen_utils.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class MenuItemDisplay extends StatefulWidget {
   MenuItemDisplay({
@@ -8,15 +7,13 @@ class MenuItemDisplay extends StatefulWidget {
     this.desc,
     this.descHint,
     this.showIconRight = false,
-    this.colorDesc = kTextColor,
-    this.colorDescHint = kDisabledColor,
+    this.colorDesc,
     this.unit,
   }) : super(key: key);
   final desc;
   final String descHint;
   final bool showIconRight;
   final Color colorDesc;
-  final Color colorDescHint;
   final String unit;
 
   @override
@@ -38,29 +35,35 @@ class _MenuItemDisplayState extends State<MenuItemDisplay> {
       children: [
         widget.desc != null
             ? Padding(
-                padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
+                padding: EdgeInsets.only(right: widget.showIconRight ? 0 : Dimens.gap_dp16 / 2),
                 child: Row(
                   children: [
                     Text(
                       '${widget.desc}',
                       style: TextStyle(
                         color: widget.colorDesc,
+                        fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                       ),
                     ),
-                    Text(widget.unit != null ? '${widget.unit}' : '')
+                    Text(
+                      widget.unit != null ? '${widget.unit}' : '',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )
                   ],
                 ),
               )
             : Container(
+                // desc null的占位符
                 child: widget.descHint != null
                     ? Padding(
-                        padding: EdgeInsets.only(right: widget.showIconRight ? 0 : DefaultPadding / 2),
+                        padding: EdgeInsets.only(right: widget.showIconRight ? 0 : Dimens.gap_dp16 / 2),
                         child: Row(
                           children: [
                             Text(
                               widget.descHint,
                               style: TextStyle(
-                                color: widget.colorDescHint,
+                                color: Theme.of(context).textTheme.caption.color,
+                                fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                               ),
                             ),
                             // Text(widget.unit != null ? '${widget.unit}' : '')
@@ -73,7 +76,7 @@ class _MenuItemDisplayState extends State<MenuItemDisplay> {
             ? Container(
                 child: Icon(
                   Icons.chevron_right,
-                  color: kDisabledColor,
+                  color: Theme.of(context).textTheme.caption.color,
                   size: 20,
                 ),
               )
