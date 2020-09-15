@@ -79,6 +79,7 @@ class _UserInfoState extends State<UserInfo> {
                           style: TextStyle(
                             fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                             fontWeight: editMode ? FontWeight.w500 : FontWeight.w400,
+                            // color: Theme.of(context).primaryColor,
                           ),
                         ),
                         onPressed: () {

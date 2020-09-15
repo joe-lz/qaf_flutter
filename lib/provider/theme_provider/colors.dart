@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 
 class Colours {
   static const Color app_main = Colors.deepPurple;
-  static const Color dark_app_main = Colors.deepPurple;
+  static const Color dark_app_main = Colors.purple;
 
   static const Color bg_color = Color.fromRGBO(242, 242, 246, 1.00);
   static const Color dark_bg_color = Color.fromRGBO(0, 0, 0, 1.00);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/constants.dart';
 
 class InputItem extends StatefulWidget {
   InputItem({
@@ -38,7 +37,7 @@ class _InputItemState extends State<InputItem> {
             // prefixIcon: widget.prefixIcon
             // 未获得焦点下划线设为灰色
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: kBorderColor),
+              borderSide: BorderSide(color: Theme.of(context).dividerTheme.color),
             ),
             //获得焦点下划线设为蓝色
             // focusedBorder: UnderlineInputBorder(

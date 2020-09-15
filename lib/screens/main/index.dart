@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/provider/global.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';

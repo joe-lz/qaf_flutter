@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/pick_helper.dart';
-import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+
 import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
@@ -39,9 +40,9 @@ class _MenuItemInputState extends State<MenuItemInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: widget.inputType == 'input' ? DefaultPadding / 2 : 0),
+      padding: EdgeInsets.only(right: widget.inputType == 'input' ? Dimens.gap_dp16 / 2 : 0),
       child: Container(
-        height: MenuHeight,
+        height: Dimens.menu_height,
         child: widget.inputType == 'input'
             ? TextFormField(
                 style: TextStyle(
@@ -116,7 +117,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                     Text(widget.unit != null && widget.desc != null ? '${widget.unit}' : ''),
                     Icon(
                       Icons.chevron_right,
-                      color: kDisabledColor,
+                      color: Theme.of(context).textTheme.caption.color,
                       size: 20,
                     ),
                   ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class PageTitle extends StatefulWidget {
   PageTitle({
@@ -20,7 +20,7 @@ class _PageTitleState extends State<PageTitle> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding * 2, DefaultPadding, DefaultPadding / 2),
+      padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, Dimens.gap_dp16 * 2, Dimens.gap_dp16, Dimens.gap_dp16 / 2),
       child: Row(
         children: [
           Text(

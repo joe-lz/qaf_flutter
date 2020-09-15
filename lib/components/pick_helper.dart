@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
-import 'package:qaf_flutter/constants.dart';
 // import 'package:percentage_flutter/config/city.dart';
 // import 'package:percentage_flutter/kit/util/date_util.dart';
 
@@ -126,23 +125,28 @@ class PickHelper {
   }) {
     new Picker(
       adapter: adapter,
-      title: new Text(title ?? "",
-          style: TextStyle(
-            fontSize: 14,
-            color: kTextColorGray,
-            fontWeight: FontWeight.w500,
-          )),
+      title: new Text(
+        title ?? "",
+        style: TextStyle(
+          fontSize: 14,
+          color: Theme.of(context).textTheme.caption.color,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
       selecteds: selecteds,
       cancelText: '取消',
       confirmText: '确定',
-      cancelTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
-      confirmTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
+      cancelTextStyle: Theme.of(context).textTheme.bodyText1,
+      confirmTextStyle: Theme.of(context).textTheme.bodyText1,
       textAlign: TextAlign.right,
       itemExtent: _kPickerItemHeight,
       height: _kPickerSheetHeight,
-      selectedTextStyle: TextStyle(color: Colors.black),
+      selectedTextStyle: Theme.of(context).textTheme.headline6,
+      textStyle: Theme.of(context).textTheme.headline6,
       onConfirm: onConfirm,
       reversedOrder: reversedOrder,
+      backgroundColor: Theme.of(context).canvasColor,
+      headercolor: Theme.of(context).canvasColor,
     ).showModal(context);
   }
 }

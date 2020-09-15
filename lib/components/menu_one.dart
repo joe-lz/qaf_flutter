@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
-import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class MenuOne extends StatefulWidget {
   MenuOne({
@@ -12,8 +12,8 @@ class MenuOne extends StatefulWidget {
     this.showIconRight = false,
     this.showBorderBottom = false,
     this.type = 'normal', // normal, active, disabled
-    this.colorTitle = kTextColor,
-    this.colorDesc = kTextColor,
+    this.colorTitle,
+    this.colorDesc,
     this.editMode = false,
   }) : super(key: key);
   final String title;
@@ -35,9 +35,9 @@ class _MenuOneState extends State<MenuOne> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding / 2, DefaultPadding, DefaultPadding / 2),
+      padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, Dimens.gap_dp16 / 2, Dimens.gap_dp16, Dimens.gap_dp16 / 2),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(RadiusNormal)),
+        borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
         child: MenuItem(
           title: widget.title,
           desc: widget.desc,

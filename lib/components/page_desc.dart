@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:qaf_flutter/constants.dart';
+import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class PageDesc extends StatefulWidget {
   PageDesc({
@@ -17,7 +17,7 @@ class _PageDescState extends State<PageDesc> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(DefaultPadding, DefaultPadding, DefaultPadding, DefaultPadding),
+      padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, Dimens.gap_dp16, Dimens.gap_dp16, Dimens.gap_dp16),
       child: Row(
         children: [
           Text(

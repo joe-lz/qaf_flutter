@@ -8,7 +8,6 @@ class ThemeProvider extends ChangeNotifier {
     var brightness = SchedulerBinding.instance.window.platformBrightness;
     bool darkModeOn = brightness == Brightness.dark;
     final String theme = darkModeOn ? 'Dark' : 'Light';
-
     switch (theme) {
       case 'Dark':
         return ThemeMode.dark;
@@ -22,9 +21,10 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData getTheme({bool isDarkMode = false}) {
     return ThemeData(
       // errorColor: isDarkMode ? Colours.dark_red : Colours.red,
-      brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      // accentColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,
       primaryColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,
-      accentColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,
+      brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      primarySwatch: isDarkMode ? Colours.dark_app_main : Colours.app_main,
       // Tab指示器颜色
       // indicatorColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

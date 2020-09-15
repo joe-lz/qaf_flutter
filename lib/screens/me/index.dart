@@ -9,8 +9,8 @@ import 'package:qaf_flutter/components/page_title.dart';
 import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
-import 'package:qaf_flutter/constants.dart';
 import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme_provider/colors.dart';
 import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/me/userinfo.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
@@ -77,7 +77,7 @@ class _MeScreenState extends State<MeScreen> {
                         child: Icon(
                           Icons.account_circle,
                           size: 35,
-                          color: kPrimaryColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       )
                     : null,
@@ -90,7 +90,7 @@ class _MeScreenState extends State<MeScreen> {
                       showIconRight: false,
                       // type: 'active',
                       title: '登录/注册',
-                      colorTitle: kPrimaryColor,
+                      colorTitle: Theme.of(context).primaryColor,
                       action: () {
                         showMaterialModalBottomSheet(
                           expand: true,
@@ -104,7 +104,7 @@ class _MeScreenState extends State<MeScreen> {
               _currentUser != null
                   ? MenuOne(
                       title: '我的资料',
-                      colorTitle: kPrimaryColor,
+                      colorTitle: Theme.of(context).primaryColor,
                       showIconRight: false,
                       // type: 'active',
                       action: () {
@@ -159,7 +159,7 @@ class _MeScreenState extends State<MeScreen> {
                   ? MenuOne(
                       showIconRight: false,
                       // type: 'active',
-                      colorTitle: kColorError,
+                      colorTitle: Colours().getColor().error_color,
                       title: '退出登录',
                       action: () {
                         showCupertinoModalPopup(
