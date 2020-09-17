@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/pick_helper.dart';
+import 'package:qaf_flutter/provider/theme_provider/colors.dart';
 import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
-import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
 class MenuItemInput extends StatefulWidget {
@@ -12,17 +12,21 @@ class MenuItemInput extends StatefulWidget {
     this.title,
     this.desc,
     this.inputType = 'input', // input, picker, actionsheet
+    this.pickerType = 'number', // number, simple,
     this.onChanged,
     this.dataActionSheet,
     this.dataPicker,
+    this.pickerList,
     this.unit,
   }) : super(key: key);
   final String title;
   final desc;
   final String inputType;
+  final String pickerType;
   final Function onChanged;
   final List dataActionSheet;
   final List<NumberPickerColumn> dataPicker;
+  final List<String> pickerList;
   final String unit;
 
   @override
@@ -67,25 +71,39 @@ class _MenuItemInputState extends State<MenuItemInput> {
                 onTap: () {
                   FocusScope.of(context).requestFocus(new FocusNode());
                   if (widget.inputType == 'picker') {
-                    PickHelper.openNumberPicker(
-                      context,
-                      reversedOrder: true,
-                      title: '请选择${widget.title}',
-                      selecteds: [50],
-                      datas: widget.dataPicker,
-                      onConfirm: (Picker picker, List value) {
-                        // print(value.toString());
-                        // print(picker.getSelectedValues());
-                        widget.onChanged(picker.getSelectedValues()[0]);
-                      },
-                    );
+                    if (widget.pickerType == 'number') {
+                      PickHelper.openNumberPicker(
+                        context,
+                        reversedOrder: true,
+                        title: '请选择${widget.title}',
+                        selecteds: [50],
+                        datas: widget.dataPicker,
+                        onConfirm: (Picker picker, List value) {
+                          // print(value.toString());
+                          // print(picker.getSelectedValues());
+                          widget.onChanged(picker.getSelectedValues()[0]);
+                        },
+                      );
+                    } else if (widget.pickerType == 'simple') {
+                      // PickHelper.openSimpleDataPicker(
+                      //   context,
+                      //   title: '请选择${widget.title}',
+                      //   list: widget.dataPicker,
+                      //   value: '',
+                      //   onConfirm: (Picker picker, List value) {
+                      //     // print(value.toString());
+                      //     // print(picker.getSelectedValues());
+                      //     widget.onChanged(picker.getSelectedValues()[0]);
+                      //   },
+                      // );
+                    }
                   } else {
                     showCupertinoModalPopup(
                       context: context,
                       builder: (context) {
                         return CupertinoActionSheet(
                           // title: Text('提示'),
-                          message: Text('请选择性别，确认后将不能修改。'),
+                          message: Text('请选择${widget.title}'),
                           actions: widget.dataActionSheet
                               .map(
                                 (item, {index}) => CupertinoActionSheetAction(
@@ -117,7 +135,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                     Text(widget.unit != null && widget.desc != null ? '${widget.unit}' : ''),
                     Icon(
                       Icons.chevron_right,
-                      color: Theme.of(context).textTheme.caption.color,
+                      color: Colours().getColor().icon_color,
                       size: 20,
                     ),
                   ],

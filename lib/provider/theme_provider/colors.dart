@@ -64,6 +64,8 @@ class DarkColor {
   Color success_color = Color.fromRGBO(76, 175, 80, 1.00);
   Color waring_color = Color.fromRGBO(255, 152, 0, 1.00);
   Color info_color = Color.fromRGBO(34, 150, 243, 1.00);
+
+  Color icon_color = Color(0xFFD4E2FA);
 }
 
 class LightColor {
@@ -72,4 +74,6 @@ class LightColor {
   Color success_color = Color.fromRGBO(76, 175, 80, 1.00);
   Color waring_color = Color.fromRGBO(255, 152, 0, 1.00);
   Color info_color = Color.fromRGBO(34, 150, 243, 1.00);
+
+  Color icon_color = Color(0xFFCEDBF2);
 }

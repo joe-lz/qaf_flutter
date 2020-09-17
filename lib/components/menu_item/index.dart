@@ -21,6 +21,7 @@ class MenuItem extends StatefulWidget {
     // input
     this.editMode = false,
     this.inputType = 'input', // input, picker, actionsheet
+    this.pickerType = 'number', // number, simple,
     this.onChanged,
     this.dataActionSheet,
     this.dataPicker,
@@ -38,6 +39,7 @@ class MenuItem extends StatefulWidget {
   // input
   final bool editMode;
   final String inputType;
+  final String pickerType;
   final Function onChanged;
   final List dataActionSheet;
   final List<NumberPickerColumn> dataPicker;
@@ -95,6 +97,7 @@ class _MenuItemState extends State<MenuItem> {
                                   title: widget.title,
                                   desc: widget.desc,
                                   inputType: widget.inputType,
+                                  pickerType: widget.pickerType,
                                   onChanged: widget.onChanged,
                                   dataActionSheet: widget.dataActionSheet,
                                   dataPicker: widget.dataPicker,

@@ -24,6 +24,8 @@ class _UserInfoState extends State<UserInfo> {
   int age;
   int weight;
   int height;
+  String blood;
+  String constellation; // 星座
 
   void handleSubmit() {
     setState(() {
@@ -185,16 +187,44 @@ class _UserInfoState extends State<UserInfo> {
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '血型',
-                            desc: null,
+                            desc: blood,
                             descHint: '-',
+                            inputType: 'actionsheet',
+                            dataActionSheet: ['A型', 'B型', 'AB型', 'O型', 'P型', 'RH阴性型', 'MNSSU型'],
+                            onChanged: (value) {
+                              setState(() {
+                                blood = value;
+                              });
+                            },
                           ),
-                          MenuItem(
-                            editMode: editMode,
-                            showBorderBottom: true,
-                            title: '星座',
-                            desc: null,
-                            descHint: '-',
-                          ),
+                          // MenuItem(
+                          //   editMode: editMode,
+                          //   showBorderBottom: true,
+                          //   title: '星座',
+                          //   desc: constellation,
+                          //   descHint: '-',
+                          //   inputType: 'picker',
+                          //   pickerType: 'simple',
+                          //   pickerList: [
+                          //     '水瓶座：1月21日 - 2月19日',
+                          //     '双鱼座：2月20日 - 3月20日',
+                          //     '白羊座：3月21日 - 4月20日',
+                          //     '金牛座：4月21日 - 5月21日',
+                          //     '双子座：5月22日 - 6月21日',
+                          //     '巨蟹座：6月22日 - 7月22日',
+                          //     '狮子座：7月23日 - 8月23日',
+                          //     '处女座：8月24日 - 9月23日',
+                          //     '天秤座：9月24日 - 10月23日',
+                          //     '天蝎座：10月24日 - 11月22日',
+                          //     '射手座：11月23日 - 12月21日',
+                          //     '摩羯座：12月22日 - 1月20日',
+                          //   ],
+                          //   onChanged: (value) {
+                          //     setState(() {
+                          //       constellation = value;
+                          //     });
+                          //   },
+                          // ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
