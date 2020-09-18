@@ -42,12 +42,12 @@ class _MenuItemDisplayState extends State<MenuItemDisplay> {
                       '${widget.desc}',
                       style: TextStyle(
                         color: widget.colorDesc,
-                        fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                        fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                       ),
                     ),
                     Text(
                       widget.unit != null ? '${widget.unit}' : '',
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.subtitle1,
                     )
                   ],
                 ),
@@ -63,7 +63,7 @@ class _MenuItemDisplayState extends State<MenuItemDisplay> {
                               widget.descHint,
                               style: TextStyle(
                                 color: Theme.of(context).textTheme.caption.color,
-                                fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                                fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                               ),
                             ),
                             // Text(widget.unit != null ? '${widget.unit}' : '')

@@ -33,6 +33,8 @@ class _UserInfoState extends State<UserInfo> {
   String statement;
   String purpose;
   String bodyshape;
+  String position_like;
+  String bodyshape_like;
 
   void handleSubmit() {
     setState(() {
@@ -311,7 +313,7 @@ class _UserInfoState extends State<UserInfo> {
                             descHint: '-',
                             inputType: 'picker',
                             pickerType: 'simple',
-                            dataPickerSimple: ['精瘦', '匀称', '壮硕', '肌肉', '胖'],
+                            dataPickerSimple: ['精瘦', '匀称', '肌肉', '壮硕', '肉胖'],
                             onChanged: (value) {
                               setState(() {
                                 bodyshape = value;
@@ -327,6 +329,44 @@ class _UserInfoState extends State<UserInfo> {
                           ),
                         ],
                       ),
+                      MenuGroup(
+                        title: '喜欢的类型',
+                        children: [
+                          MenuItem(
+                            editMode: editMode,
+                            showBorderBottom: true,
+                            title: '角色',
+                            desc: position_like,
+                            descHint: '-',
+                            inputType: 'actionsheet',
+                            dataActionSheet: gender == '女' ? ['T', 'P', 'H'] : ['0', '0.5', '1'],
+                            onChanged: (value) {
+                              setState(() {
+                                position_like = value;
+                              });
+                            },
+                          ),
+                          MenuItem(
+                            editMode: editMode,
+                            showBorderBottom: true,
+                            title: '体形',
+                            desc: bodyshape_like,
+                            descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['精瘦', '匀称', '肌肉', '壮硕', '肉胖'],
+                            onChanged: (value) {
+                              setState(() {
+                                bodyshape_like = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: 50,
+                        child: null,
+                      )
                     ],
                   ),
                 ),

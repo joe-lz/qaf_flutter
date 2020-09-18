@@ -140,8 +140,18 @@ class _MenuItemInputState extends State<MenuItemInput> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(widget.desc != null ? '${widget.desc}' : ''),
-                    Text(widget.unit != null && widget.desc != null ? '${widget.unit}' : ''),
+                    Text(
+                      widget.desc != null ? '${widget.desc}' : '',
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
+                      ),
+                    ),
+                    Text(
+                      widget.unit != null && widget.desc != null ? '${widget.unit}' : '',
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
+                      ),
+                    ),
                     Icon(
                       Icons.chevron_right,
                       color: Colours().getColor().icon_color,

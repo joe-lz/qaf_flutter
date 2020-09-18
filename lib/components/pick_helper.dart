@@ -6,7 +6,7 @@ import 'package:flutter_picker/flutter_picker.dart';
 // import 'package:percentage_flutter/kit/util/date_util.dart';
 import 'package:qaf_flutter/utils/city_data.dart';
 
-const double _kPickerSheetHeight = 216.0;
+const double _kPickerSheetHeight = 300.0;
 const double _kPickerItemHeight = 32.0;
 
 typedef PickerConfirmCityCallback = void Function(List<String> stringData, List<int> selecteds);

@@ -88,8 +88,8 @@ class _MenuItemState extends State<MenuItem> {
                       Text(
                         widget.title,
                         style: TextStyle(
-                          color: widget.colorTitle != null ? widget.colorTitle : Theme.of(context).textTheme.bodyText1.color,
-                          fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                          color: widget.colorTitle != null ? widget.colorTitle : Theme.of(context).textTheme.subtitle1.color,
+                          fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                         ),
                       ),
                       Expanded(
@@ -110,7 +110,7 @@ class _MenuItemState extends State<MenuItem> {
                                   desc: widget.desc,
                                   descHint: widget.descHint,
                                   showIconRight: widget.showIconRight,
-                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : Theme.of(context).textTheme.bodyText1.color,
+                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : Theme.of(context).textTheme.subtitle1.color,
                                   unit: widget.unit,
                                 ),
                         ),
