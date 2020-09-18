@@ -28,6 +28,11 @@ class _UserInfoState extends State<UserInfo> {
   String constellation; // 星座
   String province; // 省
   String city; // 城市
+  String job;
+  String position;
+  String statement;
+  String purpose;
+  String bodyshape;
 
   void handleSubmit() {
     setState(() {
@@ -191,8 +196,12 @@ class _UserInfoState extends State<UserInfo> {
                             title: '血型',
                             desc: blood,
                             descHint: '-',
-                            inputType: 'actionsheet',
-                            dataActionSheet: ['A型', 'B型', 'AB型', 'O型', 'P型', 'RH阴性型', 'MNSSU型'],
+                            // inputType: 'actionsheet',
+                            // dataActionSheet: ['A型', 'B型', 'AB型', 'O型', 'P型', 'RH阴性型', 'MNSSU型'],
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            unit: '型',
+                            dataPickerSimple: ['A', 'B', 'AB', 'O', 'P', 'RH阴性', 'MNSSU'],
                             onChanged: (value) {
                               setState(() {
                                 blood = value;
@@ -234,8 +243,16 @@ class _UserInfoState extends State<UserInfo> {
                             editMode: editMode,
                             showBorderBottom: false,
                             title: '工作行业',
-                            desc: null,
+                            desc: job,
                             descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['学生', '互联网/IT/通信', '金融', '房地产/建筑/工程', '教育/培训/咨询/科研', '影视/娱乐/文化', '旅游/酒店/餐饮', '媒体/广告', '医疗/卫生/社会服务', '政府/组织', '美容/美发/养生', '贸易/零售', '工业/矿产/能源/环保', '农/林/牧副/渔'],
+                            onChanged: (value) {
+                              setState(() {
+                                job = value;
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -246,29 +263,60 @@ class _UserInfoState extends State<UserInfo> {
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '角色',
-                            desc: null,
+                            desc: position,
                             descHint: '-',
+                            inputType: 'actionsheet',
+                            dataActionSheet: gender == '女' ? ['T', 'P', 'H'] : ['0', '0.5', '1'],
+                            onChanged: (value) {
+                              setState(() {
+                                position = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '情感状态',
-                            desc: null,
+                            desc: statement,
                             descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['热恋中', '约会中', '单身'],
+                            onChanged: (value) {
+                              setState(() {
+                                statement = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '交友目的',
-                            desc: null,
+                            desc: purpose,
                             descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['聊天', '朋友', '约会', '情侣', '一起健身'],
+                            onChanged: (value) {
+                              setState(() {
+                                purpose = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '体形',
-                            desc: null,
+                            desc: bodyshape,
                             descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['精瘦', '匀称', '壮硕', '肌肉', '胖'],
+                            onChanged: (value) {
+                              setState(() {
+                                bodyshape = value;
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,
@@ -279,13 +327,6 @@ class _UserInfoState extends State<UserInfo> {
                           ),
                         ],
                       ),
-                      // MenuOne(
-                      //   title: '个人签名',
-                      //   desc: null,
-                      //   descHint: '-',
-                      //   // showIconRight: true,
-                      //   // type: 'disabled',
-                      // ),
                     ],
                   ),
                 ),

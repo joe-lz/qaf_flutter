@@ -24,10 +24,10 @@ class MeScreen extends StatefulWidget {
 
 class _MeScreenState extends State<MeScreen> {
   LCUser _currentUser;
-
   @override
   void initState() {
     super.initState();
+    GlobalModel().getCurrentUser();
     getCurrent();
   }
   // @override
@@ -59,7 +59,6 @@ class _MeScreenState extends State<MeScreen> {
   @override
   Widget build(BuildContext context) {
     // GlobalModel().setStatusBar();
-
     return Container(
       child: SafeArea(
         top: true,

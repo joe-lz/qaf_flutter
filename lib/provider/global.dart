@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:leancloud_storage/leancloud.dart';
 
 class GlobalModel extends ChangeNotifier {
   BuildContext context;
@@ -8,6 +9,11 @@ class GlobalModel extends ChangeNotifier {
   ///app的名字
   String appName = "qaf_flutter";
 
+  LCUser currentUser;
+
+  getCurrentUser() async {
+    currentUser = await LCUser.getCurrent();
+  }
   // getTheme() {
   //   var brightness = SchedulerBinding.instance.window.platformBrightness;
   //   bool darkModeOn = brightness == Brightness.dark;
