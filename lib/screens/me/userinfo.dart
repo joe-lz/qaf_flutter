@@ -26,6 +26,8 @@ class _UserInfoState extends State<UserInfo> {
   int height;
   String blood;
   String constellation; // 星座
+  String province; // 省
+  String city; // 城市
 
   void handleSubmit() {
     setState(() {
@@ -197,40 +199,36 @@ class _UserInfoState extends State<UserInfo> {
                               });
                             },
                           ),
-                          // MenuItem(
-                          //   editMode: editMode,
-                          //   showBorderBottom: true,
-                          //   title: '星座',
-                          //   desc: constellation,
-                          //   descHint: '-',
-                          //   inputType: 'picker',
-                          //   pickerType: 'simple',
-                          //   pickerList: [
-                          //     '水瓶座：1月21日 - 2月19日',
-                          //     '双鱼座：2月20日 - 3月20日',
-                          //     '白羊座：3月21日 - 4月20日',
-                          //     '金牛座：4月21日 - 5月21日',
-                          //     '双子座：5月22日 - 6月21日',
-                          //     '巨蟹座：6月22日 - 7月22日',
-                          //     '狮子座：7月23日 - 8月23日',
-                          //     '处女座：8月24日 - 9月23日',
-                          //     '天秤座：9月24日 - 10月23日',
-                          //     '天蝎座：10月24日 - 11月22日',
-                          //     '射手座：11月23日 - 12月21日',
-                          //     '摩羯座：12月22日 - 1月20日',
-                          //   ],
-                          //   onChanged: (value) {
-                          //     setState(() {
-                          //       constellation = value;
-                          //     });
-                          //   },
-                          // ),
+                          MenuItem(
+                            editMode: editMode,
+                            showBorderBottom: true,
+                            title: '星座',
+                            desc: constellation,
+                            descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'simple',
+                            dataPickerSimple: ['水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座'],
+                            onChanged: (value) {
+                              setState(() {
+                                constellation = value;
+                              });
+                            },
+                          ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
                             title: '城市',
-                            desc: null,
+                            desc: (province != null && city != null) ? city : null,
                             descHint: '-',
+                            inputType: 'picker',
+                            pickerType: 'city',
+                            onChanged: (value) {
+                              print(value);
+                              setState(() {
+                                province = value[0];
+                                city = value[1];
+                              });
+                            },
                           ),
                           MenuItem(
                             editMode: editMode,

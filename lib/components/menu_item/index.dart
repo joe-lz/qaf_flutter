@@ -21,10 +21,11 @@ class MenuItem extends StatefulWidget {
     // input
     this.editMode = false,
     this.inputType = 'input', // input, picker, actionsheet
-    this.pickerType = 'number', // number, simple,
+    this.pickerType = 'number', // number, simple, city
     this.onChanged,
     this.dataActionSheet,
     this.dataPicker,
+    this.dataPickerSimple,
     this.unit,
   }) : super(key: key);
   final String title;
@@ -43,6 +44,7 @@ class MenuItem extends StatefulWidget {
   final Function onChanged;
   final List dataActionSheet;
   final List<NumberPickerColumn> dataPicker;
+  final List<String> dataPickerSimple;
   final String unit;
 
   @override
@@ -101,6 +103,7 @@ class _MenuItemState extends State<MenuItem> {
                                   onChanged: widget.onChanged,
                                   dataActionSheet: widget.dataActionSheet,
                                   dataPicker: widget.dataPicker,
+                                  dataPickerSimple: widget.dataPickerSimple,
                                   unit: widget.unit,
                                 )
                               : MenuItemDisplay(

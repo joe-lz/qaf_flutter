@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 // import 'package:percentage_flutter/config/city.dart';
 // import 'package:percentage_flutter/kit/util/date_util.dart';
+import 'package:qaf_flutter/utils/city_data.dart';
 
 const double _kPickerSheetHeight = 216.0;
 const double _kPickerItemHeight = 32.0;
@@ -10,35 +13,36 @@ typedef PickerConfirmCityCallback = void Function(List<String> stringData, List<
 
 class PickHelper {
   ///普通简易选择器
-  // static void openSimpleDataPicker<T>(
-  //   BuildContext context, {
-  //   @required List<T> list,
-  //   String title,
-  //   @required T value,
-  //   PickerDataAdapter adapter,
-  //   @required PickerConfirmCallback onConfirm,
-  // }) {
-  //   var incomeIndex = 0;
-  //   if (list != null) {
-  //     for (int i = 0; i < list.length; i++) {
-  //       if (list[i] == value) {
-  //         incomeIndex = i;
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   openModalPicker(
-  //     context,
-  //     adapter: adapter ??
-  //         PickerDataAdapter(
-  //           pickerdata: list,
-  //           isArray: false,
-  //         ),
-  //     onConfirm: onConfirm,
-  //     selecteds: [incomeIndex],
-  //     title: title,
-  //   );
-  // }
+  static void openSimpleDataPicker<T>(
+    BuildContext context, {
+    @required List<T> list,
+    String title,
+    @required T value,
+    PickerDataAdapter adapter,
+    @required PickerConfirmCallback onConfirm,
+  }) {
+    var incomeIndex = 0;
+    if (list != null) {
+      for (int i = 0; i < list.length; i++) {
+        if (list[i] == value) {
+          incomeIndex = i;
+          break;
+        }
+      }
+    }
+    openModalPicker(
+      context,
+      reversedOrder: false,
+      adapter: adapter ??
+          PickerDataAdapter(
+            pickerdata: list,
+            isArray: false,
+          ),
+      onConfirm: onConfirm,
+      selecteds: [incomeIndex],
+      title: title,
+    );
+  }
 
   ///数字选择器
   static void openNumberPicker(
@@ -86,34 +90,54 @@ class PickHelper {
   // }
 
   ///地址选择器
-  // static void openCityPicker(BuildContext context, {String title, @required PickerConfirmCityCallback onConfirm, String selectCity = ""}) {
-  //   var proIndex = 0;
-  //   var cityIndex = 0;
-  //   openModalPicker(context,
-  //       adapter: PickerDataAdapter(
-  //           data: CityData.asMap().keys.map((provincePos) {
-  //         var province = CityData[provincePos];
-  //         List citys = province['city'];
-  //         return PickerItem(
-  //             text: Text(
-  //               province['name'],
-  //             ),
-  //             value: province['name'],
-  //             children: citys.asMap().keys.map((cityPos) {
-  //               var city = citys[cityPos];
-  //               if (city['name'] == selectCity) {
-  //                 proIndex = provincePos;
-  //                 cityIndex = cityPos;
-  //               }
-  //               return PickerItem(text: Text(city['name']));
-  //             }).toList());
-  //       }).toList()),
-  //       title: title, onConfirm: (pick, value) {
-  //     var p = CityData[value[0]];
-  //     List citys = p['city'];
-  //     onConfirm([p['name'], citys[value[1]]['name']], value);
-  //   }, selecteds: [proIndex, cityIndex]);
-  // }
+  static final CityDataJSON = JsonDecoder().convert(CityData);
+  static void openCityPicker(
+    BuildContext context, {
+    String title,
+    @required PickerConfirmCityCallback onConfirm,
+    String selectCity = "",
+  }) {
+    var proIndex = 0;
+    var cityIndex = 0;
+    List<PickerItem<dynamic>> cityList = List<PickerItem<dynamic>>.from(
+      CityDataJSON.asMap().keys.map((provincePos) {
+        var province = CityDataJSON[provincePos];
+        List citys = province['city'];
+        return PickerItem(
+          text: Text(
+            province['name'],
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          value: province['name'],
+          children: citys.asMap().keys.map((cityPos) {
+            var city = citys[cityPos];
+            if (city['name'] == selectCity) {
+              proIndex = provincePos;
+              cityIndex = cityPos;
+            }
+            return PickerItem(
+                text: Text(
+              city['name'],
+              style: Theme.of(context).textTheme.headline6,
+            ));
+          }).toList(),
+        );
+      }).toList(),
+    );
+    openModalPicker(
+      context,
+      adapter: PickerDataAdapter(
+        data: cityList,
+      ),
+      title: title,
+      onConfirm: (pick, value) {
+        var p = CityDataJSON[value[0]];
+        List citys = p['city'];
+        onConfirm([p['name'], citys[value[1]]['name']], value);
+      },
+      selecteds: [proIndex, cityIndex],
+    );
+  }
 
   static void openModalPicker(
     BuildContext context, {
@@ -121,7 +145,7 @@ class PickHelper {
     String title,
     List<int> selecteds,
     @required PickerConfirmCallback onConfirm,
-    bool reversedOrder,
+    bool reversedOrder = false,
   }) {
     new Picker(
       adapter: adapter,

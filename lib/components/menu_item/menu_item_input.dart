@@ -16,7 +16,7 @@ class MenuItemInput extends StatefulWidget {
     this.onChanged,
     this.dataActionSheet,
     this.dataPicker,
-    this.pickerList,
+    this.dataPickerSimple,
     this.unit,
   }) : super(key: key);
   final String title;
@@ -26,7 +26,7 @@ class MenuItemInput extends StatefulWidget {
   final Function onChanged;
   final List dataActionSheet;
   final List<NumberPickerColumn> dataPicker;
-  final List<String> pickerList;
+  final List<String> dataPickerSimple;
   final String unit;
 
   @override
@@ -85,17 +85,26 @@ class _MenuItemInputState extends State<MenuItemInput> {
                         },
                       );
                     } else if (widget.pickerType == 'simple') {
-                      // PickHelper.openSimpleDataPicker(
-                      //   context,
-                      //   title: '请选择${widget.title}',
-                      //   list: widget.dataPicker,
-                      //   value: '',
-                      //   onConfirm: (Picker picker, List value) {
-                      //     // print(value.toString());
-                      //     // print(picker.getSelectedValues());
-                      //     widget.onChanged(picker.getSelectedValues()[0]);
-                      //   },
-                      // );
+                      PickHelper.openSimpleDataPicker(
+                        context,
+                        title: '请选择${widget.title}',
+                        list: widget.dataPickerSimple,
+                        value: widget.desc,
+                        onConfirm: (Picker picker, List value) {
+                          // print(value.toString());
+                          // print(picker.getSelectedValues());
+                          widget.onChanged(picker.getSelectedValues()[0]);
+                        },
+                      );
+                    } else if (widget.pickerType == 'city') {
+                      PickHelper.openCityPicker(
+                        context,
+                        title: '请选择${widget.title}',
+                        selectCity: widget.desc,
+                        onConfirm: (value1, value2) {
+                          widget.onChanged(value1);
+                        },
+                      );
                     }
                   } else {
                     showCupertinoModalPopup(
