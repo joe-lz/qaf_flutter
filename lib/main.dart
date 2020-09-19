@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/user.dart';
+import 'package:qaf_flutter/provider/user_profile.dart';
 
 import 'package:qaf_flutter/screens/main/index.dart';
 import 'package:qaf_flutter/screens/home/index.dart';
@@ -40,15 +41,16 @@ void main() async {
     );
     // 在 LeanCloud.initialize 初始化之后执行，开启 SDK 的调试日志（debug log）来方便追踪问题
     // 在应用发布之前，请关闭调试日志，以免暴露敏感数据。
-    LCLogger.setLevel(LCLogger.DebugLevel);
+    // LCLogger.setLevel(LCLogger.DebugLevel);
   }
 
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
         ChangeNotifierProvider<CounterModal>(create: (_) => CounterModal()),
         ChangeNotifierProvider<UserModal>(create: (_) => UserModal()),
-        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider<UserProfileModal>(create: (_) => UserProfileModal()),
       ],
       child: MyApp(),
     ),

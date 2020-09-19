@@ -4,8 +4,9 @@ import 'package:flutter_picker/flutter_picker.dart';
 import 'package:leancloud_storage/leancloud.dart';
 
 import 'package:qaf_flutter/provider/theme/dimens.dart';
-import 'package:qaf_flutter/provider/user.dart';
 import 'package:provider/provider.dart';
+import 'package:qaf_flutter/provider/user.dart';
+import 'package:qaf_flutter/provider/user_profile.dart';
 
 import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
@@ -37,14 +38,15 @@ class _UserInfoState extends State<UserInfo> {
   String position_like;
   String bodyshape_like;
 
-  void handleSubmit() {
-    setState(() {
-      editMode = false;
-    });
+  @override
+  void initState() {
+    super.initState();
+    setUserProfile();
   }
 
-  void setUserProfile() {
-    LCUser _currentUser = context.watch<UserModal>().currentUser;
+  void setUserProfile() async {
+    await context.read<UserProfileModal>().getMyUserProfile();
+    LCUser _currentUser = context.read<UserModal>().currentUser;
     setState(() {
       username = _currentUser.username;
       // gender = _currentUser.gender;
@@ -62,6 +64,12 @@ class _UserInfoState extends State<UserInfo> {
       // bodyshape = _currentUser.bodyshape;
       // position_like = _currentUser.position_like;
       // bodyshape_like = _currentUser.bodyshape_like;
+    });
+  }
+
+  void handleSubmit() {
+    setState(() {
+      editMode = false;
     });
   }
 

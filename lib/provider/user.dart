@@ -3,15 +3,15 @@ import 'package:leancloud_storage/leancloud.dart';
 
 class UserModal with ChangeNotifier {
   LCUser _currentUser;
-  LCUser _myProfile;
 
+  // 获取provider中_currentUser
   LCUser get currentUser => _currentUser;
-  LCUser get myProfile => _myProfile;
 
   // 获取当前用户
-  void getCurrentUser() async {
+  Future getCurrentUser() async {
     _currentUser = await LCUser.getCurrent();
     notifyListeners();
+    return _currentUser;
   }
 
   // 注册

@@ -6,8 +6,9 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/user.dart';
-import 'package:qaf_flutter/screens/me/userinfo.dart';
+import 'package:qaf_flutter/provider/user_profile.dart';
 
+import 'package:qaf_flutter/screens/me/userinfo.dart';
 import 'package:qaf_flutter/components/modal_login.dart';
 import 'package:qaf_flutter/components/page_title.dart';
 import 'package:qaf_flutter/components/menu_group.dart';
@@ -25,6 +26,7 @@ class _MeScreenState extends State<MeScreen> {
   void initState() {
     super.initState();
     context.read<UserModal>().getCurrentUser();
+    context.read<UserProfileModal>().getMyUserProfile();
   }
 
   void navigateToUserInfo() {

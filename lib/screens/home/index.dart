@@ -9,11 +9,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   context.read<UserModal>().getCurrentUser();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserModal>().getCurrentUser();
+  }
 
   @override
   Widget build(BuildContext context) {
