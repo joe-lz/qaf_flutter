@@ -27,7 +27,7 @@ class _MeScreenState extends State<MeScreen> {
   @override
   void initState() {
     super.initState();
-    GlobalModel().getCurrentUser();
+    // GlobalModel().getCurrentUser();
     getCurrent();
   }
   // @override

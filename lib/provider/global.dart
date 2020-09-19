@@ -11,9 +11,9 @@ class GlobalModel extends ChangeNotifier {
 
   LCUser currentUser;
 
-  getCurrentUser() async {
-    currentUser = await LCUser.getCurrent();
-  }
+  // getCurrentUser() async {
+  //   currentUser = await LCUser.getCurrent();
+  // }
   // getTheme() {
   //   var brightness = SchedulerBinding.instance.window.platformBrightness;
   //   bool darkModeOn = brightness == Brightness.dark;

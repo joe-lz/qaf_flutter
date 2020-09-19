@@ -283,7 +283,7 @@ class _UserInfoState extends State<UserInfo> {
                             descHint: '-',
                             inputType: 'picker',
                             pickerType: 'simple',
-                            dataPickerSimple: ['热恋中', '约会中', '单身'],
+                            dataPickerSimple: ['恋爱中', '开放关系', '单身'],
                             onChanged: (value) {
                               setState(() {
                                 statement = value;

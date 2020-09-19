@@ -14,13 +14,13 @@ import 'package:qaf_flutter/screens/me/index.dart';
 import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/not_found/index.dart';
-
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
 
 void main() async {
   const bool inProduction = const bool.fromEnvironment("dart.vm.product");
   if (inProduction) {
+    // 生产环境
     // leancloud初始化
     LeanCloud.initialize(
       'VvMQI9t9enJmUMlBqTm5mzKa-gzGzoHsz',
@@ -29,6 +29,7 @@ void main() async {
       queryCache: new LCQueryCache(),
     );
   } else {
+    // 测试环境
     // leancloud初始化
     LeanCloud.initialize(
       'VvMQI9t9enJmUMlBqTm5mzKa-gzGzoHsz',
