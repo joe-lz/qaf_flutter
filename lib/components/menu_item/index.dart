@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 
 import 'package:qaf_flutter/utils/screen_utils.dart';
 

@@ -1,21 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:qaf_flutter/components/modal_login.dart';
 
+import 'package:qaf_flutter/provider/theme/colors.dart';
+import 'package:qaf_flutter/provider/user.dart';
+import 'package:qaf_flutter/screens/me/userinfo.dart';
+
+import 'package:qaf_flutter/components/modal_login.dart';
 import 'package:qaf_flutter/components/page_title.dart';
 import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
-import 'package:qaf_flutter/provider/global.dart';
-import 'package:qaf_flutter/provider/theme_provider/colors.dart';
-import 'package:qaf_flutter/screens/me_about/index.dart';
-import 'package:qaf_flutter/screens/me/userinfo.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
-import 'package:qaf_flutter/screens/webview/index.dart';
-import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MeScreen extends StatefulWidget {
   @override
@@ -23,25 +21,10 @@ class MeScreen extends StatefulWidget {
 }
 
 class _MeScreenState extends State<MeScreen> {
-  LCUser _currentUser;
   @override
   void initState() {
     super.initState();
-    // GlobalModel().getCurrentUser();
-    getCurrent();
-  }
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   print('didChangeDependencies');
-  //   getCurrent();
-  // }
-
-  void getCurrent() async {
-    LCUser currentUser = await LCUser.getCurrent();
-    setState(() {
-      _currentUser = currentUser;
-    });
+    context.read<UserModal>().getCurrentUser();
   }
 
   void navigateToUserInfo() {
@@ -50,15 +33,14 @@ class _MeScreenState extends State<MeScreen> {
       duration: Duration(milliseconds: 300),
       backgroundColor: Colors.transparent,
       context: context,
-      builder: (context, scrollController) => UserInfo(
-        userinfo: _currentUser,
-      ),
+      builder: (context, scrollController) => UserInfo(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     // GlobalModel().setStatusBar();
+    LCUser _currentUser = context.watch<UserModal>().currentUser;
     return Container(
       child: SafeArea(
         top: true,
@@ -176,7 +158,7 @@ class _MeScreenState extends State<MeScreen> {
                                 CupertinoActionSheetAction(
                                   child: Text('退出登录'),
                                   onPressed: () async {
-                                    await LCUser.logout();
+                                    await context.read<UserModal>().handleLogout();
                                     Navigator.pop(context, 'Cancel');
                                   },
                                   // isDestructiveAction: true,

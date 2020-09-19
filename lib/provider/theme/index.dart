@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:qaf_flutter/provider/theme_provider/colors.dart';
-import 'package:qaf_flutter/provider/theme_provider/styles.dart';
+import 'package:qaf_flutter/provider/theme/colors.dart';
+import 'package:qaf_flutter/provider/theme/styles.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode getThemeMode() {

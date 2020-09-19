@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 
 class MenuOne extends StatefulWidget {
   MenuOne({

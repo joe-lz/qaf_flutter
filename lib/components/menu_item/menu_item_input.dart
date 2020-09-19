@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qaf_flutter/components/pick_helper.dart';
-import 'package:qaf_flutter/provider/theme_provider/colors.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+import 'package:qaf_flutter/provider/theme/colors.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 
 import 'package:flutter_picker/flutter_picker.dart';
 

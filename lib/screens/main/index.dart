@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:qaf_flutter/provider/global.dart';
+import 'package:provider/provider.dart';
+import 'package:qaf_flutter/provider/user.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/me/index.dart';
-import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -26,6 +25,8 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
     // pages..add(HomeScreen())..add(MeScreen());
+
+    context.read<UserModal>().getCurrentUser();
   }
 
   @override

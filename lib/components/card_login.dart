@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:qaf_flutter/components/input_item.dart';
-import 'package:qaf_flutter/provider/theme_provider/colors.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
-
-import 'package:qaf_flutter/utils/screen_utils.dart';
 import 'package:flushbar/flushbar.dart';
+
+import 'package:qaf_flutter/provider/theme/colors.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
+import 'package:qaf_flutter/provider/user.dart';
+import 'package:provider/provider.dart';
+
+import 'package:qaf_flutter/components/input_item.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class CardLogin extends StatefulWidget {
   CardLogin({
@@ -33,7 +36,8 @@ class _CardLoginState extends State<CardLogin> {
       // 登录
       try {
         // 登录成功
-        LCUser user = await LCUser.login(username, password);
+        // LCUser user = await LCUser.login(username, password);
+        await context.read<UserModal>().handleLogin(username, password);
         Navigator.of(context).pop();
         Flushbar(
           icon: Icon(

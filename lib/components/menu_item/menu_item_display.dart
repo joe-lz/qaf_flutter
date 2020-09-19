@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 
 class MenuItemDisplay extends StatefulWidget {
   MenuItemDisplay({

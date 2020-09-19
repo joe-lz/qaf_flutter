@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CounterModal with ChangeNotifier {
-  //1
-  int _count;
-  CounterModal(this._count);
+  int _count = 0;
+  // CounterModal(this._count);
 
-  void add() {
+  int get count => _count;
+
+  void increment() {
     _count++;
-    notifyListeners(); //2
+    notifyListeners();
   }
-
-  get count => _count; //3
 }

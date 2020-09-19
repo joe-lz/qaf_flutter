@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
+import 'package:leancloud_storage/leancloud.dart';
+
+import 'package:qaf_flutter/provider/theme/dimens.dart';
+import 'package:qaf_flutter/provider/user.dart';
+import 'package:provider/provider.dart';
+
 import 'package:qaf_flutter/components/menu_group.dart';
 import 'package:qaf_flutter/components/menu_item/index.dart';
-import 'package:flutter_picker/flutter_picker.dart';
-import 'package:qaf_flutter/provider/theme_provider/colors.dart';
-import 'package:qaf_flutter/provider/theme_provider/dimens.dart';
 
 class UserInfo extends StatefulWidget {
-  UserInfo({
-    Key key,
-    this.userinfo,
-  }) : super(key: key);
-  final userinfo;
+  UserInfo({Key key}) : super(key: key);
 
   @override
   _UserInfoState createState() => _UserInfoState();
@@ -20,6 +20,7 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   bool editMode = false;
 
+  String username;
   String gender;
   int age;
   int weight;
@@ -42,10 +43,34 @@ class _UserInfoState extends State<UserInfo> {
     });
   }
 
+  void setUserProfile() {
+    LCUser _currentUser = context.watch<UserModal>().currentUser;
+    setState(() {
+      username = _currentUser.username;
+      // gender = _currentUser.gender;
+      // age = _currentUser.age;
+      // weight = _currentUser.weight;
+      // height = _currentUser.height;
+      // blood = _currentUser.blood;
+      // constellation = _currentUser.constellation;
+      // province = _currentUser.province;
+      // city = _currentUser.city;
+      // job = _currentUser.job;
+      // position = _currentUser.position;
+      // statement = _currentUser.statement;
+      // purpose = _currentUser.purpose;
+      // bodyshape = _currentUser.bodyshape;
+      // position_like = _currentUser.position_like;
+      // bodyshape_like = _currentUser.bodyshape_like;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var date = new DateTime.now().toString();
     var dateParse = DateTime.parse(date);
+    LCUser _currentUser = context.watch<UserModal>().currentUser;
+
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -126,7 +151,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             showBorderBottom: true,
                             title: '用户名',
-                            desc: widget.userinfo.username,
+                            desc: username,
                           ),
                           MenuItem(
                             editMode: editMode,
@@ -249,7 +274,22 @@ class _UserInfoState extends State<UserInfo> {
                             descHint: '-',
                             inputType: 'picker',
                             pickerType: 'simple',
-                            dataPickerSimple: ['学生', '互联网/IT/通信', '金融', '房地产/建筑/工程', '教育/培训/咨询/科研', '影视/娱乐/文化', '旅游/酒店/餐饮', '媒体/广告', '医疗/卫生/社会服务', '政府/组织', '美容/美发/养生', '贸易/零售', '工业/矿产/能源/环保', '农/林/牧副/渔'],
+                            dataPickerSimple: [
+                              '学生',
+                              '互联网/IT/通信',
+                              '金融',
+                              '房地产/建筑/工程',
+                              '教育/培训/咨询/科研',
+                              '影视/娱乐/文化',
+                              '旅游/酒店/餐饮',
+                              '媒体/广告',
+                              '医疗/卫生/社会服务',
+                              '政府/组织',
+                              '美容/美发/养生',
+                              '贸易/零售',
+                              '工业/矿产/能源/环保',
+                              '农/林/牧副/渔'
+                            ],
                             onChanged: (value) {
                               setState(() {
                                 job = value;
