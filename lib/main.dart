@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
@@ -52,7 +53,16 @@ void main() async {
         ChangeNotifierProvider<UserModal>(create: (_) => UserModal()),
         ChangeNotifierProvider<UserProfileModal>(create: (_) => UserProfileModal()),
       ],
-      child: MyApp(),
+      child: EasyLocalization(
+        useOnlyLangCode: true,
+        supportedLocales: [
+          Locale('en', 'US'),
+          Locale('zh', 'CN'),
+        ],
+        path: 'assets/translations',
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp(),
+      ),
     ),
   );
 
@@ -67,6 +77,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       // showPerformanceOverlay: true, //显示性能标签
       // debugShowCheckedModeBanner: false, // 去除右上角debug的标签
       // checkerboardRasterCacheImages: true,

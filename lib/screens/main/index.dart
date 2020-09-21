@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qaf_flutter/provider/user.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
@@ -67,9 +68,9 @@ class _MainScreenState extends State<MainScreen> {
           child: BottomNavigationBar(
             // backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
             items: [
-              BottomNavigationBarItem(icon: Icon(Icons.perm_media), title: Text('动态')),
-              BottomNavigationBarItem(icon: Icon(Icons.category), title: Text('发现')),
-              BottomNavigationBarItem(icon: Icon(Icons.recent_actors), title: Text('账户')),
+              BottomNavigationBarItem(icon: Icon(Icons.aspect_ratio), title: Text('tabbar.posts').tr()),
+              BottomNavigationBarItem(icon: Icon(Icons.explore), title: Text('tabbar.discover').tr()),
+              BottomNavigationBarItem(icon: Icon(Icons.input), title: Text('tabbar.account').tr()),
             ],
             currentIndex: _selectedIndex,
             // fixedColor: Colors.deepPurple,

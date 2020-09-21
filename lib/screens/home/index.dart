@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/provider/counter.dart';
 
@@ -27,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text('data'),
               // Text('${context.watch<CounterModal>().count}'),
               Text('${context.watch<CounterModal>().count}'),
+              Text('appName').tr(),
               FloatingActionButton(
                 /// Calls `context.read` instead of `context.watch` so that it does not rebuild
                 /// when [Counter] changes.

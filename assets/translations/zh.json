@@ -1,0 +1,8 @@
+{
+  "appName": "qaf",
+  "tabbar": {
+    "posts": "动态",
+    "discover": "发现",
+    "account": "帐户"
+  }
+}

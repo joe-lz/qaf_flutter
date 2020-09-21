@@ -1,0 +1,8 @@
+{
+  "appName": "qaf",
+  "tabbar": {
+    "posts": "Posts",
+    "discover": "Discover",
+    "account": "Account"
+  }
+}
