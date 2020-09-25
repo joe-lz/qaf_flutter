@@ -63,7 +63,6 @@ class _MenuItemState extends State<MenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.titleCenter);
     return Material(
       child: InkWell(
         onTap: widget.action,

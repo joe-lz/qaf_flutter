@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/screens/home/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
+import 'package:qaf_flutter/screens/discover/index.dart';
 import 'package:qaf_flutter/screens/me/index.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,10 +25,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
-    // pages..add(HomeScreen())..add(MeScreen());
-
     context.read<UserModal>().getCurrentUser();
+    pages..add(HomeScreen())..add(MessageScreen())..add(DiscoverScreen())..add(MeScreen());
+    // pages..add(HomeScreen())..add(MeScreen());
   }
 
   @override
@@ -67,8 +67,10 @@ class _MainScreenState extends State<MainScreen> {
           //     ),
           child: BottomNavigationBar(
             // backgroundColor: GlobalModel().getTheme().kTabbarBgColor,
+            type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.aspect_ratio), title: Text('tabbar.posts').tr()),
+              BottomNavigationBarItem(icon: Icon(Icons.message), title: Text('tabbar.messages').tr()),
               BottomNavigationBarItem(icon: Icon(Icons.explore), title: Text('tabbar.discover').tr()),
               BottomNavigationBarItem(icon: Icon(Icons.input), title: Text('tabbar.account').tr()),
             ],

@@ -10,6 +10,7 @@ import 'package:qaf_flutter/provider/theme/index.dart';
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/provider/user_profile.dart';
+import 'package:qaf_flutter/screens/discover/index.dart';
 
 import 'package:qaf_flutter/screens/main/index.dart';
 import 'package:qaf_flutter/screens/home/index.dart';
@@ -123,6 +124,8 @@ class MyApp extends StatelessWidget {
 
           case '/message':
             return MaterialPageRoute(builder: (context) => MessageScreen());
+          case '/discover':
+            return MaterialPageRoute(builder: (context) => DiscoverScreen());
 
           case '/webview':
             final WebviewScreenArguments args = settings.arguments;

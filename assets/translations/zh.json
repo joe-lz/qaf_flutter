@@ -2,15 +2,19 @@
   "appName": "qaf",
   "tabbar": {
     "posts": "动态",
+    "messages": "消息",
     "discover": "发现",
     "account": "帐户"
   },
   "me_menus": {
-    "your_profile": "资料",
+    "your_profile": "你的资料",
     "permisions": "权限管理",
     "share": "和朋友分享",
     "feedback": "意见反馈",
-    "aboutus": "关于我们"
+    "aboutus": "关于我们",
+    "nearby": "附近",
+    "posts": "动态",
+    "matches": "匹配"
   },
   "actions": {
     "edit": "编辑",

@@ -30,14 +30,14 @@ List<Widget> cards = List.generate(
   },
 );
 
-class CardProfile extends StatefulWidget {
-  CardProfile({Key key}) : super(key: key);
+class CardComponent extends StatefulWidget {
+  CardComponent({Key key}) : super(key: key);
 
   @override
-  _CardProfileState createState() => _CardProfileState();
+  _CardComponentState createState() => _CardComponentState();
 }
 
-class _CardProfileState extends State<CardProfile> {
+class _CardComponentState extends State<CardComponent> {
   TCardController _controller = TCardController();
 
   int _index = 0;
