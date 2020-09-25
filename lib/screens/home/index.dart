@@ -16,7 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _controller = SwiperController();
   int _currentIndex = 1;
+
   List<Color> colors = [
     Colors.blue,
     Colors.yellow,
@@ -36,30 +38,49 @@ class _HomeScreenState extends State<HomeScreen> {
         bottom: false,
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.center,
-              child: CupertinoSlidingSegmentedControl(
-                children: {
-                  0: Container(
-                    child: Text('me_menus.nearby'.tr()),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            // Container(
+            //   alignment: Alignment.center,
+            //   child: ,
+            // ),
+            Row(
+              children: [
+                Container(
+                  width: 50,
+                  child: Icon(Icons.search),
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: CupertinoSlidingSegmentedControl(
+                      children: {
+                        0: Container(
+                          child: Text('me_menus.nearby'.tr()),
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        ),
+                        1: Container(
+                          child: Text('me_menus.posts'.tr()),
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        ),
+                        2: Container(
+                          child: Text('me_menus.matches'.tr()),
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        ),
+                      },
+                      groupValue: _currentIndex,
+                      onValueChanged: (value) {
+                        // setState(() {
+                        //   _currentIndex = value;
+                        // });
+                        _controller.move(value, animation: true);
+                      },
+                    ),
                   ),
-                  1: Container(
-                    child: Text('me_menus.posts'.tr()),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  2: Container(
-                    child: Text('me_menus.matches'.tr()),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                },
-                groupValue: _currentIndex,
-                onValueChanged: (value) {
-                  // setState(() {
-                  //   _currentIndex = value;
-                  // });
-                },
-              ),
+                ),
+                Container(
+                  width: 50,
+                  child: Icon(Icons.tune),
+                ),
+              ],
             ),
             Expanded(
               flex: 1,
@@ -68,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: 3,
                 loop: false,
                 duration: 10,
+                controller: _controller,
                 onIndexChanged: (int index) {
                   setState(() {
                     _currentIndex = index;
