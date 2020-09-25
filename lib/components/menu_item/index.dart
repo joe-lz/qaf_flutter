@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+
 import 'package:qaf_flutter/components/menu_item/menu_item_display.dart';
 import 'package:qaf_flutter/components/menu_item/menu_item_input.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
-
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class MenuItem extends StatefulWidget {
   MenuItem({
     Key key,
     this.title = 'title',
+    this.titleCenter = false,
     this.desc,
     this.descHint,
     this.action,
@@ -29,7 +30,8 @@ class MenuItem extends StatefulWidget {
     this.unit,
   }) : super(key: key);
   final String title;
-  final desc;
+  final bool titleCenter;
+  final dynamic desc; // String, Int
   final String descHint;
   final Function action;
   final bool showIconRight;
@@ -61,6 +63,7 @@ class _MenuItemState extends State<MenuItem> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.titleCenter);
     return Material(
       child: InkWell(
         onTap: widget.action,
@@ -84,6 +87,7 @@ class _MenuItemState extends State<MenuItem> {
                 child: FractionallySizedBox(
                   heightFactor: 1,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         widget.title,
@@ -92,29 +96,31 @@ class _MenuItemState extends State<MenuItem> {
                           fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                          child: widget.editMode
-                              ? MenuItemInput(
-                                  title: widget.title,
-                                  desc: widget.desc,
-                                  inputType: widget.inputType,
-                                  pickerType: widget.pickerType,
-                                  onChanged: widget.onChanged,
-                                  dataActionSheet: widget.dataActionSheet,
-                                  dataPicker: widget.dataPicker,
-                                  dataPickerSimple: widget.dataPickerSimple,
-                                  unit: widget.unit,
-                                )
-                              : MenuItemDisplay(
-                                  desc: widget.desc,
-                                  descHint: widget.descHint,
-                                  showIconRight: widget.showIconRight,
-                                  colorDesc: widget.colorDesc != null ? widget.colorDesc : Theme.of(context).textTheme.subtitle1.color,
-                                  unit: widget.unit,
-                                ),
-                        ),
-                      ),
+                      widget.titleCenter
+                          ? Container(child: null)
+                          : Expanded(
+                              child: Container(
+                                child: widget.editMode
+                                    ? MenuItemInput(
+                                        title: widget.title,
+                                        desc: widget.desc,
+                                        inputType: widget.inputType,
+                                        pickerType: widget.pickerType,
+                                        onChanged: widget.onChanged,
+                                        dataActionSheet: widget.dataActionSheet,
+                                        dataPicker: widget.dataPicker,
+                                        dataPickerSimple: widget.dataPickerSimple,
+                                        unit: widget.unit,
+                                      )
+                                    : MenuItemDisplay(
+                                        desc: widget.desc,
+                                        descHint: widget.descHint,
+                                        showIconRight: widget.showIconRight,
+                                        colorDesc: widget.colorDesc != null ? widget.colorDesc : Theme.of(context).textTheme.subtitle1.color,
+                                        unit: widget.unit,
+                                      ),
+                              ),
+                            ),
                     ],
                   ),
                 ),

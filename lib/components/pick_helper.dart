@@ -1,7 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 // import 'package:percentage_flutter/config/city.dart';
 // import 'package:percentage_flutter/kit/util/date_util.dart';
 import 'package:qaf_flutter/utils/city_data.dart';
@@ -158,8 +159,8 @@ class PickHelper {
         ),
       ),
       selecteds: selecteds,
-      cancelText: '取消',
-      confirmText: '确定',
+      cancelText: 'actions.cancel'.tr(),
+      confirmText: 'actions.confirm'.tr(),
       cancelTextStyle: Theme.of(context).textTheme.bodyText1,
       confirmTextStyle: Theme.of(context).textTheme.bodyText1,
       textAlign: TextAlign.right,

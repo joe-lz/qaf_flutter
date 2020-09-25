@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class _UserInfoState extends State<UserInfo> {
   @override
   void initState() {
     super.initState();
-    setUserProfile();
+    // setUserProfile();
   }
 
   void setUserProfile() async {
@@ -100,9 +101,9 @@ class _UserInfoState extends State<UserInfo> {
                     children: [
                       CupertinoButton(
                         child: Text(
-                          "取消",
+                          'actions.cancel'.tr(),
                           style: TextStyle(
-                            fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                            fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                             color: editMode ? Theme.of(context).textTheme.caption.color : Theme.of(context).primaryColor,
                           ),
                         ),
@@ -119,9 +120,9 @@ class _UserInfoState extends State<UserInfo> {
                       ),
                       CupertinoButton(
                         child: Text(
-                          editMode ? "保存" : '编辑',
+                          editMode ? 'actions.save'.tr() : 'actions.edit'.tr(),
                           style: TextStyle(
-                            fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                            fontSize: Theme.of(context).textTheme.subtitle1.fontSize,
                             fontWeight: editMode ? FontWeight.w500 : FontWeight.w400,
                             // color: Theme.of(context).primaryColor,
                           ),
@@ -153,18 +154,18 @@ class _UserInfoState extends State<UserInfo> {
                         ),
                       ),
                       MenuGroup(
-                        title: '基本信息',
+                        title: 'userinfo.title.basic'.tr(),
                         desc: '您的资料将不会与任何第三方共享，请放心填写。',
                         children: [
                           MenuItem(
                             showBorderBottom: true,
-                            title: '用户名',
+                            title: 'userinfo.keys.username'.tr(),
                             desc: username,
                           ),
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '性别',
+                            title: 'userinfo.keys.gender'.tr(),
                             desc: gender,
                             descHint: '-',
                             inputType: 'actionsheet',
@@ -178,7 +179,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '年龄',
+                            title: 'userinfo.keys.age'.tr(),
                             unit: '年',
                             desc: age,
                             descHint: '-',
@@ -193,7 +194,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '身高',
+                            title: 'userinfo.keys.height'.tr(),
                             unit: 'cm',
                             desc: height,
                             descHint: '-',
@@ -208,7 +209,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: false,
-                            title: '体重',
+                            title: 'userinfo.keys.weight'.tr(),
                             unit: 'kg',
                             desc: weight,
                             descHint: '-',
@@ -223,12 +224,12 @@ class _UserInfoState extends State<UserInfo> {
                         ],
                       ),
                       MenuGroup(
-                        title: '个人资料',
+                        title: 'userinfo.title.detail'.tr(),
                         children: [
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '血型',
+                            title: 'userinfo.keys.blood'.tr(),
                             desc: blood,
                             descHint: '-',
                             // inputType: 'actionsheet',
@@ -246,7 +247,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '星座',
+                            title: 'userinfo.keys.constellation'.tr(),
                             desc: constellation,
                             descHint: '-',
                             inputType: 'picker',
@@ -261,7 +262,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '城市',
+                            title: 'userinfo.keys.city'.tr(),
                             desc: (province != null && city != null) ? city : null,
                             descHint: '-',
                             inputType: 'picker',
@@ -277,7 +278,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: false,
-                            title: '工作行业',
+                            title: 'userinfo.keys.job'.tr(),
                             desc: job,
                             descHint: '-',
                             inputType: 'picker',
@@ -307,12 +308,12 @@ class _UserInfoState extends State<UserInfo> {
                         ],
                       ),
                       MenuGroup(
-                        title: '交友信息',
+                        title: 'userinfo.title.dating'.tr(),
                         children: [
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '角色',
+                            title: 'userinfo.keys.position'.tr(),
                             desc: position,
                             descHint: '-',
                             inputType: 'actionsheet',
@@ -326,7 +327,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '情感状态',
+                            title: 'userinfo.keys.statement'.tr(),
                             desc: statement,
                             descHint: '-',
                             inputType: 'picker',
@@ -341,7 +342,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '交友目的',
+                            title: 'userinfo.keys.purpose'.tr(),
                             desc: purpose,
                             descHint: '-',
                             inputType: 'picker',
@@ -356,7 +357,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '体形',
+                            title: 'userinfo.keys.bodyshape'.tr(),
                             desc: bodyshape,
                             descHint: '-',
                             inputType: 'picker',
@@ -371,19 +372,19 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: false,
-                            title: '个人签名',
+                            title: 'userinfo.keys.about'.tr(),
                             desc: null,
                             descHint: '-',
                           ),
                         ],
                       ),
                       MenuGroup(
-                        title: '喜欢的类型',
+                        title: 'userinfo.title.like'.tr(),
                         children: [
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '角色',
+                            title: 'userinfo.keys.position_like'.tr(),
                             desc: position_like,
                             descHint: '-',
                             inputType: 'actionsheet',
@@ -397,7 +398,7 @@ class _UserInfoState extends State<UserInfo> {
                           MenuItem(
                             editMode: editMode,
                             showBorderBottom: true,
-                            title: '体形',
+                            title: 'userinfo.keys.bodyshape_like'.tr(),
                             desc: bodyshape_like,
                             descHint: '-',
                             inputType: 'picker',

@@ -32,7 +32,7 @@ class _MenuGroupState extends State<MenuGroup> {
                         widget.title,
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       Expanded(

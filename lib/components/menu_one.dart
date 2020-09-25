@@ -6,6 +6,7 @@ class MenuOne extends StatefulWidget {
   MenuOne({
     Key key,
     this.title = 'title',
+    this.titleCenter = false,
     this.desc,
     this.descHint,
     this.action,
@@ -17,6 +18,7 @@ class MenuOne extends StatefulWidget {
     this.editMode = false,
   }) : super(key: key);
   final String title;
+  final bool titleCenter;
   final String desc;
   final String descHint;
   final Function action;
@@ -40,6 +42,7 @@ class _MenuOneState extends State<MenuOne> {
         borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
         child: MenuItem(
           title: widget.title,
+          titleCenter: widget.titleCenter,
           desc: widget.desc,
           descHint: widget.descHint,
           action: widget.action,

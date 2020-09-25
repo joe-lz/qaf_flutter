@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
@@ -110,11 +111,11 @@ class _CardRegisterState extends State<CardRegister> {
                 ),
                 InputItem(
                   // labelText: "用户名",
-                  hintText: "用户名",
+                  hintText: 'userinfo.keys.username'.tr(),
                   prefixIcon: Icon(Icons.person),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return '请输入用户名';
+                      return '${'actions.please_enter'.tr()} ${'userinfo.keys.username'.tr()}';
                     }
                     return null;
                   },
@@ -126,12 +127,12 @@ class _CardRegisterState extends State<CardRegister> {
                 ),
                 InputItem(
                   // labelText: "密码",
-                  hintText: "注册密码",
+                  hintText: 'form.password'.tr(),
                   prefixIcon: Icon(Icons.lock),
                   obscureText: true,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return '请输入您的登录密码';
+                      return '${'actions.please_enter'.tr()} ${'form.password'.tr()}';
                     }
                     return null;
                   },
@@ -143,7 +144,7 @@ class _CardRegisterState extends State<CardRegister> {
                 ),
                 InputItem(
                   // labelText: "确认密码",
-                  hintText: "再次输入您的登录密码",
+                  hintText: 'form.repassword'.tr(),
                   prefixIcon: Icon(Icons.lock),
                   obscureText: true,
                   validator: (value) {
@@ -177,7 +178,7 @@ class _CardRegisterState extends State<CardRegister> {
                             children: [
                               Expanded(child: Container(child: null)),
                               Text(
-                                '注册',
+                                'actions.register'.tr(),
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -197,13 +198,13 @@ class _CardRegisterState extends State<CardRegister> {
                   child: Row(
                     children: [
                       Expanded(child: Container(child: null)),
-                      Text('已有帐户？'),
+                      Text('desc.have_account'.tr()),
                       GestureDetector(
                         onTap: () {
                           widget.cardKey.currentState.toggleCard();
                         },
                         child: Text(
-                          '立即登录',
+                          'actions.login'.tr(),
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w500,

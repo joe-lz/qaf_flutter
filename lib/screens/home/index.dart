@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/provider/counter.dart';
+import 'package:qaf_flutter/screens/home/card.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // Text('${context.watch<CounterModal>().count}'),
               Text('${context.watch<CounterModal>().count}'),
               Text('appName').tr(),
+              CardProfile(),
               FloatingActionButton(
                 /// Calls `context.read` instead of `context.watch` so that it does not rebuild
                 /// when [Counter] changes.

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:qaf_flutter/components/pick_helper.dart';
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
-
-import 'package:flutter_picker/flutter_picker.dart';
 
 class MenuItemInput extends StatefulWidget {
   MenuItemInput({
@@ -75,7 +76,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                       PickHelper.openNumberPicker(
                         context,
                         reversedOrder: true,
-                        title: '请选择${widget.title}',
+                        title: '${'actions.please_choose'.tr()} ${widget.title}',
                         selecteds: [50],
                         datas: widget.dataPicker,
                         onConfirm: (Picker picker, List value) {
@@ -87,7 +88,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                     } else if (widget.pickerType == 'simple') {
                       PickHelper.openSimpleDataPicker(
                         context,
-                        title: '请选择${widget.title}',
+                        title: '${'actions.please_choose'.tr()} ${widget.title}',
                         list: widget.dataPickerSimple,
                         value: widget.desc,
                         onConfirm: (Picker picker, List value) {
@@ -99,7 +100,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                     } else if (widget.pickerType == 'city') {
                       PickHelper.openCityPicker(
                         context,
-                        title: '请选择${widget.title}',
+                        title: '${'actions.please_choose'.tr()} ${widget.title}',
                         selectCity: widget.desc,
                         onConfirm: (value1, value2) {
                           widget.onChanged(value1);
@@ -112,7 +113,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
                       builder: (context) {
                         return CupertinoActionSheet(
                           // title: Text('提示'),
-                          message: Text('请选择${widget.title}'),
+                          message: Text('${'actions.please_choose'.tr()} ${widget.title}'),
                           actions: widget.dataActionSheet
                               .map(
                                 (item, {index}) => CupertinoActionSheetAction(

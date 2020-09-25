@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/user.dart';
@@ -25,8 +26,8 @@ class _MeScreenState extends State<MeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<UserModal>().getCurrentUser();
-    context.read<UserProfileModal>().getMyUserProfile();
+    // context.read<UserModal>().getCurrentUser();
+    // context.read<UserProfileModal>().getMyUserProfile();
   }
 
   void navigateToUserInfo() {
@@ -51,7 +52,7 @@ class _MeScreenState extends State<MeScreen> {
           child: Column(
             children: [
               PageTitle(
-                title: '帐户',
+                title: 'tabbar.account'.tr(),
                 right: _currentUser != null
                     ? GestureDetector(
                         onTap: () {
@@ -72,7 +73,7 @@ class _MeScreenState extends State<MeScreen> {
                   : MenuOne(
                       showIconRight: false,
                       // type: 'active',
-                      title: '登录/注册',
+                      title: 'actions.login'.tr(),
                       colorTitle: Theme.of(context).primaryColor,
                       action: () {
                         showMaterialModalBottomSheet(
@@ -86,7 +87,7 @@ class _MeScreenState extends State<MeScreen> {
                     ),
               _currentUser != null
                   ? MenuOne(
-                      title: '我的资料',
+                      title: 'me_menus.your_profile'.tr(),
                       colorTitle: Theme.of(context).primaryColor,
                       showIconRight: false,
                       // type: 'active',
@@ -102,7 +103,7 @@ class _MeScreenState extends State<MeScreen> {
                       children: [
                         MenuItem(
                           // showBorderBottom: true,
-                          title: '权限管理',
+                          title: 'me_menus.permisions'.tr(),
                           action: () {
                             print('我是action');
                           },
@@ -116,7 +117,7 @@ class _MeScreenState extends State<MeScreen> {
                 MenuItem(
                   showBorderBottom: true,
                   showIconRight: true,
-                  title: '和朋友分享',
+                  title: 'me_menus.share'.tr(),
                   action: () {
                     print('我是action');
                   },
@@ -124,7 +125,7 @@ class _MeScreenState extends State<MeScreen> {
                 MenuItem(
                   showBorderBottom: true,
                   showIconRight: true,
-                  title: '意见反馈',
+                  title: 'me_menus.feedback'.tr(),
                   action: () {
                     Navigator.pushNamed(context, "/webview", arguments: WebviewScreenArguments('https://support.qq.com/products/105926'));
                   },
@@ -132,7 +133,7 @@ class _MeScreenState extends State<MeScreen> {
                 MenuItem(
                   showBorderBottom: false,
                   showIconRight: true,
-                  title: '关于我们',
+                  title: 'me_menus.aboutus'.tr(),
                   action: () {
                     Navigator.pushNamed(context, "/me_about");
                   },
@@ -143,14 +144,15 @@ class _MeScreenState extends State<MeScreen> {
                       showIconRight: false,
                       // type: 'active',
                       colorTitle: Colours().getColor().error_color,
-                      title: '退出登录',
+                      title: 'actions.logout'.tr(),
+                      titleCenter: true,
                       action: () {
                         showCupertinoModalPopup(
                           context: context,
                           builder: (context) {
                             return CupertinoActionSheet(
                               // title: Text('提示'),
-                              message: Text('确认退出登录状态吗？'),
+                              message: Text('desc.logout'.tr()),
                               actions: <Widget>[
                                 // CupertinoActionSheetAction(
                                 //   child: Text('删除'),
@@ -158,7 +160,7 @@ class _MeScreenState extends State<MeScreen> {
                                 //   isDefaultAction: true,
                                 // ),
                                 CupertinoActionSheetAction(
-                                  child: Text('退出登录'),
+                                  child: Text('actions.logout'.tr()),
                                   onPressed: () async {
                                     await context.read<UserModal>().handleLogout();
                                     Navigator.pop(context, 'Cancel');
@@ -167,7 +169,7 @@ class _MeScreenState extends State<MeScreen> {
                                 ),
                               ],
                               cancelButton: CupertinoActionSheetAction(
-                                child: Text('取消'),
+                                child: Text('actions.cancel'.tr()),
                                 isDestructiveAction: true,
                                 // isDefaultAction: true,
                                 onPressed: () {

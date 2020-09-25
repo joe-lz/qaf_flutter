@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
@@ -109,12 +110,12 @@ class _CardLoginState extends State<CardLogin> {
                   ),
                 ),
                 InputItem(
-                  // labelText: "用户名",
-                  hintText: "用户名",
+                  // labelText: 'userinfo.keys.username'.tr(),
+                  hintText: 'userinfo.keys.username'.tr(),
                   prefixIcon: Icon(Icons.person),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return '请输入用户名';
+                      return '${'actions.please_enter'.tr()} ${'userinfo.keys.username'.tr()}';
                     }
                     return null;
                   },
@@ -126,12 +127,12 @@ class _CardLoginState extends State<CardLogin> {
                 ),
                 InputItem(
                   // labelText: "密码",
-                  hintText: "您的登录密码",
+                  hintText: 'form.password'.tr(),
                   prefixIcon: Icon(Icons.lock),
                   obscureText: true,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return '请输入您的登录密码';
+                      return '${'actions.please_enter'.tr()} ${'form.password'.tr()}';
                     }
                     return null;
                   },
@@ -158,7 +159,7 @@ class _CardLoginState extends State<CardLogin> {
                             children: [
                               Expanded(child: Container(child: null)),
                               Text(
-                                '登录',
+                                'actions.login'.tr(),
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -178,13 +179,13 @@ class _CardLoginState extends State<CardLogin> {
                   child: Row(
                     children: [
                       Expanded(child: Container(child: null)),
-                      Text('还没有帐户？'),
+                      Text('desc.dont_have_account'.tr()),
                       GestureDetector(
                         onTap: () {
                           widget.cardKey.currentState.toggleCard();
                         },
                         child: Text(
-                          '立即注册',
+                          'actions.register'.tr(),
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w500,

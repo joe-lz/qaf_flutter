@@ -38,6 +38,7 @@ dependencies:
   flutter_picker:
     git: git://github.com/yangyxd/flutter_picker.git
   provider: ^4.3.2+2
+  tcard: ^1.2.2
 
 dev_dependencies:
   flutter_test:
