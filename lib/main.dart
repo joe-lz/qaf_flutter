@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
+import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/provider/user_profile.dart';
@@ -51,6 +52,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider<GlobalModal>(create: (_) => GlobalModal()),
         ChangeNotifierProvider<CounterModal>(create: (_) => CounterModal()),
         ChangeNotifierProvider<UserModal>(create: (_) => UserModal()),
         ChangeNotifierProvider<UserProfileModal>(create: (_) => UserProfileModal()),
@@ -84,7 +86,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       // showPerformanceOverlay: true, //显示性能标签
-      // debugShowCheckedModeBanner: false, // 去除右上角debug的标签
+      debugShowCheckedModeBanner: false, // 去除右上角debug的标签
       // checkerboardRasterCacheImages: true,
       // showSemanticsDebugger: true, // 显示语义视图
       // checkerboardOffscreenLayers: true, // 检查离屏渲染

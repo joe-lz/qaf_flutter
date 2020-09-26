@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:qaf_flutter/provider/counter.dart';
+import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/screens/home/card/index.dart';
 import 'package:qaf_flutter/screens/home/nearby/index.dart';
@@ -42,49 +44,54 @@ class _HomeScreenState extends State<HomeScreen> {
             //   alignment: Alignment.center,
             //   child: ,
             // ),
-            Row(
-              children: [
-                Container(
-                  width: 50,
-                  child: Icon(Icons.search),
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: CupertinoSlidingSegmentedControl(
-                      children: {
-                        0: Container(
-                          child: Text('me_menus.nearby'.tr()),
-                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        ),
-                        1: Container(
-                          child: Text('me_menus.posts'.tr()),
-                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        ),
-                        2: Container(
-                          child: Text('me_menus.matches'.tr()),
-                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        ),
-                      },
-                      groupValue: _currentIndex,
-                      onValueChanged: (value) {
-                        // setState(() {
-                        //   _currentIndex = value;
-                        // });
-                        _controller.move(value, animation: true);
-                      },
+            Padding(
+              padding: EdgeInsets.only(bottom: Dimens.gap_dp16 / 2),
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    child: _currentIndex == 0 ? Icon(Icons.search) : null,
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: CupertinoSlidingSegmentedControl(
+                        children: {
+                          0: Container(
+                            child: Text('me_menus.nearby'.tr()),
+                            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          ),
+                          1: Container(
+                            child: Text('me_menus.posts'.tr()),
+                            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          ),
+                          2: Container(
+                            child: Text('me_menus.matches'.tr()),
+                            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          ),
+                        },
+                        groupValue: _currentIndex,
+                        onValueChanged: (value) {
+                          // setState(() {
+                          //   _currentIndex = value;
+                          // });
+                          _controller.move(value, animation: true);
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: 50,
-                  child: Icon(Icons.tune),
-                ),
-              ],
+                  Container(
+                    width: 50,
+                    child: _currentIndex == 0 ? Icon(Icons.tune) : null,
+                  ),
+                ],
+              ),
             ),
             Expanded(
               flex: 1,
               child: Swiper(
+                physics:
+                    (context.watch<GlobalModal>().disableHomeSwipe && _currentIndex == 2) ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
                 index: _currentIndex,
                 itemCount: 3,
                 loop: false,

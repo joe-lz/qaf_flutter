@@ -20,6 +20,10 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeData getTheme({bool isDarkMode = false}) {
     return ThemeData(
+      // 禁止水波纹
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+
       // errorColor: isDarkMode ? Colours.dark_red : Colours.red,
       accentColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,
       primaryColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,

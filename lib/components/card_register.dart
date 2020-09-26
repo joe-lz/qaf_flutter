@@ -96,7 +96,7 @@ class _CardRegisterState extends State<CardRegister> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_15)),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(5),

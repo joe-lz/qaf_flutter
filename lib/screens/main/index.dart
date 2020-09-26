@@ -26,8 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     context.read<UserModal>().getCurrentUser();
-    pages..add(HomeScreen())..add(MessageScreen())..add(DiscoverScreen())..add(MeScreen());
-    // pages..add(HomeScreen())..add(MeScreen());
+    // pages..add(HomeScreen())..add(MessageScreen())..add(DiscoverScreen())..add(MeScreen());
+    pages..add(HomeScreen())..add(MessageScreen())..add(MeScreen());
   }
 
   @override
@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.aspect_ratio), title: Text('tabbar.posts').tr()),
               BottomNavigationBarItem(icon: Icon(Icons.message), title: Text('tabbar.messages').tr()),
-              BottomNavigationBarItem(icon: Icon(Icons.explore), title: Text('tabbar.discover').tr()),
+              // BottomNavigationBarItem(icon: Icon(Icons.explore), title: Text('tabbar.discover').tr()),
               BottomNavigationBarItem(icon: Icon(Icons.input), title: Text('tabbar.account').tr()),
             ],
             currentIndex: _selectedIndex,

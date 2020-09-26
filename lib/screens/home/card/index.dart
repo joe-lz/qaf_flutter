@@ -1,34 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tcard/tcard.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:provider/provider.dart';
 
-List<Color> colors = [
-  Colors.blue,
-  Colors.yellow,
-  Colors.red,
-  Colors.orange,
-  Colors.pink,
-  Colors.amber,
-  Colors.cyan,
-  Colors.purple,
-  Colors.brown,
-  Colors.teal,
-];
-
-List<Widget> cards = List.generate(
-  colors.length,
-  (int index) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: colors[index],
-      ),
-      child: Text(
-        '${index + 1}',
-        style: TextStyle(fontSize: 100.0, color: Colors.white),
-      ),
-    );
-  },
-);
+import 'package:qaf_flutter/provider/global.dart';
+import 'package:qaf_flutter/provider/counter.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
+import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class CardComponent extends StatefulWidget {
   CardComponent({Key key}) : super(key: key);
@@ -38,55 +15,42 @@ class CardComponent extends StatefulWidget {
 }
 
 class _CardComponentState extends State<CardComponent> {
-  TCardController _controller = TCardController();
-
-  int _index = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          TCard(
-            cards: cards,
-            controller: _controller,
-            onForward: (index, info) {
-              _index = index;
-              print(info.direction);
-              setState(() {});
-            },
-            onBack: (index) {
-              _index = index;
-              setState(() {});
-            },
-            onEnd: () {
-              print('end');
-            },
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              OutlineButton(
-                onPressed: () {
-                  _controller.back();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (DragDownDetails downDetails) {
+        context.read<GlobalModal>().updateDisableHomeSwipe(false);
+      },
+      child: Container(
+        color: Colors.blue,
+        child: Column(
+          children: [
+            Text('${context.watch<GlobalModal>().disableHomeSwipe}'),
+            Container(
+              width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2,
+              color: Colors.red,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onPanDown: (DragDownDetails downDetails) {
+                  context.read<GlobalModal>().updateDisableHomeSwipe(true);
                 },
-                child: Text('Back'),
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Image.network(
+                      "http://via.placeholder.com/288x188",
+                      fit: BoxFit.fill,
+                    );
+                  },
+                  itemCount: 10,
+                  itemWidth: 300.0,
+                  itemHeight: 400.0,
+                  layout: SwiperLayout.TINDER,
+                ),
               ),
-              OutlineButton(
-                onPressed: () {
-                  _controller.forward();
-                },
-                child: Text('Forward'),
-              ),
-              OutlineButton(
-                onPressed: () {
-                  _controller.reset();
-                },
-                child: Text('Reset'),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

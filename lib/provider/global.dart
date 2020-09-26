@@ -3,13 +3,18 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
 
-class GlobalModel extends ChangeNotifier {
-  BuildContext context;
+class GlobalModal with ChangeNotifier {
+  // BuildContext context;
 
   ///app的名字
   String appName = "qaf_flutter";
 
-  LCUser currentUser;
+  bool _disableHomeSwipe = false;
+  bool get disableHomeSwipe => _disableHomeSwipe;
+  void updateDisableHomeSwipe(value) {
+    _disableHomeSwipe = value;
+    notifyListeners();
+  }
 
   // getCurrentUser() async {
   //   currentUser = await LCUser.getCurrent();
