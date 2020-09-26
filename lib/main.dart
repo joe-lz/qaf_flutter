@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
@@ -118,7 +119,7 @@ class MyApp extends StatelessWidget {
         String routeName = settings.name;
         switch (routeName) {
           case '/':
-            return MaterialPageRoute(builder: (context) => MainScreen());
+            return MaterialWithModalsPageRoute(builder: (context) => MainScreen());
           case '/home':
             return MaterialPageRoute(builder: (context) => HomeScreen());
           case '/home_detail':

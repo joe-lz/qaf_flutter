@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<GlobalModal>().setStatusBar();
     return Container(
       child: SafeArea(
         top: true,

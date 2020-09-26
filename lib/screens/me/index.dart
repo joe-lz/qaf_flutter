@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:qaf_flutter/provider/global.dart';
 
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/user.dart';
@@ -32,6 +33,7 @@ class _MeScreenState extends State<MeScreen> {
 
   void navigateToUserInfo() {
     showCupertinoModalBottomSheet(
+      // enableDrag: false,
       expand: true,
       duration: Duration(milliseconds: 300),
       backgroundColor: Colors.transparent,
@@ -42,7 +44,7 @@ class _MeScreenState extends State<MeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // GlobalModel().setStatusBar();
+    context.watch<GlobalModal>().setStatusBar();
     LCUser _currentUser = context.watch<UserModal>().currentUser;
     return Container(
       child: SafeArea(

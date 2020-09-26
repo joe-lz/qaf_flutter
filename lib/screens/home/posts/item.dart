@@ -166,9 +166,9 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                                   _showAnimation = true;
                                 });
                               },
-                              onTap: () {
-                                Navigator.pushNamed(context, "/home_detail");
-                              },
+                              // onTap: () {
+                              //   Navigator.pushNamed(context, "/home_detail");
+                              // },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
                                 child: Container(
@@ -224,6 +224,42 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                   ),
                   child: Row(
                     children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          // color: Theme.of(context).scaffoldBackgroundColor,
+                          child: TextFormField(
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.black,
+                            ),
+                            decoration: InputDecoration(
+                              fillColor: Theme.of(context).scaffoldBackgroundColor,
+                              filled: true,
+                              // border: InputBorder.none,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(2),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              hintText: '添加评论',
+                              isDense: true,
+                              contentPadding: EdgeInsets.fromLTRB(Dimens.gap_dp16 / 2, Dimens.gap_dp16 / 3, Dimens.gap_dp16 / 2, Dimens.gap_dp16 / 3),
+                            ),
+                            textAlign: TextAlign.start,
+                            autocorrect: false,
+                            autofocus: false,
+                            // obscureText: widget.obscureText,
+                            // onChanged: widget.onChanged,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                        child: null,
+                      ),
                       IconFont(IconNames.heart, size: 24),
                       SizedBox(width: 20),
                       IconFont(IconNames.xiaoxi, size: 18),
@@ -232,8 +268,7 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                         child: IconFont(IconNames.send_s, size: 24),
                         onTap: handleScreenShot,
                       ),
-                      Spacer(),
-                      IconFont(IconNames.shoucang, size: 18),
+                      // IconFont(IconNames.shoucang, size: 18),
                     ],
                   ),
                 ),
