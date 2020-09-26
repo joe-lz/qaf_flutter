@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
@@ -16,7 +19,29 @@ class PostItemComponent extends StatefulWidget {
   _PostItemComponentState createState() => _PostItemComponentState();
 }
 
-class _PostItemComponentState extends State<PostItemComponent> {
+class _PostItemComponentState extends State<PostItemComponent> with TickerProviderStateMixin {
+  AnimationController _animationController;
+  bool _showAnimation = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(vsync: this)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          setState(() {
+            _showAnimation = false;
+          });
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -97,26 +122,65 @@ class _PostItemComponentState extends State<PostItemComponent> {
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: Dimens.gap_dp16 / 2),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
+              Padding(
+                padding: EdgeInsets.only(top: Dimens.gap_dp16 / 2),
+                child: Stack(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            onDoubleTap: () {
+                              setState(() {
+                                _showAnimation = true;
+                              });
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
+                              child: Container(
+                                height: 300,
+                                color: Theme.of(context).scaffoldBackgroundColor,
+                                child: Image.network(
+                                  widget.imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Visibility(
+                      visible: _showAnimation,
+                      child: Positioned(
+                        left: 0,
+                        top: 0,
                         child: Container(
+                          width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2 - Dimens.gap_dp16,
                           height: 300,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          child: Image.network(
-                            widget.imageUrl,
-                            fit: BoxFit.cover,
+                          child: Center(
+                            child: Lottie.asset(
+                              'assets/lottie/like.json',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fill,
+                              animate: true,
+                              repeat: false,
+                              controller: _animationController,
+                              onLoaded: (composition) {
+                                _animationController
+                                  ..duration = composition.duration
+                                  ..reset()
+                                  ..forward();
+                              },
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(

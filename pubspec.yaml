@@ -42,6 +42,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   shimmer: ^1.1.1 # 骨架
   flutter_svg: ^0.19.0
+  lottie: ^0.6.0
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
     - assets/translations/
+    - assets/lottie/
     - lib/utils/leanerr.json
     - lib/utils/keys.json
 
