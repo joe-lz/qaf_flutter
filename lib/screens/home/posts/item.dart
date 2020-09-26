@@ -3,6 +3,7 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
+import 'package:qaf_flutter/iconfont/IconFont.dart';
 
 class PostItemComponent extends StatefulWidget {
   PostItemComponent({
@@ -49,15 +50,16 @@ class _PostItemComponentState extends State<PostItemComponent> {
           child: Column(
             children: [
               Container(
+                height: 35,
                 child: Row(
                   children: [
                     ClipOval(
                       child: Container(
-                        width: 35,
-                        height: 35,
+                        width: 32,
+                        height: 32,
                         color: Theme.of(context).scaffoldBackgroundColor,
                         child: Image.network(
-                          "https://images.pexels.com/photos/3236735/pexels-photo-3236735.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                          widget.imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -125,13 +127,14 @@ class _PostItemComponentState extends State<PostItemComponent> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.share, size: 24),
-                    SizedBox(width: 15),
-                    Icon(Icons.message, size: 24),
-                    SizedBox(width: 15),
-                    Icon(Icons.send, size: 24),
+                    // Icon(Icons.share, size: 24),
+                    IconFont(IconNames.heart, size: 24),
+                    SizedBox(width: 20),
+                    IconFont(IconNames.xiaoxi, size: 18),
+                    SizedBox(width: 20),
+                    IconFont(IconNames.send_s, size: 24),
                     Spacer(),
-                    Icon(Icons.tag_faces, size: 24),
+                    IconFont(IconNames.shoucang, size: 18),
                   ],
                 ),
               ),
