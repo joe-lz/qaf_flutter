@@ -1,4 +1,4 @@
-package io.qaf.qaf_flutter
+package io.qaf.qaf
 
 import io.flutter.embedding.android.FlutterActivity
 
