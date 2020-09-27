@@ -1,0 +1,74 @@
+{
+  "appName": "qaf",
+  "tabbar": {
+    "posts": "Posts",
+    "messages": "Messages",
+    "discover": "Discover",
+    "account": "Account"
+  },
+  "me_menus": {
+    "your_profile": "Profiles",
+    "permisions": "Permisions",
+    "share": "Share with friends",
+    "feedback": "Feedback",
+    "aboutus": "About us",
+    "nearby": "Nearby",
+    "posts": "Posts",
+    "matches": "Matches"
+  },
+  "actions": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "done": "Done",
+    "save": "Save",
+    "please": "Please",
+    "please_choose": "Please choose",
+    "please_enter": "Please enter",
+    "choose": "Choose",
+    "confirm": "Confirm",
+    "enter": "Enter",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "state": {
+    "success": "Success",
+    "fail": "Failed",
+    "loading": "Loading"
+  },
+  "desc": {
+    "logout": "Are you sure logout?",
+    "have_account": "Already have an Account？",
+    "dont_have_account": "Don't have an Account？"
+  },
+  "form": {
+    "password": "Password",
+    "repassword": "Password again"
+  },
+  "userinfo": {
+    "title": {
+      "basic": "Basic info",
+      "detail": "Detail info",
+      "dating": "Dating info",
+      "like": "Favorite type"
+    },
+    "keys": {
+      "username": "Username",
+      "gender": "Gender",
+      "age": "Age",
+      "weight": "Weight",
+      "height": "Height",
+      "blood": "Blood Type",
+      "constellation": "Constellation",
+      "city": "City",
+      "job": "Work industry",
+      "position": "Roles",
+      "statement": "Relationship status",
+      "purpose": "Purpose",
+      "bodyshape": "Body shape",
+      "about": "About you",
+      "position_like": "Roles",
+      "bodyshape_like": "Body shape"
+    }
+  }
+}

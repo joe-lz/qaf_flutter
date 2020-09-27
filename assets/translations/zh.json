@@ -1,0 +1,74 @@
+{
+  "appName": "qaf",
+  "tabbar": {
+    "posts": "动态",
+    "messages": "消息",
+    "discover": "发现",
+    "account": "帐户"
+  },
+  "me_menus": {
+    "your_profile": "你的资料",
+    "permisions": "权限管理",
+    "share": "和朋友分享",
+    "feedback": "意见反馈",
+    "aboutus": "关于我们",
+    "nearby": "附近",
+    "posts": "动态",
+    "matches": "匹配"
+  },
+  "actions": {
+    "edit": "编辑",
+    "cancel": "取消",
+    "done": "完成",
+    "save": "保存",
+    "please": "请",
+    "please_choose": "请选择",
+    "please_enter": "请输入",
+    "choose": "选择",
+    "confirm": "确定",
+    "enter": "输入",
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出登录"
+  },
+  "state": {
+    "success": "成功",
+    "fail": "失败",
+    "loading": "加载中"
+  },
+  "desc": {
+    "logout": "确认退出登录状态吗？",
+    "have_account": "已有帐户？",
+    "dont_have_account": "还没有帐户？"
+  },
+  "form": {
+    "password": "您的登录密码",
+    "repassword": "再次输入您的登录密码"
+  },
+  "userinfo": {
+    "title": {
+      "basic": "基础信息",
+      "detail": "详细资料",
+      "dating": "交友信息",
+      "like": "喜欢的类型"
+    },
+    "keys": {
+      "username": "用户名",
+      "gender": "性别",
+      "age": "年龄",
+      "weight": "体重",
+      "height": "身高",
+      "blood": "血型",
+      "constellation": "星座",
+      "city": "城市",
+      "job": "工作行业",
+      "position": "角色",
+      "statement": "情感状态",
+      "purpose": "交友目的",
+      "bodyshape": "体形",
+      "about": "个人签名",
+      "position_like": "角色",
+      "bodyshape_like": "体形"
+    }
+  }
+}
