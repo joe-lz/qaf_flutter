@@ -46,6 +46,7 @@ dependencies:
   screenshot: ^0.2.0
   # path_provider: ^1.6.18
   gallery_saver: ^2.0.1
+  # json_serializable: ^3.5.0
 
 dev_dependencies:
   flutter_test:

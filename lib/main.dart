@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,30 +25,24 @@ import 'package:qaf_flutter/screens/not_found/index.dart';
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
 
+import 'env.development.dart' as env_dev;
+import 'env.production.dart' as env_prod;
+
 void main() async {
   const bool inProduction = const bool.fromEnvironment("dart.vm.product");
-  if (inProduction) {
-    // 生产环境
-    // leancloud初始化
-    LeanCloud.initialize(
-      'VvMQI9t9enJmUMlBqTm5mzKa-gzGzoHsz',
-      'rMgD7Tvnr5qNjA0TLnV6eFL3',
-      server: 'https://leanblog-api.todokit.xyz',
-      queryCache: new LCQueryCache(),
-    );
-  } else {
-    // 测试环境
-    // leancloud初始化
-    LeanCloud.initialize(
-      'VvMQI9t9enJmUMlBqTm5mzKa-gzGzoHsz',
-      'rMgD7Tvnr5qNjA0TLnV6eFL3',
-      server: 'https://leanblog-api.todokit.xyz',
-      queryCache: new LCQueryCache(),
-    );
-    // 在 LeanCloud.initialize 初始化之后执行，开启 SDK 的调试日志（debug log）来方便追踪问题
-    // 在应用发布之前，请关闭调试日志，以免暴露敏感数据。
-    // LCLogger.setLevel(LCLogger.DebugLevel);
-  }
+  const envConfig = inProduction ? env_prod.ENV_CONFIG : env_dev.ENV_CONFIG;
+  // final envConfigJSON = jsonDecode(envConfig);
+  final envConfigJSON = JsonDecoder().convert(envConfig);
+  // leancloud初始化
+  LeanCloud.initialize(
+    envConfigJSON['LEANCLOUD_APPID'],
+    envConfigJSON['LEANCLOUD_APPKEY'],
+    server: envConfigJSON['LEANCLOUD_SERVER'],
+    queryCache: new LCQueryCache(),
+  );
+  // 在 LeanCloud.initialize 初始化之后执行，开启 SDK 的调试日志（debug log）来方便追踪问题
+  // 在应用发布之前，请关闭调试日志，以免暴露敏感数据。
+  // LCLogger.setLevel(LCLogger.DebugLevel);
 
   runApp(
     MultiProvider(
