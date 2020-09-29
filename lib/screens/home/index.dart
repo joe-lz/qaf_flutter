@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:qaf_flutter/iconfont/IconFont.dart';
 
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/global.dart';
@@ -23,16 +24,25 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // final _controller = SwiperController();
   int _currentIndex = 1;
-
-  List<Color> colors = [
-    Colors.blue,
-    Colors.yellow,
-    Colors.red,
-  ];
+  // List<Color> colors = [
+  //   Colors.blue,
+  //   Colors.yellow,
+  //   Colors.red,
+  // ];
   final Map<int, Widget> pages = <int, Widget>{
     0: NearbyComponent(),
     1: PostComponent(),
     2: CardComponent(),
+  };
+  final Map<int, Widget> leftIcon = <int, Widget>{
+    0: Icon(Icons.search),
+    1: IconFont(IconNames.shumaxiangji, size: 22),
+    2: null,
+  };
+  final Map<int, Widget> rightIcon = <int, Widget>{
+    0: Icon(Icons.tune),
+    1: IconFont(IconNames.xiaoxi_cuxiantiao, size: 22),
+    2: null,
   };
 
   @override
@@ -74,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Container(
                         width: 50,
-                        child: _currentIndex == 0 ? Icon(Icons.search) : null,
+                        child: leftIcon[_currentIndex],
                       ),
                       Expanded(
                         child: Container(
@@ -106,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Container(
                         width: 50,
-                        child: _currentIndex == 0 ? Icon(Icons.tune) : null,
+                        child: rightIcon[_currentIndex],
                       ),
                     ],
                   ),
