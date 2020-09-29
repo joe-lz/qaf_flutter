@@ -47,6 +47,9 @@ dependencies:
   # path_provider: ^1.6.18
   gallery_saver: ^2.0.1
   # json_serializable: ^3.5.0
+  flutter_bmflocation: ^1.0.3
+  flutter_bmfmap: ^1.0.2
+  flutter_bmfutils: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
     # - images/a_dot_ham.jpeg
     - assets/translations/
     - assets/lottie/
+    - assets/map/
     - lib/utils/leanerr.json
     - lib/utils/keys.json
 

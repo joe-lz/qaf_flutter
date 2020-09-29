@@ -1,11 +1,27 @@
 PODS:
+  - BaiduMapKit (5.4.0)
+  - BMKLocationKit (1.8.5)
   - Flutter (1.0.0)
+  - flutter_bmfbase (0.0.1):
+    - BaiduMapKit (= 5.4.0)
+    - Flutter
+  - flutter_bmflocation (1.0.3):
+    - BMKLocationKit
+    - Flutter
+  - flutter_bmfmap (1.0.0):
+    - BaiduMapKit (= 5.4.0)
+    - Flutter
+  - flutter_bmfutils (0.0.1):
+    - BaiduMapKit (= 5.4.0)
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - gallery_saver (0.0.1):
     - Flutter
   - path_provider (0.0.1):
+    - Flutter
+  - "permission_handler (5.0.1+1)":
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
@@ -17,23 +33,40 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_bmfbase (from `.symlinks/plugins/flutter_bmfbase/ios`)
+  - flutter_bmflocation (from `.symlinks/plugins/flutter_bmflocation/ios`)
+  - flutter_bmfmap (from `.symlinks/plugins/flutter_bmfmap/ios`)
+  - flutter_bmfutils (from `.symlinks/plugins/flutter_bmfutils/ios`)
   - gallery_saver (from `.symlinks/plugins/gallery_saver/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
   trunk:
+    - BaiduMapKit
+    - BMKLocationKit
     - FMDB
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_bmfbase:
+    :path: ".symlinks/plugins/flutter_bmfbase/ios"
+  flutter_bmflocation:
+    :path: ".symlinks/plugins/flutter_bmflocation/ios"
+  flutter_bmfmap:
+    :path: ".symlinks/plugins/flutter_bmfmap/ios"
+  flutter_bmfutils:
+    :path: ".symlinks/plugins/flutter_bmfutils/ios"
   gallery_saver:
     :path: ".symlinks/plugins/gallery_saver/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
@@ -42,14 +75,21 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  BaiduMapKit: 40a4382633859bd569d40da9f9a2e98a277dd28b
+  BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_bmfbase: 8ac2c94f3f110daec8e499dc13f8a983b0c8ee40
+  flutter_bmflocation: 12f1ba91bae4b16d78d4f475023e0254ed351f1c
+  flutter_bmfmap: 57030919b16b5353649fbea77b6143129f7a4ff1
+  flutter_bmfutils: 41b6af33c5e7d5d5f841ef9087fbd271c05b1961
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: dc085884ed4e421ef16c4866e980d8c2c0d89db1
 
 COCOAPODS: 1.9.3

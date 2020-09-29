@@ -22,4 +22,5 @@ class Dimens {
   static const double radius_10 = 10;
 
   static const double menu_height = 44;
+  static const double nav_height = 50;
 }

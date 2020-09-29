@@ -195,6 +195,34 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_bmfbase:
+    dependency: transitive
+    description:
+      name: flutter_bmfbase
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
+  flutter_bmflocation:
+    dependency: "direct main"
+    description:
+      name: flutter_bmflocation
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
+  flutter_bmfmap:
+    dependency: "direct main"
+    description:
+      name: flutter_bmfmap
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
+  flutter_bmfutils:
+    dependency: "direct main"
+    description:
+      name: flutter_bmfutils
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -436,6 +464,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.0"
+  permission_handler:
+    dependency: transitive
+    description:
+      name: permission_handler
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.0.1+1"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.1"
   petitparser:
     dependency: transitive
     description:
@@ -450,13 +492,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.1"
-  platform_detect:
-    dependency: transitive
-    description:
-      name: platform_detect
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.4.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -650,7 +685,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.5.2"
+    version: "5.7.2"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -664,7 +699,7 @@ packages:
       name: url_launcher_macos
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1+7"
+    version: "0.0.1+8"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -678,7 +713,21 @@ packages:
       name: url_launcher_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.3+1"
+    version: "0.1.4+1"
+  url_launcher_windows:
+    dependency: transitive
+    description:
+      name: url_launcher_windows
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.1+1"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.2"
   vector_math:
     dependency: transitive
     description:

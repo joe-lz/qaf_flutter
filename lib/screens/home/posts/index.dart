@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:qaf_flutter/provider/counter.dart';
+import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/screens/home/posts/item.dart';
 
@@ -25,22 +26,32 @@ class _PostComponentState extends State<PostComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: items.map((e) => PostItemComponent(imageUrl: e)).toList(),
-        // [
-        //   Text('data'),
-        //   // Text('${context.watch<CounterModal>().count}'),
-        //   Text('${context.watch<CounterModal>().count}'),
-        //   Text('appName').tr(),
-        //   FloatingActionButton(
-        //     /// Calls `context.read` instead of `context.watch` so that it does not rebuild
-        //     /// when [Counter] changes.
-        //     onPressed: () => context.read<CounterModal>().increment(),
-        //     tooltip: 'Increment',
-        //     child: const Icon(Icons.message),
-        //   ),
-        // ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (BuildContext ctxt, int index) {
+          if (index == 0) {
+            return Column(
+              children: <Widget>[
+                SafeArea(
+                  top: true,
+                  bottom: false,
+                  child: Column(
+                    children: [
+                      Container(height: Dimens.nav_height, child: null),
+                    ],
+                  ),
+                ),
+                PostItemComponent(imageUrl: items[index]),
+              ],
+            );
+          } else {
+            return PostItemComponent(imageUrl: items[index]);
+          }
+        },
       ),
     );
   }
