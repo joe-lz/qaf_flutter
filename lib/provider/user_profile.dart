@@ -3,8 +3,7 @@ import 'package:leancloud_storage/leancloud.dart';
 
 class UserProfileModal with ChangeNotifier {
   LCObject _myUserProfile;
-
-  // LCUser get myUserProfile => _myUserProfile;
+  LCObject get myUserProfile => _myUserProfile;
 
   // 获取我的资料
   Future getMyUserProfile() async {
@@ -30,6 +29,17 @@ class UserProfileModal with ChangeNotifier {
     myUserProfile['username'] = _currentUser.username;
 
     _myUserProfile = await myUserProfile.save();
+    notifyListeners();
+    return _myUserProfile;
+  }
+
+  // 更新我的资料
+  Future updateMyUserProfile(Map params) async {
+    params.forEach((key, value) {
+      _myUserProfile[key] = value;
+    });
+    await _myUserProfile.save();
+    await getMyUserProfile();
     notifyListeners();
     return _myUserProfile;
   }

@@ -42,33 +42,59 @@ class _UserInfoState extends State<UserInfo> {
   @override
   void initState() {
     super.initState();
-    // setUserProfile();
+    setUserProfile();
   }
 
   void setUserProfile() async {
     await context.read<UserProfileModal>().getMyUserProfile();
+    LCObject _myUserProfile = context.read<UserProfileModal>().myUserProfile;
     LCUser _currentUser = context.read<UserModal>().currentUser;
+
     setState(() {
-      username = _currentUser.username;
-      // gender = _currentUser.gender;
-      // age = _currentUser.age;
-      // weight = _currentUser.weight;
-      // height = _currentUser.height;
-      // blood = _currentUser.blood;
-      // constellation = _currentUser.constellation;
-      // province = _currentUser.province;
-      // city = _currentUser.city;
-      // job = _currentUser.job;
-      // position = _currentUser.position;
-      // statement = _currentUser.statement;
-      // purpose = _currentUser.purpose;
-      // bodyshape = _currentUser.bodyshape;
-      // position_like = _currentUser.position_like;
-      // bodyshape_like = _currentUser.bodyshape_like;
+      username = _myUserProfile['username'] != null ? _myUserProfile['username'] : _currentUser.username;
+      gender = _myUserProfile['gender'];
+      age = _myUserProfile['age'];
+      weight = _myUserProfile['weight'];
+      height = _myUserProfile['height'];
+      blood = _myUserProfile['blood'];
+      constellation = _myUserProfile['constellation'];
+      province = _myUserProfile['province'];
+      city = _myUserProfile['city'];
+      job = _myUserProfile['job'];
+      position = _myUserProfile['position'];
+      statement = _myUserProfile['statement'];
+      purpose = _myUserProfile['purpose'];
+      bodyshape = _myUserProfile['bodyshape'];
+      position_like = _myUserProfile['position_like'];
+      bodyshape_like = _myUserProfile['bodyshape_like'];
     });
   }
 
-  void handleSubmit() {
+  getInputData() {
+    final Map params = {
+      'username': username,
+      'gender': gender,
+      'age': age,
+      'weight': weight,
+      'height': height,
+      'blood': blood,
+      'constellation': constellation,
+      'province': province,
+      'city': city,
+      'job': job,
+      'position': position,
+      'statement': statement,
+      'purpose': purpose,
+      'bodyshape': bodyshape,
+      'position_like': position_like,
+      'bodyshape_like': bodyshape_like,
+    };
+    params.removeWhere((key, value) => key == null || value == null);
+    return params;
+  }
+
+  void handleSubmit() async {
+    await context.read<UserProfileModal>().updateMyUserProfile(getInputData());
     setState(() {
       editMode = false;
     });
@@ -78,7 +104,7 @@ class _UserInfoState extends State<UserInfo> {
   Widget build(BuildContext context) {
     var date = new DateTime.now().toString();
     var dateParse = DateTime.parse(date);
-    LCUser _currentUser = context.watch<UserModal>().currentUser;
+    // LCUser _currentUser = context.watch<UserModal>().currentUser;
 
     return Material(
       child: CupertinoPageScaffold(

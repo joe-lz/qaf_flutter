@@ -28,7 +28,7 @@ class _MeScreenState extends State<MeScreen> {
   void initState() {
     super.initState();
     // context.read<UserModal>().getCurrentUser();
-    // context.read<UserProfileModal>().getMyUserProfile();
+    context.read<UserProfileModal>().getMyUserProfile();
   }
 
   void navigateToUserInfo() {
