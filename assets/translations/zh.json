@@ -1,8 +1,7 @@
 {
   "appName": "qaf",
   "tabbar": {
-    "posts": "圈子",
-    "messages": "消息",
+    "posts": "动态",
     "discover": "发现",
     "account": "帐户"
   },
@@ -13,8 +12,9 @@
     "feedback": "意见反馈",
     "aboutus": "关于我们",
     "nearby": "附近",
-    "posts": "圈子",
-    "matches": "匹配"
+    "posts": "动态",
+    "matches": "匹配",
+    "messages": "你的消息"
   },
   "actions": {
     "edit": "编辑",

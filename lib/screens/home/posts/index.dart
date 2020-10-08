@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+// import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
@@ -48,22 +49,14 @@ class _PostComponentState extends State<PostComponent> {
                     ],
                   ),
                 ),
-                MenuOne(
-                  showIconRight: true,
-                  // type: 'active',
-                  // title: 'actions.login'.tr(),
-                  title: '发现你喜欢的圈子',
-                  // colorTitle: Theme.of(context).primaryColor,
-                  action: () {
-                    showMaterialModalBottomSheet(
-                      expand: true,
-                      duration: Duration(milliseconds: 300),
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context, scrollController) => ModalLogin(),
-                    );
-                  },
-                ),
+                // MenuOne(
+                //   showIconRight: true,
+                //   // type: 'active',
+                //   // title: 'actions.login'.tr(),
+                //   title: '发现你喜欢的圈子',
+                //   // colorTitle: Theme.of(context).primaryColor,
+                //   action: () {},
+                // ),
                 PostItemComponent(imageUrl: items[index]),
               ],
             );

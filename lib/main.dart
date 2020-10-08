@@ -120,8 +120,8 @@ class MyApp extends StatelessWidget {
           case '/home_detail':
             return MaterialPageRoute(builder: (context) => HomeDetailScreen());
 
-          case '/message':
-            return MaterialPageRoute(builder: (context) => MessageScreen());
+          // case '/message':
+          //   return MaterialPageRoute(builder: (context) => MessageScreen());
           case '/discover':
             return MaterialPageRoute(builder: (context) => DiscoverScreen());
 

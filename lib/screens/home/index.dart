@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -14,6 +15,7 @@ import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/screens/home/card/index.dart';
 import 'package:qaf_flutter/screens/home/nearby/index.dart';
 import 'package:qaf_flutter/screens/home/posts/index.dart';
+import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,16 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
     1: PostComponent(),
     2: CardComponent(),
   };
-  final Map<int, Widget> leftIcon = <int, Widget>{
-    0: Icon(Icons.search),
-    1: IconFont(IconNames.shumaxiangji, size: 22),
-    2: null,
-  };
-  final Map<int, Widget> rightIcon = <int, Widget>{
-    0: Icon(Icons.tune),
-    1: IconFont(IconNames.xiaoxi_cuxiantiao, size: 22),
-    2: null,
-  };
 
   @override
   void initState() {
@@ -51,10 +43,66 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<UserModal>().getCurrentUser();
   }
 
+  void onLeftIconClick() {
+    if (_currentIndex == 0 || _currentIndex == 1 || _currentIndex == 2) {
+      showCupertinoModalBottomSheet(
+        // enableDrag: false,
+        expand: true,
+        duration: Duration(milliseconds: 300),
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context, scrollController) => MessageScreen(),
+      );
+    }
+  }
+
+  void onRightIconClick() {
+    if (_currentIndex == 0 || _currentIndex == 1 || _currentIndex == 2) {
+      showCupertinoModalBottomSheet(
+        // enableDrag: false,
+        expand: true,
+        duration: Duration(milliseconds: 300),
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context, scrollController) => MessageScreen(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     context.watch<GlobalModal>().setStatusBar();
+    final Map<int, Widget> leftIcon = <int, Widget>{
+      0: IconFont(
+        IconNames.xiaoxi_cuxiantiao,
+        size: 22,
+        color: '#${Theme.of(context).textTheme.bodyText1.color.value.toRadixString(16)}',
+      ),
+      1: IconFont(
+        IconNames.xiaoxi_cuxiantiao,
+        size: 22,
+        color: '#${Theme.of(context).textTheme.bodyText1.color.value.toRadixString(16)}',
+      ),
+      2: IconFont(
+        IconNames.xiaoxi_cuxiantiao,
+        size: 22,
+        color: '#${Theme.of(context).textTheme.bodyText1.color.value.toRadixString(16)}',
+      ),
+    };
+    final Map<int, Widget> rightIcon = <int, Widget>{
+      0: Icon(
+        Icons.tune,
+        color: Theme.of(context).textTheme.bodyText1.color,
+      ),
+      1: IconFont(
+        IconNames.shumaxiangji,
+        size: 22,
+        color: '#${Theme.of(context).textTheme.bodyText1.color.value.toRadixString(16)}',
+      ),
+      2: null,
+    };
     return Container(
+      color: Theme.of(context).canvasColor,
       child: Stack(
         children: [
           // FractionallySizedBox(
@@ -72,53 +120,72 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 0.0,
             top: 0.0,
             child: Container(
-              // color: Color.fromRGBO(255, 255, 255, 0.9),
-              color: _currentIndex != 0 ? Theme.of(context).scaffoldBackgroundColor : Colors.transparent,
+              color: _currentIndex != 0 ? Theme.of(context).canvasColor : Colors.transparent,
               width: ScreenUtils.screenW(context),
               child: SafeArea(
-                top: true,
                 bottom: false,
-                child: Container(
-                  height: Dimens.nav_height,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 50,
-                        child: leftIcon[_currentIndex],
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: CupertinoSlidingSegmentedControl(
-                            children: {
-                              0: Container(
-                                child: Text('me_menus.nearby'.tr()),
-                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                              ),
-                              1: Container(
-                                child: Text('me_menus.posts'.tr()),
-                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                              ),
-                              2: Container(
-                                child: Text('me_menus.matches'.tr()),
-                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                              ),
-                            },
-                            groupValue: _currentIndex,
-                            onValueChanged: (value) {
-                              setState(() {
-                                _currentIndex = value;
-                              });
-                              // _controller.move(value, animation: true);
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    Dimens.gap_dp16,
+                    0,
+                    Dimens.gap_dp16,
+                    0,
+                  ),
+                  child: Container(
+                    height: Dimens.nav_height,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 22,
+                          child: GestureDetector(
+                            child: FractionallySizedBox(
+                              heightFactor: 1,
+                              child: Container(child: leftIcon[_currentIndex]),
+                            ),
+                            onTap: () {
+                              onLeftIconClick();
                             },
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 50,
-                        child: rightIcon[_currentIndex],
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: CupertinoSlidingSegmentedControl(
+                              children: {
+                                0: Container(width: 50, child: Center(child: Text('me_menus.nearby'.tr()))
+                                    // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    ),
+                                1: Container(width: 50, child: Center(child: Text('me_menus.posts'.tr()))
+                                    // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    ),
+                                2: Container(width: 50, child: Center(child: Text('me_menus.matches'.tr()))
+                                    // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    ),
+                              },
+                              groupValue: _currentIndex,
+                              onValueChanged: (value) {
+                                setState(() {
+                                  _currentIndex = value;
+                                });
+                                // _controller.move(value, animation: true);
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 22,
+                          child: GestureDetector(
+                            child: FractionallySizedBox(
+                              heightFactor: 1,
+                              child: Container(child: rightIcon[_currentIndex]),
+                            ),
+                            onTap: () {
+                              onRightIconClick();
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

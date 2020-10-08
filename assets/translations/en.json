@@ -2,7 +2,6 @@
   "appName": "qaf",
   "tabbar": {
     "posts": "Posts",
-    "messages": "Messages",
     "discover": "Discover",
     "account": "Account"
   },
@@ -14,7 +13,8 @@
     "aboutus": "About us",
     "nearby": "Nearby",
     "posts": "Posts",
-    "matches": "Matches"
+    "matches": "Matches",
+    "messages": "Your messages"
   },
   "actions": {
     "edit": "Edit",
