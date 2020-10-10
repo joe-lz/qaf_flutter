@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:provider/provider.dart';
+import 'package:qaf_flutter/components/modal_login.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
 import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/provider/counter.dart';
@@ -22,6 +23,10 @@ import 'package:qaf_flutter/screens/me/index.dart';
 import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/not_found/index.dart';
+import 'package:qaf_flutter/screens/post_detail/index.dart';
+import 'package:qaf_flutter/screens/post_list/index.dart';
+import 'package:qaf_flutter/screens/profile/index.dart';
+import 'package:qaf_flutter/screens/topic_list/index.dart';
 import 'package:qaf_flutter/screens/webview/index.dart';
 import 'package:qaf_flutter/screens/webview/WebviewScreenArguments.dart';
 
@@ -120,20 +125,30 @@ class MyApp extends StatelessWidget {
           case '/home_detail':
             return MaterialPageRoute(builder: (context) => HomeDetailScreen());
 
-          // case '/message':
-          //   return MaterialPageRoute(builder: (context) => MessageScreen());
+          case '/post_list':
+            return MaterialPageRoute(builder: (context) => PostListScreen());
+          case '/post_detail':
+            return MaterialPageRoute(builder: (context) => PostDetailScreen());
+          case '/topic_list':
+            return MaterialPageRoute(builder: (context) => TopicListScreen());
+
           case '/discover':
             return MaterialPageRoute(builder: (context) => DiscoverScreen());
-
-          case '/webview':
-            final WebviewScreenArguments args = settings.arguments;
-            return MaterialPageRoute(builder: (context) => WebviewScreen(url: args.url));
 
           case '/me':
             return MaterialPageRoute(builder: (context) => MeScreen());
           case '/me_about':
             return MaterialPageRoute(builder: (context) => MeAboutScreen());
 
+          case '/message':
+            return MaterialPageRoute(builder: (context) => MessageScreen());
+          case '/profile':
+            return MaterialWithModalsPageRoute(builder: (context) => ProfileScreen());
+          case '/webview':
+            final WebviewScreenArguments args = settings.arguments;
+            return MaterialPageRoute(builder: (context) => WebviewScreen(url: args.url));
+          case '/login':
+            return MaterialPageRoute(builder: (context) => ModalLogin());
           default:
             return MaterialPageRoute(builder: (context) => NotFoundScreen());
         }

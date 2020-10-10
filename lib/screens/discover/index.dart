@@ -89,7 +89,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   MenuItem(
                     showBorderBottom: true,
                     showIconRight: true,
-                    title: '资讯',
+                    title: '文章',
+                    descHint: '资讯/小说',
                     action: () {
                       print('我是action');
                     },
@@ -97,7 +98,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   MenuItem(
                     showBorderBottom: true,
                     showIconRight: true,
-                    title: '影视',
+                    title: '视频',
                     descHint: '电视剧/电影/短片',
                     action: () {
                       print('我是action');

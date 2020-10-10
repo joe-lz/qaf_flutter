@@ -37,5 +37,3 @@ class _WebviewScreenState extends State<WebviewScreen> {
     // );
   }
 }
-
-class MenuSingle {}

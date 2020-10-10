@@ -55,18 +55,18 @@ class _MeScreenState extends State<MeScreen> {
             children: [
               PageTitle(
                 title: 'tabbar.account'.tr(),
-                right: _currentUser != null
-                    ? GestureDetector(
-                        onTap: () {
-                          navigateToUserInfo();
-                        },
-                        child: Icon(
-                          Icons.account_circle,
-                          size: 35,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      )
-                    : null,
+                // right: _currentUser != null
+                //     ? GestureDetector(
+                //         onTap: () {
+                //           navigateToUserInfo();
+                //         },
+                //         child: Icon(
+                //           Icons.account_circle,
+                //           size: 35,
+                //           color: Theme.of(context).primaryColor,
+                //         ),
+                //       )
+                //     : null,
               ),
               _currentUser != null
                   ? Container(
@@ -88,15 +88,25 @@ class _MeScreenState extends State<MeScreen> {
                       },
                     ),
               _currentUser != null
-                  ? MenuOne(
-                      title: 'me_menus.your_profile'.tr(),
-                      colorTitle: Theme.of(context).primaryColor,
-                      showIconRight: false,
-                      // type: 'active',
-                      action: () {
-                        navigateToUserInfo();
-                      },
-                    )
+                  ? MenuGroup(children: [
+                      MenuItem(
+                        showBorderBottom: true,
+                        showIconRight: true,
+                        title: 'me_menus.your_profile'.tr(),
+                        action: () {
+                          Navigator.pushNamed(context, "/profile");
+                        },
+                      ),
+                      MenuItem(
+                        showBorderBottom: false,
+                        showIconRight: false,
+                        title: 'me_menus.edit_profile'.tr(),
+                        colorTitle: Theme.of(context).primaryColor,
+                        action: () {
+                          navigateToUserInfo();
+                        },
+                      ),
+                    ])
                   : Container(
                       child: null,
                     ),
@@ -193,5 +203,3 @@ class _MeScreenState extends State<MeScreen> {
     );
   }
 }
-
-class MenuSingle {}

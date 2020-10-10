@@ -6,7 +6,8 @@
     "account": "帐户"
   },
   "me_menus": {
-    "your_profile": "你的资料",
+    "your_profile": "我的主页",
+    "edit_profile": "编辑资料",
     "permisions": "权限管理",
     "share": "和朋友分享",
     "feedback": "意见反馈",

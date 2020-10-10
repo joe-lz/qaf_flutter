@@ -21,5 +21,3 @@ class _NotFoundScreenState extends State<NotFoundScreen> {
     );
   }
 }
-
-class MenuSingle {}
