@@ -9,6 +9,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qaf_flutter/components/modal_login.dart';
+import 'package:qaf_flutter/provider/post.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
 import 'package:qaf_flutter/provider/global.dart';
 import 'package:qaf_flutter/provider/counter.dart';
@@ -24,6 +25,7 @@ import 'package:qaf_flutter/screens/me_about/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/not_found/index.dart';
 import 'package:qaf_flutter/screens/post_detail/index.dart';
+import 'package:qaf_flutter/screens/post_edit/index.dart';
 import 'package:qaf_flutter/screens/post_list/index.dart';
 import 'package:qaf_flutter/screens/profile/index.dart';
 import 'package:qaf_flutter/screens/topic_list/index.dart';
@@ -57,6 +59,7 @@ void main() async {
         ChangeNotifierProvider<CounterModal>(create: (_) => CounterModal()),
         ChangeNotifierProvider<UserModal>(create: (_) => UserModal()),
         ChangeNotifierProvider<UserProfileModal>(create: (_) => UserProfileModal()),
+        ChangeNotifierProvider<PostModal>(create: (_) => PostModal()),
       ],
       child: EasyLocalization(
         saveLocale: false,
@@ -127,6 +130,8 @@ class MyApp extends StatelessWidget {
 
           case '/post_list':
             return MaterialPageRoute(builder: (context) => PostListScreen());
+          case '/post_edit':
+            return MaterialPageRoute(builder: (context) => PostEditScreen());
           case '/post_detail':
             return MaterialPageRoute(builder: (context) => PostDetailScreen());
           case '/topic_list':

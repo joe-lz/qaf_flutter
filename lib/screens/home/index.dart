@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:qaf_flutter/iconfont/IconFont.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:qaf_flutter/provider/counter.dart';
 import 'package:qaf_flutter/provider/global.dart';
@@ -16,6 +17,7 @@ import 'package:qaf_flutter/screens/home/card/index.dart';
 import 'package:qaf_flutter/screens/home/nearby/index.dart';
 import 'package:qaf_flutter/screens/home/posts/index.dart';
 import 'package:qaf_flutter/screens/message/index.dart';
+import 'package:qaf_flutter/screens/post_edit/index.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,15 +59,62 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onRightIconClick() {
-    if (_currentIndex == 0 || _currentIndex == 1 || _currentIndex == 2) {
-      showCupertinoModalBottomSheet(
-        // enableDrag: false,
-        expand: true,
-        duration: Duration(milliseconds: 300),
-        backgroundColor: Colors.transparent,
+    if (_currentIndex == 0 || _currentIndex == 2) {
+      // showCupertinoModalBottomSheet(
+      //   // enableDrag: false,
+      //   expand: true,
+      //   duration: Duration(milliseconds: 300),
+      //   backgroundColor: Colors.transparent,
+      //   context: context,
+      //   builder: (context, scrollController) => MessageScreen(),
+      // );
+    } else if (_currentIndex == 1) {
+      showMaterialModalBottomSheet(
+        enableDrag: false,
         context: context,
-        builder: (context, scrollController) => MessageScreen(),
+        builder: (context, scrollController) => PostEditScreen(),
       );
+      // showCupertinoModalPopup(
+      //   context: context,
+      //   builder: (context) {
+      //     return CupertinoActionSheet(
+      //       // title: Text('提示'),
+      //       message: Text('请选择照片来源'),
+      //       actions: <Widget>[
+      //         CupertinoActionSheetAction(
+      //           isDefaultAction: false,
+      //           child: Text('拍摄'),
+      //           onPressed: () {
+      //             Navigator.pop(context, 'Cancel');
+      //           },
+      //         ),
+      //         CupertinoActionSheetAction(
+      //           isDefaultAction: false,
+      //           child: Text('从手机相册选择'),
+      //           onPressed: () async {
+      //             Navigator.pop(context, 'Cancel');
+      //             showMaterialModalBottomSheet(
+      //               // backgroundColor: Colors.transparent,
+      //               // isDismissible: false,
+      //               enableDrag: false,
+      //               context: context,
+      //               builder: (context, scrollController) => PostEditScreen(),
+      //             );
+      //           },
+      //           // isDestructiveAction: true,
+      //         ),
+      //       ],
+      //       cancelButton: CupertinoActionSheetAction(
+      //         child: Text('actions.cancel'.tr()),
+      //         isDestructiveAction: true,
+      //         // isDefaultAction: true,
+      //         onPressed: () {
+      //           Navigator.pop(context, 'Cancel');
+      //         },
+      //       ),
+      //     );
+      //   },
+      // );
     }
   }
 

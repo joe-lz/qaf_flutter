@@ -32,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
+      backgroundColor: Theme.of(context).canvasColor,
       body: CustomScrollView(
         // physics: BouncingScrollPhysics(),
         slivers: <Widget>[
@@ -41,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // onStretchTrigger: () {
             //   print('hello!');
             // },
-            expandedHeight: 300.0,
+            expandedHeight: 400.0,
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: <StretchMode>[
                 StretchMode.zoomBackground,
@@ -54,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    'https://cdn.pixabay.com/photo/2018/04/29/11/26/road-3359680_1280.jpg',
+                    'https://cdn.pixabay.com/photo/2016/02/19/10/56/hip-hop-1209499_1280.jpg',
                     fit: BoxFit.cover,
                   ),
                   const DecoratedBox(
@@ -91,6 +92,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //     color: Colors.white,
                           //   ),
                           // ),
+                          GestureDetector(
+                            onTap: () => launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+                            child: Icon(
+                              Icons.link,
+                              size: 24,
+                              color: Colors.white,
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -113,33 +122,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '在学习 flutter 的时候，总会用到 StatefulWidget，它是一个有状态的 widget，会根据不同状态有不同显示，它的生命周期与 State 有关，它的基本写法如下',
-                    // overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  Container(height: Dimens.gap_dp16 / 2),
-                  new InkWell(
-                    child: new Text(
-                      '我的微博',
-                      style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                        color: Colours().getColor().link_color,
+                  // Container(height: Dimens.gap_dp16 / 2),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text('18万', style: Theme.of(context).textTheme.bodyText1),
+                      Container(width: Dimens.gap_dp10 / 3),
+                      Text('获赞', style: Theme.of(context).textTheme.caption),
+                      Container(
+                        width: Dimens.gap_dp16,
                       ),
-                    ),
-                    onTap: () => launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
-                  ),
-                  Container(height: Dimens.gap_dp16 / 2),
-                  new InkWell(
-                    child: new Text(
-                      '其他连接',
-                      style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                        color: Colours().getColor().link_color,
+                      // Text('18', style: Theme.of(context).textTheme.bodyText1),
+                      // Container(width: Dimens.gap_dp10 / 3),
+                      // Text('动态', style: Theme.of(context).textTheme.caption),
+                      // Container(
+                      //   width: Dimens.gap_dp16,
+                      // ),
+                      Text('28万', style: Theme.of(context).textTheme.bodyText1),
+                      Container(width: Dimens.gap_dp10 / 3),
+                      Text('粉丝', style: Theme.of(context).textTheme.caption),
+                      Container(
+                        width: Dimens.gap_dp16,
                       ),
-                    ),
-                    onTap: () => launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+                      Text('0', style: Theme.of(context).textTheme.bodyText1),
+                      Container(width: Dimens.gap_dp10 / 3),
+                      Text('关注', style: Theme.of(context).textTheme.caption),
+                    ],
                   ),
+                  // Container(height: Dimens.gap_dp16),
+                  // Text(
+                  //   '在学习 flutter 的时候，总会用到 StatefulWidget，它是一个有状态的 widget，会根据不同状态有不同显示，它的生命周期与 State 有关，它的基本写法如下',
+                  //   // overflow: TextOverflow.ellipsis,
+                  //   style: Theme.of(context).textTheme.bodyText1,
+                  // ),
+                  // new InkWell(
+                  //   child: new Text(
+                  //     '我的微博',
+                  //     style: TextStyle(
+                  //       fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                  //       color: Colours().getColor().link_color,
+                  //     ),
+                  //   ),
+                  //   onTap: () => launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+                  // ),
+                  // Container(height: Dimens.gap_dp16 / 2),
+                  // new InkWell(
+                  //   child: new Text(
+                  //     '其他连接',
+                  //     style: TextStyle(
+                  //       fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                  //       color: Colours().getColor().link_color,
+                  //     ),
+                  //   ),
+                  //   onTap: () => launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+                  // ),
                 ],
               ),
             ),
@@ -175,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.network(
-                            'https://cdn.pixabay.com/photo/2018/04/29/11/26/road-3359680_1280.jpg',
+                            'https://cdn.pixabay.com/photo/2019/10/26/11/01/evening-4579176__480.jpg',
                             fit: BoxFit.cover,
                           ),
                         ),

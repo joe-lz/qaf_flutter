@@ -14,15 +14,37 @@ PODS:
   - flutter_bmfutils (0.0.1):
     - BaiduMapKit (= 5.4.0)
     - Flutter
+  - flutter_image_compress (0.0.1):
+    - Flutter
+    - Mantle
+    - SDWebImageWebPCoder
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - gallery_saver (0.0.1):
     - Flutter
+  - image_picker (0.0.1):
+    - Flutter
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
+  - Mantle (2.1.4):
+    - Mantle/extobjc (= 2.1.4)
+  - Mantle/extobjc (2.1.4)
   - path_provider (0.0.1):
     - Flutter
   - "permission_handler (5.0.1+1)":
     - Flutter
+  - SDWebImage/Core (5.8.4)
+  - SDWebImageWebPCoder (0.6.1):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.7)
   - shared_preferences (0.0.1):
     - Flutter
   - sqflite (0.0.1):
@@ -37,7 +59,9 @@ DEPENDENCIES:
   - flutter_bmflocation (from `.symlinks/plugins/flutter_bmflocation/ios`)
   - flutter_bmfmap (from `.symlinks/plugins/flutter_bmfmap/ios`)
   - flutter_bmfutils (from `.symlinks/plugins/flutter_bmfutils/ios`)
+  - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - gallery_saver (from `.symlinks/plugins/gallery_saver/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -49,6 +73,10 @@ SPEC REPOS:
     - BaiduMapKit
     - BMKLocationKit
     - FMDB
+    - libwebp
+    - Mantle
+    - SDWebImage
+    - SDWebImageWebPCoder
 
 EXTERNAL SOURCES:
   Flutter:
@@ -61,8 +89,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_bmfmap/ios"
   flutter_bmfutils:
     :path: ".symlinks/plugins/flutter_bmfutils/ios"
+  flutter_image_compress:
+    :path: ".symlinks/plugins/flutter_image_compress/ios"
   gallery_saver:
     :path: ".symlinks/plugins/gallery_saver/ios"
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
@@ -82,10 +114,16 @@ SPEC CHECKSUMS:
   flutter_bmflocation: 12f1ba91bae4b16d78d4f475023e0254ed351f1c
   flutter_bmfmap: 57030919b16b5353649fbea77b6143129f7a4ff1
   flutter_bmfutils: 41b6af33c5e7d5d5f841ef9087fbd271c05b1961
+  flutter_image_compress: 082f8daaf6c1b0c9fe798251c750ef0ecd98d7ae
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
+  image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
+  Mantle: bf2e1b464f82465b9074e9de970739a2615e093a
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
