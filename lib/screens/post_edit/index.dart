@@ -64,7 +64,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
   }
 
   Future handleSubmit() async {
-    List imagelistRemote = [];
+    List<Map> imagelistRemote = [];
     for (var i = 0; i < imagelistLocal.length; i++) {
       if (i != imagelistLocal.length - 1) {
         // print(imagelistLocal[i].imageFile);
@@ -88,6 +88,42 @@ class _PostEditScreenState extends State<PostEditScreen> {
     LCFile uploadedFile = await LCFile.fromPath('resume.txt', compressFile.path);
     await uploadedFile.save();
     return uploadedFile;
+  }
+
+  // 删除图片item
+  removeItem(int index) {
+    imagelistLocal.removeAt(index);
+    setState(() {});
+  }
+
+  // 更新图片item
+  updateItemMode(int index) {
+    final curItem = imagelistLocal[index];
+    imagelistLocal[index] = PostImagesLocal(
+      mode: curItem.mode == 'cover' ? 'contain' : 'cover',
+      imageFile: curItem.imageFile,
+    );
+    setState(() {});
+  }
+
+  // 更新图片item
+  updateItemImg(int index) async {
+    final curItem = imagelistLocal[index];
+    PickedFile _pickedFile = await _picker.getImage(
+      source: ImageSource.gallery,
+      imageQuality: 100,
+    );
+    File file = File(_pickedFile.path);
+    setState(() {
+      if (_pickedFile != null) {
+        imagelistLocal[index] = PostImagesLocal(
+          mode: 'cover',
+          imageFile: file,
+        );
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
   @override
@@ -164,7 +200,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                 child: Container(
                                   // decoration: BoxDecoration(
                                   //   color: Theme.of(context).canvasColor,
-                                  //   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))],
+                                  // boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))],
                                   //   border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color)),
                                   // ),
                                   child: index != imagelistLocal.length - 1
@@ -172,17 +208,19 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                           ? Column(
                                               children: [
                                                 Container(
+                                                  width: ScreenUtils.screenW(context) * 0.85,
                                                   height: ScreenUtils.screenW(context) * 0.85,
                                                   decoration: BoxDecoration(
                                                     color: Theme.of(context).canvasColor,
                                                     boxShadow: [
-                                                      BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))
+                                                      // BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))
                                                     ],
-                                                    border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color)),
+                                                    // border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color)),
+                                                    // border: Border.all(width: 0.5, color: Colors.red),
                                                   ),
                                                   child: Image.file(
                                                     imagelistLocal[index].imageFile,
-                                                    fit: BoxFit.cover,
+                                                    fit: imagelistLocal[index].mode == 'contain' ? BoxFit.contain : BoxFit.cover,
                                                   ),
                                                 ),
                                                 Container(height: Dimens.gap_dp16),
@@ -193,16 +231,42 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       IconButton(
-                                                        icon: Icon(Icons.crop),
+                                                        icon: Icon(
+                                                          Icons.crop,
+                                                          color: Theme.of(context).textTheme.caption.color,
+                                                          size: 20,
+                                                        ),
                                                         onPressed: () {},
                                                       ),
                                                       IconButton(
-                                                        icon: Icon(Icons.burst_mode),
-                                                        onPressed: () {},
+                                                        icon: Icon(
+                                                          Icons.aspect_ratio,
+                                                          color: Theme.of(context).textTheme.caption.color,
+                                                          size: 20,
+                                                        ),
+                                                        onPressed: () {
+                                                          updateItemMode(_currentIndex);
+                                                        },
                                                       ),
                                                       IconButton(
-                                                        icon: Icon(Icons.restore_from_trash),
-                                                        onPressed: () {},
+                                                        icon: Icon(
+                                                          Icons.cached,
+                                                          color: Theme.of(context).textTheme.caption.color,
+                                                          size: 20,
+                                                        ),
+                                                        onPressed: () {
+                                                          updateItemImg(_currentIndex);
+                                                        },
+                                                      ),
+                                                      IconButton(
+                                                        icon: Icon(
+                                                          Icons.restore_from_trash,
+                                                          color: Theme.of(context).textTheme.caption.color,
+                                                          size: 20,
+                                                        ),
+                                                        onPressed: () {
+                                                          removeItem(_currentIndex);
+                                                        },
                                                       ),
                                                     ],
                                                   ),
@@ -217,7 +281,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context).canvasColor,
                                                 boxShadow: [
-                                                  BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))
+                                                  // BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))
                                                 ],
                                                 border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color)),
                                               ),
