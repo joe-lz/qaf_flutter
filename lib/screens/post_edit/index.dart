@@ -63,6 +63,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
     return result;
   }
 
+  // 下一步/上传图片
   Future handleSubmit() async {
     List<Map> imagelistRemote = [];
     for (var i = 0; i < imagelistLocal.length; i++) {
@@ -96,7 +97,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
     setState(() {});
   }
 
-  // 更新图片item
+  // 更新图片item mode
   updateItemMode(int index) {
     final curItem = imagelistLocal[index];
     imagelistLocal[index] = PostImagesLocal(
@@ -106,7 +107,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
     setState(() {});
   }
 
-  // 更新图片item
+  // 更新图片item 替换当前图片
   updateItemImg(int index) async {
     final curItem = imagelistLocal[index];
     PickedFile _pickedFile = await _picker.getImage(
@@ -123,6 +124,28 @@ class _PostEditScreenState extends State<PostEditScreen> {
       } else {
         print('No image selected.');
       }
+    });
+  }
+
+  cropImg(int index) {
+    OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
+      //外层使用Positioned进行定位，控制在Overlay中的位置
+      return Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: SafeArea(
+          child: Container(
+            child: Center(
+              child: Text('data'),
+            ),
+          ),
+        ),
+      );
+    });
+    //往Overlay中插入插入OverlayEntry
+    Overlay.of(context).insert(overlayEntry);
+    //两秒后，移除Toast
+    Future.delayed(Duration(seconds: 10)).then((value) {
+      overlayEntry.remove();
     });
   }
 
@@ -236,7 +259,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                           color: Theme.of(context).textTheme.caption.color,
                                                           size: 20,
                                                         ),
-                                                        onPressed: () {},
+                                                        onPressed: () => cropImg(_currentIndex),
                                                       ),
                                                       IconButton(
                                                         icon: Icon(
@@ -244,9 +267,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                           color: Theme.of(context).textTheme.caption.color,
                                                           size: 20,
                                                         ),
-                                                        onPressed: () {
-                                                          updateItemMode(_currentIndex);
-                                                        },
+                                                        onPressed: () => updateItemMode(_currentIndex),
                                                       ),
                                                       IconButton(
                                                         icon: Icon(
@@ -254,9 +275,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                           color: Theme.of(context).textTheme.caption.color,
                                                           size: 20,
                                                         ),
-                                                        onPressed: () {
-                                                          updateItemImg(_currentIndex);
-                                                        },
+                                                        onPressed: () => updateItemImg(_currentIndex),
                                                       ),
                                                       IconButton(
                                                         icon: Icon(
@@ -264,9 +283,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                           color: Theme.of(context).textTheme.caption.color,
                                                           size: 20,
                                                         ),
-                                                        onPressed: () {
-                                                          removeItem(_currentIndex);
-                                                        },
+                                                        onPressed: () => removeItem(_currentIndex),
                                                       ),
                                                     ],
                                                   ),
@@ -287,9 +304,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                               ),
                                               child: GestureDetector(
                                                 behavior: HitTestBehavior.translucent,
-                                                onTap: () {
-                                                  getImage();
-                                                },
+                                                onTap: () => getImage(),
                                                 child: ConstrainedBox(
                                                   constraints: const BoxConstraints.expand(),
                                                   child: Column(
