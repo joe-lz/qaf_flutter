@@ -26,6 +26,7 @@ import 'package:qaf_flutter/screens/message/index.dart';
 import 'package:qaf_flutter/screens/not_found/index.dart';
 import 'package:qaf_flutter/screens/post_detail/index.dart';
 import 'package:qaf_flutter/screens/post_edit/index.dart';
+import 'package:qaf_flutter/screens/post_edit_next/PostEditNextScreenArguments.dart';
 import 'package:qaf_flutter/screens/post_edit_next/index.dart';
 import 'package:qaf_flutter/screens/post_list/index.dart';
 import 'package:qaf_flutter/screens/profile/index.dart';
@@ -134,7 +135,8 @@ class MyApp extends StatelessWidget {
           case '/post_edit':
             return MaterialPageRoute(builder: (context) => PostEditScreen());
           case '/post_edit_next':
-            return MaterialPageRoute(builder: (context) => PostEditNextScreen());
+            final PostEditNextScreenArguments args = settings.arguments;
+            return MaterialPageRoute(builder: (context) => PostEditNextScreen(data: args.data));
           case '/post_detail':
             return MaterialPageRoute(builder: (context) => PostDetailScreen());
           case '/topic_list':

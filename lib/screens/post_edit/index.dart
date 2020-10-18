@@ -18,6 +18,7 @@ import 'package:qaf_flutter/provider/post.dart';
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
 import 'package:qaf_flutter/screens/post_edit/add.dart';
+import 'package:qaf_flutter/screens/post_edit_next/PostEditNextScreenArguments.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class PostEditScreen extends StatefulWidget {
@@ -58,47 +59,13 @@ class _PostEditScreenState extends State<PostEditScreen> {
     });
   }
 
-  // 2. compress file and get file. 压缩
-  Future<File> compressAndGetFile(File file, String targetPath) async {
-    var result = await FlutterImageCompress.compressAndGetFile(
-      file.absolute.path,
-      targetPath,
-      quality: 90,
-      minWidth: 1000,
-      minHeight: 1000,
-    );
-    // print(file.lengthSync());
-    // print(result.lengthSync());
-    return result;
-  }
-
   // 下一步/上传图片
   Future handleSubmit() async {
-    Navigator.pushNamed(context, "/post_edit_next");
-    // List<Map> imagelistRemote = [];
-    // for (var i = 0; i < imagelistLocal.length; i++) {
-    //   if (i != imagelistLocal.length - 1) {
-    //     // print(imagelistLocal[i].imageFile);
-    //     final uploadResult = await handleUploadSingle(imagelistLocal[i].imageFile);
-    //     imagelistRemote.add({
-    //       'mode': imagelistLocal[i].mode,
-    //       'imgUrl': uploadResult['url'],
-    //       'leanId': uploadResult.objectId,
-    //       'key': uploadResult['key'],
-    //     });
-    //   }
-    // }
-    // await context.read<PostModal>().createMyPost(imagelistRemote);
-  }
-
-  Future handleUploadSingle(File file) async {
-    final dir = await path_provider.getTemporaryDirectory();
-    final targetPath = dir.absolute.path + "/temp.jpg";
-    final compressFile = await compressAndGetFile(file, targetPath);
-    // upload
-    LCFile uploadedFile = await LCFile.fromPath('resume.txt', compressFile.path);
-    await uploadedFile.save();
-    return uploadedFile;
+    Navigator.pushNamed(
+      context,
+      "/post_edit_next",
+      arguments: PostEditNextScreenArguments(imagelistLocal),
+    );
   }
 
   // 删除图片item

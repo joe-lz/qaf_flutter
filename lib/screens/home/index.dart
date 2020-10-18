@@ -201,13 +201,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.center,
                             child: CupertinoSlidingSegmentedControl(
                               children: {
-                                0: Container(width: 50, child: Center(child: Text('me_menus.nearby'.tr()))
+                                0: Container(width: 60, child: Center(child: Text('me_menus.nearby'.tr()))
                                     // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                     ),
-                                1: Container(width: 50, child: Center(child: Text('me_menus.posts'.tr()))
+                                1: Container(width: 60, child: Center(child: Text('me_menus.posts'.tr()))
                                     // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                     ),
-                                2: Container(width: 50, child: Center(child: Text('me_menus.matches'.tr()))
+                                2: Container(width: 60, child: Center(child: Text('me_menus.matches'.tr()))
                                     // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                     ),
                               },

@@ -1,6 +1,6 @@
 PODS:
   - BaiduMapKit (5.4.0)
-  - BMKLocationKit (1.8.5)
+  - BMKLocationKit (2.0.0)
   - Flutter (1.0.0)
   - flutter_bmfbase (0.0.1):
     - BaiduMapKit (= 5.4.0)
@@ -36,14 +36,14 @@ PODS:
   - libwebp/mux (1.1.0):
     - libwebp/demux
   - libwebp/webp (1.1.0)
-  - Mantle (2.1.4):
-    - Mantle/extobjc (= 2.1.4)
-  - Mantle/extobjc (2.1.4)
+  - Mantle (2.1.1):
+    - Mantle/extobjc (= 2.1.1)
+  - Mantle/extobjc (2.1.1)
   - path_provider (0.0.1):
     - Flutter
   - "permission_handler (5.0.1+1)":
     - Flutter
-  - SDWebImage/Core (5.8.4)
+  - SDWebImage/Core (5.9.3)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
@@ -113,7 +113,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BaiduMapKit: 40a4382633859bd569d40da9f9a2e98a277dd28b
-  BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
+  BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_bmfbase: 8ac2c94f3f110daec8e499dc13f8a983b0c8ee40
   flutter_bmflocation: 12f1ba91bae4b16d78d4f475023e0254ed351f1c
@@ -125,10 +125,10 @@ SPEC CHECKSUMS:
   image_crop: e0a67085d3ebf3cf46ca46d61c53a082507b0bc3
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
-  Mantle: bf2e1b464f82465b9074e9de970739a2615e093a
+  Mantle: 35238ae6f2e2b2d474fa7b67fee82a59fea71915
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
-  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
