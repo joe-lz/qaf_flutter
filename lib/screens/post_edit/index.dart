@@ -12,10 +12,12 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
+import 'package:image_crop/image_crop.dart';
 
 import 'package:qaf_flutter/provider/post.dart';
 import 'package:qaf_flutter/provider/theme/colors.dart';
 import 'package:qaf_flutter/provider/theme/dimens.dart';
+import 'package:qaf_flutter/screens/post_edit/add.dart';
 import 'package:qaf_flutter/utils/screen_utils.dart';
 
 class PostEditScreen extends StatefulWidget {
@@ -27,9 +29,16 @@ class PostEditScreen extends StatefulWidget {
 
 class _PostEditScreenState extends State<PostEditScreen> {
   int _currentIndex = 0;
-
   final _picker = ImagePicker();
   List imagelistLocal = [PostImagesLocal()];
+  final cropKey = GlobalKey<CropState>();
+  OverlayEntry overlayEntry;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   // 获取图片
   Future getImage() async {
     PickedFile _pickedFile = await _picker.getImage(
@@ -49,7 +58,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
     });
   }
 
-  // 2. compress file and get file.
+  // 2. compress file and get file. 压缩
   Future<File> compressAndGetFile(File file, String targetPath) async {
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
@@ -65,20 +74,21 @@ class _PostEditScreenState extends State<PostEditScreen> {
 
   // 下一步/上传图片
   Future handleSubmit() async {
-    List<Map> imagelistRemote = [];
-    for (var i = 0; i < imagelistLocal.length; i++) {
-      if (i != imagelistLocal.length - 1) {
-        // print(imagelistLocal[i].imageFile);
-        final uploadResult = await handleUploadSingle(imagelistLocal[i].imageFile);
-        imagelistRemote.add({
-          'mode': imagelistLocal[i].mode,
-          'imgUrl': uploadResult['url'],
-          'leanId': uploadResult.objectId,
-          'key': uploadResult['key'],
-        });
-      }
-    }
-    await context.read<PostModal>().createMyPost(imagelistRemote);
+    Navigator.pushNamed(context, "/post_edit_next");
+    // List<Map> imagelistRemote = [];
+    // for (var i = 0; i < imagelistLocal.length; i++) {
+    //   if (i != imagelistLocal.length - 1) {
+    //     // print(imagelistLocal[i].imageFile);
+    //     final uploadResult = await handleUploadSingle(imagelistLocal[i].imageFile);
+    //     imagelistRemote.add({
+    //       'mode': imagelistLocal[i].mode,
+    //       'imgUrl': uploadResult['url'],
+    //       'leanId': uploadResult.objectId,
+    //       'key': uploadResult['key'],
+    //     });
+    //   }
+    // }
+    // await context.read<PostModal>().createMyPost(imagelistRemote);
   }
 
   Future handleUploadSingle(File file) async {
@@ -127,16 +137,60 @@ class _PostEditScreenState extends State<PostEditScreen> {
     });
   }
 
-  cropImg(int index) {
-    OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
-      //外层使用Positioned进行定位，控制在Overlay中的位置
+  showCropImgModal(int index) {
+    overlayEntry = OverlayEntry(builder: (context) {
+      // 外层使用Positioned进行定位，控制在Overlay中的位置
       return Material(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        // color: Theme.of(context).scaffoldBackgroundColor,
+        color: Colors.black,
         child: SafeArea(
-          child: Container(
-            child: Center(
-              child: Text('data'),
-            ),
+          child: Column(
+            children: [
+              Text(
+                '双指缩放跳转',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Container(
+                    width: ScreenUtils.screenW(context) - Dimens.gap_dp16,
+                    height: ScreenUtils.screenW(context) - Dimens.gap_dp16,
+                    child: Crop.file(
+                      imagelistLocal[index].imageFile,
+                      key: cropKey,
+                      alwaysShowGrid: true,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(Dimens.gap_dp16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () => hideCropModal(),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.done,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () => _cropImage(index),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -144,9 +198,45 @@ class _PostEditScreenState extends State<PostEditScreen> {
     //往Overlay中插入插入OverlayEntry
     Overlay.of(context).insert(overlayEntry);
     //两秒后，移除Toast
-    Future.delayed(Duration(seconds: 10)).then((value) {
-      overlayEntry.remove();
+    // Future.delayed(Duration(seconds: 10)).then((value) {
+    //   overlayEntry.remove();
+    // });
+  }
+
+  // 切图
+  Future<void> _cropImage(int index) async {
+    final scale = cropKey.currentState.scale;
+    final area = cropKey.currentState.area;
+    if (area == null) {
+      // cannot crop, widget is not setup
+      return;
+    }
+    // scale up to use maximum possible number of pixels
+    // this will sample image in higher resolution to make cropped image larger
+    final sample = await ImageCrop.sampleImage(
+      file: imagelistLocal[index].imageFile,
+      preferredSize: (2000 / scale).round(),
+    );
+    final cropedfile = await ImageCrop.cropImage(
+      file: sample,
+      area: area,
+    );
+    // debugPrint('$file');
+    setState(() {
+      if (cropedfile != null) {
+        imagelistLocal[index] = PostImagesLocal(
+          mode: 'cover',
+          imageFile: cropedfile,
+        );
+        hideCropModal();
+      } else {
+        print('No image selected.');
+      }
     });
+  }
+
+  hideCropModal() {
+    overlayEntry.remove();
   }
 
   @override
@@ -178,20 +268,24 @@ class _PostEditScreenState extends State<PostEditScreen> {
                         ),
                       ),
                     ),
-                    CupertinoButton(
-                      // padding: EdgeInsets.all(0),
-                      child: Text(
-                        '下一步',
-                        style: TextStyle(
-                          fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                          fontWeight: FontWeight.w700,
-                          // color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        handleSubmit();
-                      },
-                    ),
+                    imagelistLocal.length > 1
+                        ? CupertinoButton(
+                            // padding: EdgeInsets.all(0),
+                            child: Text(
+                              '下一步',
+                              style: TextStyle(
+                                fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                                fontWeight: FontWeight.w700,
+                                // color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                            onPressed: () {
+                              handleSubmit();
+                            },
+                          )
+                        : Container(
+                            child: null,
+                          ),
                   ],
                 ),
               ),
@@ -259,7 +353,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                                           color: Theme.of(context).textTheme.caption.color,
                                                           size: 20,
                                                         ),
-                                                        onPressed: () => cropImg(_currentIndex),
+                                                        onPressed: () => showCropImgModal(_currentIndex),
                                                       ),
                                                       IconButton(
                                                         icon: Icon(
@@ -291,44 +385,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
                                               ],
                                             )
                                           : Container()
-                                      : Column(
-                                          children: [
-                                            Container(
-                                              height: ScreenUtils.screenW(context) * 0.85,
-                                              decoration: BoxDecoration(
-                                                color: Theme.of(context).canvasColor,
-                                                boxShadow: [
-                                                  // BoxShadow(color: Colors.grey.withOpacity(0.2), spreadRadius: 5, blurRadius: 5, offset: Offset(0, 0))
-                                                ],
-                                                border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color)),
-                                              ),
-                                              child: GestureDetector(
-                                                behavior: HitTestBehavior.translucent,
-                                                onTap: () => getImage(),
-                                                child: ConstrainedBox(
-                                                  constraints: const BoxConstraints.expand(),
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.add,
-                                                        size: 30,
-                                                        color: Theme.of(context).textTheme.caption.color,
-                                                      ),
-                                                      Text(
-                                                        '添加图片',
-                                                        style: TextStyle(
-                                                          color: Theme.of(context).textTheme.caption.color,
-                                                          fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                      : PostAddComponent(handleAdd: getImage),
                                 ),
                               ),
                             );

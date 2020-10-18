@@ -44,19 +44,19 @@ class _NavigatorItemState extends State<NavigatorItem> {
                   child: null,
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  width: Dimens.nav_height,
-                  height: Dimens.nav_height,
-                  child: Icon(
-                    Icons.share,
-                    size: 20,
-                  ),
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.of(context).pop();
+              //   },
+              //   child: Container(
+              //     width: Dimens.nav_height,
+              //     height: Dimens.nav_height,
+              //     child: Icon(
+              //       Icons.share,
+              //       size: 20,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

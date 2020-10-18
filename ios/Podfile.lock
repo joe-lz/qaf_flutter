@@ -23,6 +23,8 @@ PODS:
   - FMDB/standard (2.7.5)
   - gallery_saver (0.0.1):
     - Flutter
+  - image_crop (0.0.1):
+    - Flutter
   - image_picker (0.0.1):
     - Flutter
   - libwebp (1.1.0):
@@ -61,6 +63,7 @@ DEPENDENCIES:
   - flutter_bmfutils (from `.symlinks/plugins/flutter_bmfutils/ios`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - gallery_saver (from `.symlinks/plugins/gallery_saver/ios`)
+  - image_crop (from `.symlinks/plugins/image_crop/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
@@ -93,6 +96,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_image_compress/ios"
   gallery_saver:
     :path: ".symlinks/plugins/gallery_saver/ios"
+  image_crop:
+    :path: ".symlinks/plugins/image_crop/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
@@ -117,6 +122,7 @@ SPEC CHECKSUMS:
   flutter_image_compress: 082f8daaf6c1b0c9fe798251c750ef0ecd98d7ae
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
+  image_crop: e0a67085d3ebf3cf46ca46d61c53a082507b0bc3
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   Mantle: bf2e1b464f82465b9074e9de970739a2615e093a
