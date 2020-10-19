@@ -6,8 +6,10 @@ class NavigatorItem extends StatefulWidget {
   NavigatorItem({
     Key key,
     this.backgroundColor,
+    this.right,
   }) : super(key: key);
   final Color backgroundColor;
+  final Widget right;
 
   @override
   _NavigatorItemState createState() => _NavigatorItemState();
@@ -44,6 +46,7 @@ class _NavigatorItemState extends State<NavigatorItem> {
                   child: null,
                 ),
               ),
+              widget.right,
               // GestureDetector(
               //   onTap: () {
               //     Navigator.of(context).pop();

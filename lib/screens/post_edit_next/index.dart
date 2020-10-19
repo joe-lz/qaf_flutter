@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
+import 'package:qaf_flutter/components/menu_group.dart';
+import 'package:qaf_flutter/components/menu_item/index.dart';
 
 import 'package:qaf_flutter/provider/post.dart';
 import 'package:qaf_flutter/components/navigator.dart';
@@ -81,18 +84,37 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
         FocusScope.of(context).requestFocus(new FocusNode());
       },
       child: Material(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        // color: Theme.of(context).scaffoldBackgroundColor,
+        color: Theme.of(context).canvasColor,
         child: SafeArea(
           top: true,
           bottom: true,
           child: Column(
             children: [
-              NavigatorItem(),
+              NavigatorItem(
+                right: Row(
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      height: 30,
+                      child: CupertinoButton.filled(
+                        borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10 / 2)),
+                        padding: EdgeInsets.all(0),
+                        child: Text('发表'),
+                        onPressed: () {},
+                      ),
+                    ),
+                    Container(
+                      width: Dimens.gap_dp16,
+                    )
+                  ],
+                ),
+              ),
               Padding(
                 // padding: EdgeInsets.fromLTRB(0, DefaultPadding / 2, 0, DefaultPadding / 2),
-                padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, 0, Dimens.gap_dp16, 0),
+                padding: EdgeInsets.fromLTRB(Dimens.gap_dp32, 0, Dimens.gap_dp32, 0),
                 child: Container(
-                  height: 120,
+                  height: 80,
                   // color: Theme.of(context).canvasColor,
                   child: TextFormField(
                     style: TextStyle(
@@ -113,7 +135,7 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                           style: BorderStyle.none,
                         ),
                       ),
-                      hintText: '输入你这一刻最想说的话...',
+                      hintText: '这一刻的想法...',
                       isDense: true,
                       contentPadding: EdgeInsets.fromLTRB(Dimens.gap_dp16 / 2, Dimens.gap_dp16 / 3, Dimens.gap_dp16 / 2, Dimens.gap_dp16 / 3),
                     ),
@@ -125,36 +147,79 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 1,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimens.gap_dp32),
                 child: Container(
-                  height: 500,
-                  child: Padding(
-                    padding: EdgeInsets.all(Dimens.gap_dp16),
-                    child: GridView.count(
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      crossAxisCount: 4,
-                      children: List.generate(
-                        imagelistLocal.length - 1,
-                        (index) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10 / 2)),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                // border: Border.all(width: 0.5, color: Theme.of(context).textTheme.caption.color),
-                                color: Theme.of(context).canvasColor,
-                              ),
-                              child: Image.file(
-                                imagelistLocal[index].imageFile,
-                                fit: imagelistLocal[index].mode == 'contain' ? BoxFit.contain : BoxFit.cover,
-                              ),
+                  height: (((ScreenUtils.screenW(context) - Dimens.gap_dp32 * 2) / 3 + 4) * (((imagelistLocal.length - 1) / 3).ceil())).toDouble(),
+                  // height: 130,
+                  // color: Colors.red,
+                  child: GridView.count(
+                    physics: new NeverScrollableScrollPhysics(),
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                    crossAxisCount: 3,
+                    childAspectRatio: 1,
+                    children: List.generate(
+                      imagelistLocal.length - 1,
+                      (index) {
+                        return ClipRRect(
+                          // borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10 / 2)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // border: Border.all(width: 0.5, color: Theme.of(context).textTheme.caption.color),
+                              color: Theme.of(context).canvasColor,
                             ),
-                          );
-                        },
-                      ),
+                            child: Image.file(
+                              imagelistLocal[index].imageFile,
+                              fit: imagelistLocal[index].mode == 'contain' ? BoxFit.contain : BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
+                ),
+              ),
+              Padding(
+                // padding: EdgeInsets.symmetric(horizontal: Dimens.gap_dp16),
+                padding: EdgeInsets.all(0),
+                child: MenuGroup(
+                  title: '',
+                  children: [
+                    MenuItem(
+                      editMode: true,
+                      showBorderBottom: true,
+                      showIconRight: true,
+                      title: '图片样式',
+                      desc: '宫格',
+                      descHint: '-',
+                      inputType: 'actionsheet',
+                      dataActionSheet: ['宫格', '列表'],
+                      onChanged: (value) {},
+                    ),
+                    MenuItem(
+                      editMode: true,
+                      showBorderBottom: true,
+                      showIconRight: true,
+                      title: '定位',
+                      desc: '杭州',
+                      descHint: '-',
+                      inputType: 'actionsheet',
+                      dataActionSheet: ['公开', '仅自己'],
+                      onChanged: (value) {},
+                    ),
+                    MenuItem(
+                      editMode: true,
+                      showBorderBottom: true,
+                      showIconRight: true,
+                      title: '谁可以看',
+                      desc: '公开',
+                      descHint: '-',
+                      inputType: 'actionsheet',
+                      dataActionSheet: ['公开', '仅自己'],
+                      onChanged: (value) {},
+                    ),
+                  ],
                 ),
               ),
             ],
