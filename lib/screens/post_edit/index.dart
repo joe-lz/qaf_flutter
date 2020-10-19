@@ -108,18 +108,18 @@ class _PostEditScreenState extends State<PostEditScreen> {
     overlayEntry = OverlayEntry(builder: (context) {
       // 外层使用Positioned进行定位，控制在Overlay中的位置
       return Material(
-        // color: Theme.of(context).scaffoldBackgroundColor,
-        color: Colors.black,
+        // color: Theme.of(context).canvasColor,
+        color: Colors.grey[900],
         child: SafeArea(
           child: Column(
             children: [
-              Text(
-                '双指缩放跳转',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                ),
-              ),
+              // Text(
+              //   '双指缩放跳转',
+              //   style: TextStyle(
+              //     color: Colors.white,
+              //     fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+              //   ),
+              // ),
               Expanded(
                 child: Center(
                   child: Container(
@@ -145,6 +145,13 @@ class _PostEditScreenState extends State<PostEditScreen> {
                         size: 20,
                       ),
                       onPressed: () => hideCropModal(),
+                    ),
+                    Text(
+                      '双指缩放调整',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                      ),
                     ),
                     IconButton(
                       icon: Icon(
@@ -204,6 +211,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
 
   hideCropModal() {
     overlayEntry.remove();
+    overlayEntry = null;
   }
 
   @override

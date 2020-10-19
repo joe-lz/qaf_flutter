@@ -236,7 +236,7 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                         child: TextFormField(
                           style: TextStyle(
                             fontSize: 12.0,
-                            color: Colors.black,
+                            color: Theme.of(context).textTheme.bodyText1.color,
                           ),
                           decoration: InputDecoration(
                             fillColor: Theme.of(context).scaffoldBackgroundColor,

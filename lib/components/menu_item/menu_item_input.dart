@@ -52,7 +52,7 @@ class _MenuItemInputState extends State<MenuItemInput> {
             ? TextFormField(
                 style: TextStyle(
                   fontSize: 14.0,
-                  color: Colors.black,
+                  color: Theme.of(context).textTheme.bodyText1.color,
                 ),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,

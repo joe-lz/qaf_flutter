@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -26,14 +27,24 @@ class PostEditNextScreen extends StatefulWidget {
 }
 
 class _PostEditNextScreenState extends State<PostEditNextScreen> {
+  String title = '';
+  Float lng;
+  Float lat;
+  String locationName;
+  String imgType = '宫格';
+  String rights = '公开';
+
   @override
   void initState() {
     super.initState();
   }
 
   handleSubmit() async {
-    final imagelistLocal = widget.data;
+    print(title);
+    print(imgType);
+    print(rights);
 
+    final imagelistLocal = widget.data;
     List<Map> imagelistRemote = [];
     for (var i = 0; i < imagelistLocal.length; i++) {
       if (i != imagelistLocal.length - 1) {
@@ -45,10 +56,16 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
           'leanId': uploadResult.objectId,
           'key': uploadResult['key'],
         });
+        print(imagelistRemote);
       }
     }
     // 创建post
-    await context.read<PostModal>().createMyPost(imagelistRemote);
+    await context.read<PostModal>().createMyPost(
+          images: imagelistRemote,
+          title: title,
+          imgType: imgType,
+          rights: rights,
+        );
   }
 
   Future handleUploadSingle(File file) async {
@@ -84,8 +101,8 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
         FocusScope.of(context).requestFocus(new FocusNode());
       },
       child: Material(
-        // color: Theme.of(context).scaffoldBackgroundColor,
-        color: Theme.of(context).canvasColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        // color: Theme.of(context).canvasColor,
         child: SafeArea(
           top: true,
           bottom: true,
@@ -101,7 +118,9 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10 / 2)),
                         padding: EdgeInsets.all(0),
                         child: Text('发表'),
-                        onPressed: () {},
+                        onPressed: () {
+                          handleSubmit();
+                        },
                       ),
                     ),
                     Container(
@@ -119,7 +138,7 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                   child: TextFormField(
                     style: TextStyle(
                       fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.bodyText1.color,
                     ),
                     // keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
@@ -143,7 +162,11 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                     autocorrect: false,
                     autofocus: true,
                     // obscureText: widget.obscureText,
-                    // onChanged: widget.onChanged,
+                    onChanged: (value) {
+                      setState(() {
+                        title = value;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -191,11 +214,15 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                       showBorderBottom: true,
                       showIconRight: true,
                       title: '图片样式',
-                      desc: '宫格',
+                      desc: imgType,
                       descHint: '-',
                       inputType: 'actionsheet',
                       dataActionSheet: ['宫格', '列表'],
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          imgType = value;
+                        });
+                      },
                     ),
                     MenuItem(
                       editMode: true,
@@ -213,11 +240,15 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                       showBorderBottom: true,
                       showIconRight: true,
                       title: '谁可以看',
-                      desc: '公开',
+                      desc: rights,
                       descHint: '-',
                       inputType: 'actionsheet',
                       dataActionSheet: ['公开', '仅自己'],
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          rights = value;
+                        });
+                      },
                     ),
                   ],
                 ),
