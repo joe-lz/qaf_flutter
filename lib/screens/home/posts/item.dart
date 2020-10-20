@@ -239,7 +239,8 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
                           decoration: InputDecoration(
-                            fillColor: Theme.of(context).scaffoldBackgroundColor,
+                            // fillColor: Theme.of(context).scaffoldBackgroundColor,
+                            fillColor: Theme.of(context).canvasColor,
                             filled: true,
                             // border: InputBorder.none,
                             border: OutlineInputBorder(

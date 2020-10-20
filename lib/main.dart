@@ -6,8 +6,9 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+
 import 'package:qaf_flutter/components/modal_login.dart';
 import 'package:qaf_flutter/provider/post.dart';
 import 'package:qaf_flutter/provider/theme/index.dart';
@@ -82,6 +83,26 @@ void main() async {
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
+
+  configLoading();
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..maskType = EasyLoadingMaskType.black
+    ..userInteractions = false;
+  // ..displayDuration = const Duration(milliseconds: 2000)
+  // ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+  // ..loadingStyle = EasyLoadingStyle.dark
+  // ..indicatorSize = 45.0
+  // ..radius = 10.0
+  // ..progressColor = Colors.yellow
+  // ..backgroundColor = Colors.green
+  // ..indicatorColor = Colors.yellow
+  // ..textColor = Colors.yellow
+  // ..maskColor = Colors.blue.withOpacity(0.5)
+  // ..userInteractions = true
+  // ..customAnimation = CustomAnimation();
 }
 
 class MyApp extends StatelessWidget {
@@ -111,7 +132,9 @@ class MyApp extends StatelessWidget {
         /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-          child: child,
+          child: FlutterEasyLoading(
+            child: child,
+          ),
         );
       },
       initialRoute: "/", // 名为"/"的路由作为应用的home(首页)

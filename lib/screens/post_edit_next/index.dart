@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -40,6 +41,7 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
   }
 
   handleSubmit() async {
+    EasyLoading.show(status: '发布中...');
     print(title);
     print(imgType);
     print(rights);
@@ -66,6 +68,8 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
           imgType: imgType,
           rights: rights,
         );
+    EasyLoading.dismiss();
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   Future handleUploadSingle(File file) async {
@@ -160,7 +164,7 @@ class _PostEditNextScreenState extends State<PostEditNextScreen> {
                     ),
                     textAlign: TextAlign.start,
                     autocorrect: false,
-                    autofocus: true,
+                    autofocus: false,
                     // obscureText: widget.obscureText,
                     onChanged: (value) {
                       setState(() {

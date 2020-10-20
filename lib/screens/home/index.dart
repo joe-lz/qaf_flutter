@@ -151,7 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
       2: null,
     };
     return Container(
-      color: Theme.of(context).canvasColor,
+      // color: Theme.of(context).canvasColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Stack(
         children: [
           // FractionallySizedBox(
