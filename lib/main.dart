@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:qaf_flutter/components/modal_login.dart';
 import 'package:qaf_flutter/provider/post.dart';
@@ -109,7 +110,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
+      // localizationsDelegates: context.localizationDelegates,
+      localizationsDelegates: [
+        // 这行是关键
+        RefreshLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       // showPerformanceOverlay: true, //显示性能标签

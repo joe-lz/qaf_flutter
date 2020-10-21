@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 0.0,
             top: 0.0,
             child: Container(
-              color: _currentIndex != 0 ? Theme.of(context).canvasColor : Colors.transparent,
+              color: _currentIndex != 0 ? Theme.of(context).scaffoldBackgroundColor : Colors.transparent,
               width: ScreenUtils.screenW(context),
               child: SafeArea(
                 bottom: false,

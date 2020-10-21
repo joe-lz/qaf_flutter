@@ -66,38 +66,38 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
       controller: _screenshotController,
       child: Padding(
         // padding: EdgeInsets.all(0),
-        padding: EdgeInsets.only(top: Dimens.gap_dp16),
+        padding: EdgeInsets.only(bottom: Dimens.gap_dp16),
         // padding: EdgeInsets.fromLTRB(Dimens.gap_dp16, Dimens.gap_dp16 / 6, Dimens.gap_dp16, Dimens.gap_dp16 / 2),
         child: Container(
           // width: ScreenUtils.screenW(context) - Dimens.gap_dp16 / 2,
           width: ScreenUtils.screenW(context),
           decoration: BoxDecoration(
-              // color: Theme.of(context).canvasColor,
-              // borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_15)),
-              // borderRadius: BorderRadius.only(
-              //   topRight: Radius.circular(40),
-              //   topLeft: Radius.circular(40),
-              // ),
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: Colors.grey.withOpacity(0.1),
-              //     spreadRadius: 1,
-              //     blurRadius: 1,
-              //     offset: Offset(0, 0),
-              //   ),
-              // ],
-              // border: Border(
-              //   bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color),
-              // ),
-              ),
+            color: Theme.of(context).canvasColor,
+            // borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_15)),
+            // borderRadius: BorderRadius.only(
+            //   topRight: Radius.circular(40),
+            //   topLeft: Radius.circular(40),
+            // ),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.grey.withOpacity(0.1),
+            //     spreadRadius: 1,
+            //     blurRadius: 1,
+            //     offset: Offset(0, 0),
+            //   ),
+            // ],
+            // border: Border(
+            //   bottom: BorderSide(width: 0.5, color: Theme.of(context).dividerTheme.color),
+            // ),
+          ),
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(
                   Dimens.gap_dp16,
-                  0,
+                  Dimens.gap_dp16 / 2,
                   Dimens.gap_dp16,
-                  0,
+                  Dimens.gap_dp16 / 2,
                 ),
                 child: Row(
                   children: [
@@ -157,7 +157,8 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: Dimens.gap_dp16 / 2),
+                padding: EdgeInsets.all(0),
+                // padding: EdgeInsets.only(top: Dimens.gap_dp16 / 2),
                 child: Stack(
                   children: [
                     Row(
@@ -239,8 +240,7 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                             color: Theme.of(context).textTheme.bodyText1.color,
                           ),
                           decoration: InputDecoration(
-                            // fillColor: Theme.of(context).scaffoldBackgroundColor,
-                            fillColor: Theme.of(context).canvasColor,
+                            fillColor: Theme.of(context).scaffoldBackgroundColor,
                             filled: true,
                             // border: InputBorder.none,
                             border: OutlineInputBorder(
