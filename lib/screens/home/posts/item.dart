@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:lottie/lottie.dart';
@@ -93,12 +94,7 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                  Dimens.gap_dp16,
-                  Dimens.gap_dp16 / 2,
-                  Dimens.gap_dp16,
-                  Dimens.gap_dp16 / 2,
-                ),
+                padding: EdgeInsets.only(left: Dimens.gap_dp16),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -149,10 +145,25 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                         ),
                       ),
                     ),
-                    Icon(
-                      Icons.more_horiz,
-                      size: 22,
-                    )
+                    PopupMenuButton(
+                      onSelected: (result) {
+                        setState(() {
+                          // _selection = result;
+                          print(result);
+                        });
+                      },
+                      icon: Icon(Icons.more_horiz, size: 22),
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                        const PopupMenuItem(
+                          value: 'report',
+                          child: Text('举报'),
+                        ),
+                        const PopupMenuItem(
+                          value: 'black',
+                          child: Text('拉黑'),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

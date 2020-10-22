@@ -5,6 +5,9 @@ class PostModal with ChangeNotifier {
   LCObject _myPost;
   LCObject get myPost => _myPost;
 
+  List<LCObject> _postlist = [];
+  List<LCObject> get postlist => _postlist;
+
   // 创建
   Future createMyPost({
     List images,
@@ -20,9 +23,20 @@ class PostModal with ChangeNotifier {
     myPost['title'] = title;
     myPost['imgType'] = imgType;
     myPost['rights'] = rights;
+    myPost['status'] = 1;
 
     _myPost = await myPost.save();
     notifyListeners();
     return _myPost;
+  }
+
+  // 获取post列表
+  Future getPostList() async {
+    LCQuery<LCObject> query = LCQuery('Post');
+    query.whereEqualTo('status', 3);
+    query.limit(10);
+    _postlist = await query.find();
+    notifyListeners();
+    return _postlist;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,6 +12,7 @@ import 'package:qaf_flutter/provider/user.dart';
 import 'package:qaf_flutter/screens/home/posts/item.dart';
 import 'package:qaf_flutter/components/menu_one.dart';
 import 'package:qaf_flutter/components/modal_login.dart';
+import 'package:qaf_flutter/provider/post.dart';
 
 class PostComponent extends StatefulWidget {
   PostComponent({Key key}) : super(key: key);
@@ -21,14 +23,20 @@ class PostComponent extends StatefulWidget {
 
 class _PostComponentState extends State<PostComponent> {
   List items = [
-    'https://images.pexels.com/photos/5103656/pexels-photo-5103656.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-    'https://images.pexels.com/photos/927437/pexels-photo-927437.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-    'https://images.pexels.com/photos/5156010/pexels-photo-5156010.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-    'https://images.pexels.com/photos/4392858/pexels-photo-4392858.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-    'https://images.pexels.com/photos/4724068/pexels-photo-4724068.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-    'https://images.pexels.com/photos/4887433/pexels-photo-4887433.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/5103656/pexels-photo-5103656.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/927437/pexels-photo-927437.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/5156010/pexels-photo-5156010.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/4392858/pexels-photo-4392858.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/4724068/pexels-photo-4724068.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    // 'https://images.pexels.com/photos/4887433/pexels-photo-4887433.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
   ];
   RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+  @override
+  void initState() {
+    super.initState();
+    getList();
+  }
 
   void _onRefresh() async {
     // monitor network fetch
@@ -46,8 +54,15 @@ class _PostComponentState extends State<PostComponent> {
     _refreshController.loadComplete();
   }
 
+  getList() async {
+    await context.read<PostModal>().getPostList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<LCObject> itemlist = context.watch<PostModal>().postlist;
+    print(itemlist);
+
     return Column(
       children: [
         SafeArea(
