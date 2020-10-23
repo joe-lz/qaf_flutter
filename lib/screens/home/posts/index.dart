@@ -61,7 +61,7 @@ class _PostComponentState extends State<PostComponent> {
   @override
   Widget build(BuildContext context) {
     List<LCObject> itemlist = context.watch<PostModal>().postlist;
-    print(itemlist);
+    print(itemlist.length);
 
     return Column(
       children: [
@@ -107,7 +107,7 @@ class _PostComponentState extends State<PostComponent> {
               onRefresh: _onRefresh,
               onLoading: _onLoading,
               child: ListView.builder(
-                itemCount: items.length,
+                itemCount: itemlist.length,
                 itemBuilder: (BuildContext ctxt, int index) {
                   // if (index == 0) {
                   //   return Column(
@@ -125,7 +125,7 @@ class _PostComponentState extends State<PostComponent> {
                   //   );
                   // } else {
                   // }
-                  return PostItemComponent(imageUrl: items[index]);
+                  return PostItemComponent(item: itemlist[index]);
                 },
               ),
             ),

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
@@ -15,9 +17,9 @@ import 'package:qaf_flutter/iconfont/IconFont.dart';
 class PostItemComponent extends StatefulWidget {
   PostItemComponent({
     Key key,
-    this.imageUrl,
+    this.item,
   }) : super(key: key);
-  String imageUrl;
+  LCObject item;
 
   @override
   _PostItemComponentState createState() => _PostItemComponentState();
@@ -97,22 +99,22 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                 padding: EdgeInsets.only(left: Dimens.gap_dp16),
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/home_detail");
-                      },
-                      child: ClipOval(
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          child: Image.network(
-                            widget.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Navigator.pushNamed(context, "/home_detail");
+                    //   },
+                    //   child: ClipOval(
+                    //     child: Container(
+                    //       width: 30,
+                    //       height: 30,
+                    //       color: Theme.of(context).scaffoldBackgroundColor,
+                    //       child: Image.network(
+                    //         widget.imageUrl,
+                    //         fit: BoxFit.cover,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Expanded(
                       flex: 1,
                       child: GestureDetector(
@@ -167,71 +169,91 @@ class _PostItemComponentState extends State<PostItemComponent> with TickerProvid
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(0),
-                // padding: EdgeInsets.only(top: Dimens.gap_dp16 / 2),
-                child: Stack(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: GestureDetector(
-                            onDoubleTap: () {
-                              setState(() {
-                                _showAnimation = true;
-                              });
-                            },
-                            // onTap: () {
-                            //   Navigator.pushNamed(context, "/home_detail");
-                            // },
-                            child: ClipRRect(
-                              // borderRadius: BorderRadius.all(Radius.circular(Dimens.radius_10)),
-                              child: Container(
-                                height: 300,
+              Stack(
+                children: [
+                  Container(
+                    height: 300,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints.expand(),
+                      child: GestureDetector(
+                        onDoubleTap: () {
+                          setState(() {
+                            _showAnimation = true;
+                          });
+                        },
+                        // onTap: () {
+                        //   Navigator.pushNamed(context, "/home_detail");
+                        // },
+                        child: widget.item['images'] != null && widget.item['images'].length > 1
+                            ? Swiper(
+                                itemCount: widget.item['images'].length,
+                                pagination: new SwiperPagination(),
+                                loop: false,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return new Image.network(
+                                    widget.item['images'][index]['imgUrl'],
+                                    fit: BoxFit.fill,
+                                  );
+                                },
+                              )
+                            : Container(
                                 color: Theme.of(context).scaffoldBackgroundColor,
                                 child: Image.network(
-                                  widget.imageUrl,
+                                  widget.item['images'][0]['imgUrl'],
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                    Visibility(
-                      visible: _showAnimation,
-                      child: Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          // width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2 - Dimens.gap_dp16,
-                          width: ScreenUtils.screenW(context),
-                          height: 300,
-                          child: Center(
-                            child: Lottie.asset(
-                              'assets/lottie/like.json',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.fill,
-                              animate: true,
-                              repeat: false,
-                              controller: _animationController,
-                              onLoaded: (composition) {
-                                _animationController
-                                  ..duration = composition.duration
-                                  ..reset()
-                                  ..forward();
-                              },
-                            ),
+                  ),
+                  Visibility(
+                    visible: _showAnimation,
+                    child: Positioned(
+                      left: 0,
+                      top: 0,
+                      child: Container(
+                        // width: ScreenUtils.screenW(context) - Dimens.gap_dp16 * 2 - Dimens.gap_dp16,
+                        width: ScreenUtils.screenW(context),
+                        height: 300,
+                        child: Center(
+                          child: Lottie.asset(
+                            'assets/lottie/like.json',
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.fill,
+                            animate: true,
+                            repeat: false,
+                            controller: _animationController,
+                            onLoaded: (composition) {
+                              _animationController
+                                ..duration = composition.duration
+                                ..reset()
+                                ..forward();
+                            },
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              widget.item['title']?.isEmpty ?? true
+                  ? Container()
+                  : Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        Dimens.gap_dp16 / 2,
+                        Dimens.gap_dp16,
+                        Dimens.gap_dp16 / 2,
+                        0,
+                      ),
+                      child: Container(
+                        width: ScreenUtils.screenW(context),
+                        child: Text(
+                          widget.item['title'],
+                          style: TextStyle(),
+                        ),
+                      ),
+                    ),
               Padding(
                 padding: EdgeInsets.fromLTRB(
                   Dimens.gap_dp16 / 2,

@@ -19,7 +19,7 @@ class PostModal with ChangeNotifier {
     LCObject myPost = LCObject("Post");
 
     myPost['user'] = _currentUser;
-    myPost['imaegs'] = images;
+    myPost['images'] = images;
     myPost['title'] = title;
     myPost['imgType'] = imgType;
     myPost['rights'] = rights;
@@ -35,6 +35,7 @@ class PostModal with ChangeNotifier {
     LCQuery<LCObject> query = LCQuery('Post');
     query.whereEqualTo('status', 3);
     query.limit(10);
+    query.orderByDescending('createdAt');
     _postlist = await query.find();
     notifyListeners();
     return _postlist;
